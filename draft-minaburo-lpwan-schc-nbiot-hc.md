@@ -31,11 +31,6 @@ author:
   email: Edgar.Ramos@ericsson.com
 normative:
   RFC4944: 
-  RFC2460: 
-  RFC3385:
-  RFC7136:
-  RFC5795:
-  RFC7217:
 informative:  
   I-D.ietf-lpwan-overview:
   I-D.ietf-lpwan-ipv6-static-context-hc:
