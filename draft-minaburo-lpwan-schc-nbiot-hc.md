@@ -1,7 +1,7 @@
 ---
 stand_alone: true
 ipr: trust200902
-docname: draft-lpwan-SCHC-over-NB-IoT-00
+docname: draft-minaburo-lpwan-nbiot-hc-00
 cat: info
 pi:
   symrefs: 'yes'
@@ -109,8 +109,7 @@ MAX_ATTEMPS
 
 # Acknowledgements
 
-Thanks to Dominique Barthel, Carsten Bormann, Philippe Clavier, Eduardo Ingles Sanchez, Arunprabhu Kandasamy, Rahul Jadhav,
-Sergio Lopez Bernal, Antony Markovski, Alexander Pelov, Pascal Thubert, Juan Carlos Zuniga, Diego Dujovne, Edgar Ramos, and Shoichi Sakane for useful design consideration and comments. 
+Thanks to . 
 
 --- back
 
