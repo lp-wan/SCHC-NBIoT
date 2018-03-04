@@ -38,7 +38,7 @@ normative:
   RFC7217:
 informative:  
   I-D.ietf-lpwan-overview:
-  I-D.ietf-lpwan-schc:
+  I-D.ietf-lpwan-ipv6-static-context-hc:
   
   
 --- abstract
@@ -55,7 +55,7 @@ and provides elements for an efficient parameterization.
  
 # Introduction {#Introduction}
 
-The Static Context Header Compression (SCHC) {{I-D.ietf-lpwan-ipv6--static-context-hc}} defines a header compression scheme 
+The Static Context Header Compression (SCHC) {{I-D.ietf-lpwan-ipv6-static-context-hc}} defines a header compression scheme 
 and fragmentation functionality, both specially tailored for Low Power Wide Area Networks (LPWAN) networks defined in 
 {{I-D.ietf-lpwan-overview}}.  
 
@@ -67,7 +67,7 @@ This document describes the use of SCHC and its parametrizing over the NB-IoT ch
 
 # Terminology
 
-This document will follow the terms defined in {{I-D.ietf-lpwan-ipv6--static-context-hc}} and in {{I-D.ietf-lpwan-overview}}
+This document will follow the terms defined in {{I-D.ietf-lpwan-ipv6-static-context-hc}} and in {{I-D.ietf-lpwan-overview}}
 
 # Architecture
 
