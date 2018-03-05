@@ -23,8 +23,7 @@ author:
 - ins: E. Ramos
   name: Edgar Ramos
   org: Ericsson 
-  street:
-  -  
+  street: Stockholm 
   city: Stockholm 
   country: Sweden
   email: Edgar.Ramos@ericsson.com
@@ -33,9 +32,7 @@ normative:
 informative:  
   I-D.ietf-lpwan-overview:
   I-D.ietf-lpwan-ipv6-static-context-hc:
-  
-
-  
+    
   
 --- abstract
 
