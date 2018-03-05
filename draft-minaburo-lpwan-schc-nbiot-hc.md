@@ -67,7 +67,7 @@ This document describes the use of SCHC and its parametrizing over the NB-IoT ch
 # Terminology
 
 This document will follow the terms defined in {{I-D.ietf-lpwan-ipv6-static-context-hc}}, in {{I-D.ietf-lpwan-overview}}, and 
-the [TGPP23720]. 
+the (TGPP23720). 
 
 * UE. User Equipment
 
@@ -169,15 +169,15 @@ TBD
 TBD
 
 # Security considerations
-3GPP access security is specified in [TGPP33203]
+3GPP access security is specified in (TGPP33203).
 
 # 3GPP References
 
-[TGPP23720]
+* TGPP23720
               3GPP, "TR 23.720 v13.0.0 - Study on architecture
               enhancements for Cellular Internet of Things", 2016.
               
-[TGPP33203]
+* TGPP33203
               3GPP, "TS 33.203 v13.1.0 - 3G security; Access security
               for IP-based services", 2016.
 
