@@ -24,10 +24,9 @@ author:
   name: Edgar Ramos
   org: Ericsson 
   street:
-  - 2 rue 
-  - CS 
-  city: 35576 Cgne 
-  country: F
+  -  
+  city: Stockholm 
+  country: Sweden
   email: Edgar.Ramos@ericsson.com
 normative:
   RFC4944: 
