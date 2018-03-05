@@ -26,7 +26,7 @@ author:
   street: Stockholm 
   city: Stockholm 
   country: Sweden
-  email: Edgar.Ramos@ericsson.com
+  email: edgar.ramos@ericsson.com
 normative:
   RFC4944: 
 informative:  
