@@ -34,6 +34,8 @@ informative:
   I-D.ietf-lpwan-overview:
   I-D.ietf-lpwan-ipv6-static-context-hc:
   
+
+  
   
 --- abstract
 
@@ -61,18 +63,32 @@ This document describes the use of SCHC and its parametrizing over the NB-IoT ch
 
 # Terminology
 
-This document will follow the terms defined in {{I-D.ietf-lpwan-ipv6-static-context-hc}} and in {{I-D.ietf-lpwan-overview}}
+This document will follow the terms defined in {{I-D.ietf-lpwan-ipv6-static-context-hc}}, in {{I-D.ietf-lpwan-overview}}, and 
+the [TGPP23720]. 
+              
+              
+TBD
 
 # Architecture
 
+TDB
+
 ## SCHC entities
+
+TBD
 
 ## NB-IoT Channels
 (Rule ID on L2)
 
+TBD
+
 # Static Context Header Compression
 
+TBD
+
 ## SCHC Rules
+TBD
+
 ### Rule ID 
 The Rule ID the SCHC identifies are:
 * In the SCHC C/D context the Rule used to keep the Field Description of the header packet. 
@@ -81,13 +97,21 @@ The Rule ID the SCHC identifies are:
 
 * And at least one Rule ID may be reserved to the case where no SCHC C/D nor SCHC fragmentation were possible.
 
+TBD
 
 ## Packet processing
+TBD
+
 ## SCHC Context
+TBD
 
 # Fragmentation
 ## Fragmentation Headers
+TBD
+
 ## Fragmentation modes
+TBD
+
 ## Fragmentation Parameters
 Rule ID
 DTag
@@ -96,14 +120,23 @@ Retransmission Timer
 Inactivity Timer
 MAX_ACK_Retries
 MAX_ATTEMPS
+TBD
 
 # Padding
+TBD
 
 # Security considerations
+3GPP access security is specified in [TGPP33203]
 
-# Acknowledgements
+# 3GPP References
 
-Thanks to . 
+[TGPP23720]
+              3GPP, "TR 23.720 v13.0.0 - Study on architecture
+              enhancements for Cellular Internet of Things", 2016.
+              
+[TGPP33203]
+              3GPP, "TS 33.203 v13.1.0 - 3G security; Access security
+              for IP-based services", 2016.
 
 --- back
 
