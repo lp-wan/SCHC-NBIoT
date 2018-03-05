@@ -34,8 +34,7 @@ author:
   city: 35510 Cesson-Sevigne Cedex
   country: France
   email: sothy@ackl.io  
-normative:
-  RFC4944: 
+normative: 
 informative:  
   I-D.ietf-lpwan-overview:
   I-D.ietf-lpwan-ipv6-static-context-hc:
