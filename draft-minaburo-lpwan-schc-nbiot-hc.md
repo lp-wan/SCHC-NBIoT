@@ -149,13 +149,20 @@ TBD
 TBD
 
 ## Fragmentation Parameters
-Rule ID
-DTag
-FCN
-Retransmission Timer
-Inactivity Timer
-MAX_ACK_Retries
-MAX_ATTEMPS
+* Rule ID
+
+* DTag
+
+* FCN
+
+* Retransmission Timer
+
+* Inactivity Timer
+
+* MAX_ACK_Retries
+
+* MAX_ATTEMPS
+
 TBD
 
 # Padding
