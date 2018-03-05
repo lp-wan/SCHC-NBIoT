@@ -27,6 +27,13 @@ author:
   city: Stockholm 
   country: Sweden
   email: edgar.ramos@ericsson.com
+- ins: S. Shanmugalingam
+  name: Sivasothy Shanmugalingam 
+  org: Acklio
+  street: 2bis rue de la Chataigneraie
+  city: 35510 Cesson-Sevigne Cedex
+  country: France
+  email: ana@ackl.io  
 normative:
   RFC4944: 
 informative:  
@@ -57,16 +64,48 @@ within an NB-IoT network. SCHC uses an static context to performs header compres
 
 This document describes the use of SCHC and its parametrizing over the NB-IoT channels.
 
-
 # Terminology
 
 This document will follow the terms defined in {{I-D.ietf-lpwan-ipv6-static-context-hc}}, in {{I-D.ietf-lpwan-overview}}, and 
 the [TGPP23720]. 
-              
+
+* UE. User Equipment
+
+* eNB. Node B. Base Station that controls the UE 
+
+* MME. Mobility Management Entity. Handle mobility of the UE
+
+* S-GW. Serving Gateway. Routes and forwards the user data packets through the access network
+
+* HSS. Home Subscriber Server. It is a database that performs mobility management
+
+* P-GW. Packet Data Node Gateway. Interface between the internal with the external network
               
 TBD
 
 # Architecture
+
+~~~~~~
+  +--+
+   |UE| \              +------+      +------+
+   +--+  \             | MME  |------| HSS  |
+          \          / +------+      +------+
+   +--+    \+-----+ /      |
+   |UE| ----| eNB |-       |
+   +--+    /+-----+ \      |
+          /          \ +--------+
+         /            \|        |    +------+     Service PDN
+   +--+ /              |  S-GW  |----| P-GW |---- e.g. Internet
+   |UE|                |        |    +------+
+   +--+                +--------+
+   
+~~~~~~
+
+{: #Fig--Archi title="3GPP network architecture"}
+ 
+## The Control Plane
+
+## The Data Plane
 
 TDB
 
