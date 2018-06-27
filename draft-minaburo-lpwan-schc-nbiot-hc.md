@@ -47,7 +47,7 @@ a header compression and fragmentation functionalities for LPWAN
 (Low Power Wide Area Networks) technologies.  SCHC was designed to be adapted
 over any of the LPWAN technologies.
 
-This document describes the use of SCHC over the NB-IoT channels, 
+This document describes the use of SCHC over the NB-IoT wireless access, 
 and provides elements for an efficient parameterization.
 
 --- middle
@@ -59,9 +59,9 @@ and fragmentation functionality, both specially tailored for Low Power Wide Area
 {{I-D.ietf-lpwan-overview}}.  
 
 Header compression is needed to efficiently bring Internet connectivity to the node
-within an NB-IoT network. SCHC uses an static context to performs header compression with specific parameters that need to be adapted into the NB-IoT channels. 
+within an NB-IoT network. SCHC uses an static context to performs header compression with specific parameters that need to be adapted into the NB-IoT wireless access. This document assumes functionality for NB-IoT of 3GPP release 15 otherwise other versions functionality is explicitly mentioned in the text.
 
-This document describes the use of SCHC and its parameterizing over the NB-IoT channels.
+This document describes the use of SCHC and its parameterizing over the NB-IoT wireless access. 
 
 # Terminology
 
@@ -195,9 +195,10 @@ The mode uses depends of the operator configuration for the type of data to be t
 ### Medium Access Control (MAC)
 MAC provides a mapping between the higher layers abstraction called Logical Channels comprised by the previously described protocols to the Physical layer channels (transport channels). Additionally, MAC may multiplex packets from different Logical Channels and prioritize what to fit into one Transport Block if there is data and space available to maximize the efficiency of data transmission. MAC also provides error correction and reliability support by means of HARQ, transport format selection and scheduling information reporting from the terminal to the network. MAC also adds the necessary padding and piggyback control elements when possible additional to the higher layers data.
 
-~~~~~~                                                                                                                                              
+~~~~~~ 
+                                                                  <Max. 1600 bytes>                                                                                
                               +-----+         +---------+           +-----------+                                                                
-  Application                  | AP1 |         |   AP1   |           |    AP2    |                                                                
+  Application                 | AP1 |         |   AP1   |           |    AP2    |                                                                
  (IP/non-IP)                  | PDU |         |   PDU   |           |    PDU    |                                                                
                               +-----+         +---------+           +-----------+                                                                
                               |     |         |         |           |           |                                                                
@@ -258,7 +259,7 @@ The Non-Access Stratum (NAS), conveys mainly control signaling between the UE an
 
 NAS has been adapted to provide support for user plane data transmissions to reduce the overhead when transmitting infrequent small quantities of data. This is known as Data over NAS (DoNAS) or Control Plane CIoT EPS optimization. In DoNAS the UE makes use of the pre-established NAS security and piggyback uplink small data into the initial NAS uplink message, and uses an additional NAS message to receive downlink small data response.
 The data encryption from the network side is performed by the C-SGN in a NAS PDU. 
-The AS protocol stack used by DoNAS is somehow special. Since the security associations are not established yet in the radio network, to reduce the protocol overhead,  PDCP (Packet Data Convergence Protocol) is bypassed  until AS security is activated. RLC (Radio Link Control protocol) is configured by default in AM mode, but depending of the features supported by the network and the terminal it may be configured in other modes by the network operator. For example, the transparent mode does not add any header or does not process the payload in any way reducing the overhead, but the MTU would be limited by the transport block used to transmit the data which is couple of thousand of bits maximum. If UM (only Release 15 compatible terminals) is used, the RLC mechanisms of reliability is disabled and only the reliability provided by the MAC layer by Hybrid Automatic Repeat reQuest (HARQ) is available. In this case, the protocol overhead might be smaller than for the AM case because the lack of status reporting but with the same support for segmentation up to 16000 Bytes (due to the protocol length indicators size). NAS packet are encapsulated within a RRC (Radio Resource Control)[TGPP36331] message.   
+The AS protocol stack used by DoNAS is somehow special. Since the security associations are not established yet in the radio network, to reduce the protocol overhead,  PDCP (Packet Data Convergence Protocol) is bypassed  until AS security is activated. RLC (Radio Link Control protocol) is configured by default in AM mode, but depending of the features supported by the network and the terminal it may be configured in other modes by the network operator. For example, the transparent mode does not add any header or does not process the payload in any way reducing the overhead, but the MTU would be limited by the transport block used to transmit the data which is couple of thousand of bits maximum. If UM (only Release 15 compatible terminals) is used, the RLC mechanisms of reliability is disabled and only the reliability provided by the MAC layer by Hybrid Automatic Repeat reQuest (HARQ) is available. In this case, the protocol overhead might be smaller than for the AM case because the lack of status reporting but with the same support for segmentation up to 16000 Bytes. NAS packet are encapsulated within a RRC (Radio Resource Control)[TGPP36331] message.   
 
 Depending of the data type indication signaled (IP or non-IP data), the network allocates an IP address or just establish a direct forwarding path. DoNAS is regulated under rate control upon previous agreement, meaning that a maximum number of bits per unit of time is agreed per device subscription beforehand and configured in the device. 
 The use of DoNAS is typically expected when a terminal in a power saving state requires to do a short transmission and receive an acknowledgment or short feedback from the network. Depending of the size of buffered data to transmit, the UE might be instructed to deploy the connected mode transmissions instead, limiting and controlling the DoNAS transmissions to predefined thresholds and a good resource optimization balance for the terminal and the network. The support for mobility of DoNAS is present but produces additional overhead. 
@@ -315,12 +316,10 @@ The use of DoNAS is typically expected when a terminal in a power saving state r
 
 
 
-
-
 ## SCHC entities
 
-TBD
-(Depending of the transmission mode there is different placing for the SCHC entities)
+SCHC could be deployed differently depending of the placing of the entities in the architecture. NB-IoT and in general the cellular technologies interfaces are standardized by 3GPP. Therefore the introduction of SCHC entities in the RAN (Radio Access Network) would require support from both the network and terminal entities. If SCHC entities are to be placed in RAN it would require to be added to be specified as an option for the UE - Base Station/C-SGN interfaces. Another option is to place the SCHC entities in the applications layer, and the SCHC packets would be transmitted as non-IP packets. The first option allows the deployment of IP for routing and addressing as well. 
+
 
 ## NB-IoT Channels
 (Rule ID on L2)
@@ -351,6 +350,8 @@ TBD
 TBD
 
 # Fragmentation
+The RLC layer of NB-IoT can segment packets in suitable units that fits the selected transport blocks for transmissions of the physical layer. The selection of the blocks is done according to the input of the link adaptation function in the MAC layer and the quantity of data in the buffer. The link adaptation layer may produce different results at each Time Transmission Interval (TTI) for what is very difficult to set a fragmentation value according to the transport block that is selected for each transmission. Instead for NB-IoT SCHC must take care of keeping the application packets with a suitable size that do not exceed the MTU (1600 bytes).
+
 ## Fragmentation Headers
 TBD
 
@@ -375,7 +376,7 @@ TBD
 TBD
 
 # Padding
-TBD
+NB-IoT and 3GPP wireless access in general assumes byte aligned payload. Therefore the L2 word for NB-IoT MUST be considered 8 bits and the treatment of padding should use this value accordingly.
 
 # Security considerations
 3GPP access security is specified in (TGPP33203).
