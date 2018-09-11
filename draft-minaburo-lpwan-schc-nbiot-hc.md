@@ -357,7 +357,30 @@ TBD
 
 ## Fragmentation modes
 TBD
+The SCHC draft specifies three fragmentation modes. 
+1) No-Ack. SCHC packet is fragmented based on underlying network MTU. The fragmented packets are sent in order by sender without expecting acknoledgement from receiver.
+2) Ack-Always. The fragmented SCHC packets are grouped into windows. The sender transfers fragmented SCHC packets which are in same window. After sending fragments, sends expects acknowlegment from receiver. The acknlowdgement indicates  which fragement is missed and received. If any fragments are missing, send will re-send the fragments until recive the all fragments are reched receiver.
+3) Ack-on-Error: As in Ack-Always, fragmented SCHC packets are sent in a window, but sender will not receive the acknowledgement from receiver unless there is a packet missed to reach the receiver.
 
+In a nutshell, SCHC defined fragmentation mechansim includes numbering fragmented packets, acknowledgement if traversing over unreliable network and a mechansim to detect the integrity of all the fragments received at the end of transmission.
+
+
+Non-IP Data delivery:
+
+In Non-IP data delivery, the in-sequence delivery and relaibility is not guaranted in NB-IoT. According to GPP standard, Non-IP data in-sequence delivery cannot be guaranteed and data PDUs may be lost requiring higher protocol layers to ensure guaranteed delivery when needed (3GPP TS 23.401). Therefore, 3GPP defines protocol for reliable data service between UE and SCEF in TS 24.250.
+
+Non-IP data delivery, SCEF decides maximum packet size for each device/applciation server. This value can also be decided by the operator. This draft recommends which fragmentation modes used in NB-IoT without/with reliable data service protocols.
+
+
+
+IP data delivery: 
+
+SCHC compression/fragementation can be deployed in MME/UE if using control plane optimization and eNB/UE if using user plane optimization. This draft considers what is best way to do fragmentation if fragmentation is needed. 
+
+A. Control plane optimization.The data sent over NAS message. 3GPP defines the maximum size of NAS PDU is 2 KB. The NAS payload is less than of 2KB. 
+
+B. Data plane optimization. PDCP layer in eNB and UE performs compression/fragmentaiton.
+   According to 36.323, PDCP SDU is 1600 Bytes for NB IoT compared to 8188 in LTE.
 ## Fragmentation Parameters
 * Rule ID
 
