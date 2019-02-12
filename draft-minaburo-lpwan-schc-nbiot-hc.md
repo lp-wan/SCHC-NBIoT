@@ -158,7 +158,7 @@ The first option allows the deployment of IP for routing and addressing as well.
 
 There are four different scenarios where SCHC maybe used in the NB-IoT architecture, the following sections will describe each one:
 
-## IP data on the User Plane in the PDCP layer
+## IP data in the PDCP layer
 
 In this architecture the header compression is done between the Terminal and the e-NB where the low bandwidth channels are established, SCHC is performed in the PDCP layer. There are three different L2 (RLC) modes, that bring different levels of reliability to the transmission in the User Plane.
 
@@ -306,7 +306,6 @@ SCHC header compression and fragmentation are done E2E from the UE to the PGW wh
     *PDCP is bypassed until AS security is activated [TGPP36300]. 
     
 ~~~~~~
-
 {: #Fig--ProtocolArchi2 title='3GPP CIOT radio protocol architecture for DoNAS transmissions'} 
 
 Depending on the data type signaled indication (IP or non-IP data), the network allocates an IP address or just establish a direct forwarding path. 
