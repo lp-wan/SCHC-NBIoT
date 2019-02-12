@@ -83,7 +83,6 @@ the SCEF of the Home PLMN and is located in the Visited PLMN
 
 
 # Architecture
-## NB-IoT entities
 
 ~~~~~~
 
@@ -143,7 +142,7 @@ Another node introduced in the CIOT architecture is the SCEF (Service Capability
 ~~~~~~                                                                                                     
 {: #Fig--Archi2 title='3GPP optimized CIOT network architecture'}
  
-## Data Transmission
+# Data Transmission
 3GPP networks deal not only with data transmitted end-to-end but also with in-band signaling that is used between the nodes and functions to configure, control and monitor the system functions and behaviors. The control data is handled using a Control Plane which has a specific set of protocols, handling processes and entities. In contrast, the end-to-end or user data utilize a User Plane with characteristics of its own separated from the Control Plane. The handling and setup of the Control Plane and User Plane spans over the whole 3GPP network and it has particular implications in the radio network (i.e., EUTRAN) and in the packet core (ex., EPC).
 
 For the CIOT cases, additionally to transmissions of data over User Plane, 3GPP has specified optimizations for small data transmissions that allow transporting user data (IP, Non-IP) within signaling on the access network (Data transmission over Control Plane or Data Over NAS).
