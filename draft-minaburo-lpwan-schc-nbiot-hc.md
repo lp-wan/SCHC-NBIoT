@@ -158,7 +158,7 @@ The first option allows the deployment of IP for routing and addressing as well.
 
 There are four different scenarios where SCHC maybe used in the NB-IoT architecture, the following sections will describe each one:
 
-## IP data on the User Plane (PDCP layer)
+## IP data on the User Plane in the PDCP layer
 
 In this architecture the header compression is done between the Terminal and the e-NB where the low bandwidth channels are established, SCHC is performed in the PDCP layer. There are three different L2 (RLC) modes, that bring different levels of reliability to the transmission in the User Plane.
 
