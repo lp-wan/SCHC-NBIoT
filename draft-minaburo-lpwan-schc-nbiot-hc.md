@@ -309,7 +309,6 @@ The use of DoNAS is typically expected when a terminal in a power saving state r
  Depending on the size of buffered data to transmit, the UE might be instructed to deploy the connected mode transmissions instead, limiting and controlling the DoNAS transmissions to predefined thresholds and a good resource optimization balance for the terminal and the network. 
  The support for mobility of DoNAS is present but produces additional overhead. 
 
-
 ~~~~~~
       +--------+   +--------+   +--------+                                                                                                                    
       |        |   |        |   |        |       +------------------+                                                                                                                             
@@ -357,7 +356,7 @@ The use of DoNAS is typically expected when a terminal in a power saving state r
 
 ~~~~~~
 
-{: #Fig--ProtocolArchi3 title="DoNAS transmission sequence from an Uplink initiated access"} 
+{: #Fig--DoNAS title="DoNAS transmission sequence from an Uplink initiated access"} 
   
 
 #### NB-IoT Channels
