@@ -86,6 +86,7 @@ the SCEF of the Home PLMN and is located in the Visited PLMN
 ## NB-IoT entities
 
 ~~~~~~
+
   +--+
    |UE| \              +------+      +------+
    +--+  \             | MME  |------| HSS  |
@@ -117,6 +118,7 @@ Another node introduced in the CIOT architecture is the SCEF (Service Capability
 * Monitoring and exposure of event related to UE reachability, loss of connectivity, location reporting, roaming status, communication failure and change of IMEI-IMSI association.
 
 ~~~~~~
+
                                                            +---------+                                 
                                                            |   HSS   |
                                                            +-+-------+
@@ -135,6 +137,7 @@ Another node introduced in the CIOT architecture is the SCEF (Service Capability
 |   UE   +----------+  (eMTC) |  S1   |   |        +--+--------+    PGW   |SGi |Application|
 +--------+          +---------+       |   +--------+  |        |          +----+Server (AS)|
                                       +---------------+        +----------+    +-----------+
+
 
 ~~~~~~                                                                                                     
 {: #Fig--Archi2 title="3GPP optimized CIOT network architecture"}
@@ -166,6 +169,7 @@ The mode used depends on the operator configuration for the type of data to be t
 * In Acknowledge Mode. SCHC header compression/decompression may be used only. In this mode, the RLC layer also performs segmentation and concatenation behavior.
 
 ~~~~~~
+
   +---------+                                       +---------+  |
   |IP/non|IP+---------------------------------------+IP/non|IP+->+
   +---------+    |    +-------------------+    |    +---------+  |
@@ -275,29 +279,27 @@ The Non-Access Stratum (NAS), conveys mainly control signaling between the UE an
 The NAS makes the lower layer transparent to the transmission as a tunnel. And so in this case, either SCHC C/D and F/A are deployed between the User Equipment and the C-SGN (service in the MME) or
 SCHC header compression and fragmentation are done E2E from the UE to the PGW where the tunnel ends before going to the Application Server.
 
-
-
 ~~~~~~
 
-+---------+                               +---------+---------+  |  +---------+                           
-|IP/non-IP|---|-----------------------|---|IP/non-IP|IP/non-IP|->|->|IP/non-IP|                          
-+---------+   |                       |   +---------+---------+  |  +---------+                       
-| NAS     |---|-----------------------|---| NAS     | GTP-C/U |->|->| GTP-C/U |                         
-+---------+   |   +-------+-------+   |   +---------+---------+  |  +---------+                        
-| RRC     |---|---| RRC   | S1-AP |---|---| S1-AP   |         |  |  |         |                        
-+---------+   |   +-------+-------+   |   +---------+  UDP    |->|->|  UDP    |                        
-| PDCP*   |---|---| PDCP* | SCTP  |---|---| SCTP    |         |  |  |         |                       
-+---------+   |   +-------+-------+   |   +---------+---------+  |  +---------+                        
-| RLC     |---|---| RLC   | IP    |---|---| IP      | IP      |->|->| IP      |                        
-+---------+   |   +-------+-------+   |   +---------+---------+  |  +---------+                        
-| MAC     |---|---| MAC   | L2    |---|---| L2      | L2      |->|->| L2      |                        
-+---------+   |   +-------+-------+   |   +---------+---------+  |  +---------+                        
-| PHY     |---|---| PHY   | PHY   |---|---| PHY     | PHY     |->|->| PHY     |                        
-+---------+       +-------+-------+       +---------+---------+  |  +---------+                        
-            C-Uu/                  S1-lite                       SGi                         
-   CIOT/   LTE-Uu     C-BS/eNB                    C-SGN                PGW               
- LTE eMTC
-   UE
+ +---------+                               +---------+---------+  |  +---------+                           
+ |IP/non-IP|---|-----------------------|---|IP/non-IP|IP/non-IP|->|->|IP/non-IP|                          
+ +---------+   |                       |   +---------+---------+  |  +---------+                       
+ | NAS     |---|-----------------------|---| NAS     | GTP-C/U |->|->| GTP-C/U |                         
+ +---------+   |   +-------+-------+   |   +---------+---------+  |  +---------+                        
+ | RRC     |---|---| RRC   | S1-AP |---|---| S1-AP   |         |  |  |         |                        
+ +---------+   |   +-------+-------+   |   +---------+  UDP    |->|->|  UDP    |                        
+ | PDCP*   |---|---| PDCP* | SCTP  |---|---| SCTP    |         |  |  |         |                       
+ +---------+   |   +-------+-------+   |   +---------+---------+  |  +---------+                        
+ | RLC     |---|---| RLC   | IP    |---|---| IP      | IP      |->|->| IP      |                        
+ +---------+   |   +-------+-------+   |   +---------+---------+  |  +---------+                        
+ | MAC     |---|---| MAC   | L2    |---|---| L2      | L2      |->|->| L2      |                        
+ +---------+   |   +-------+-------+   |   +---------+---------+  |  +---------+                        
+ | PHY     |---|---| PHY   | PHY   |---|---| PHY     | PHY     |->|->| PHY     |                        
+ +---------+       +-------+-------+       +---------+---------+  |  +---------+                        
+             C-Uu/                  S1-lite                       SGi                         
+    CIOT/   LTE-Uu     C-BS/eNB                    C-SGN                PGW               
+  LTE eMTC
+    UE
 
     *PDCP is bypassed until AS security is activated [TGPP36300]. 
     
