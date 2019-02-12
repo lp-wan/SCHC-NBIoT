@@ -278,6 +278,7 @@ SCHC header compression and fragmentation are done E2E from the UE to the PGW wh
 
 
 ~~~~~~
+
 +---------+                               +---------+---------+  |  +---------+                           
 |IP/non-IP|---|-----------------------|---|IP/non-IP|IP/non-IP|->|->|IP/non-IP|                          
 +---------+   |                       |   +---------+---------+  |  +---------+                       
@@ -298,7 +299,8 @@ SCHC header compression and fragmentation are done E2E from the UE to the PGW wh
  LTE eMTC
    UE
 
-    *PDCP is bypassed until AS security is activated [TGPP36300].    
+    *PDCP is bypassed until AS security is activated [TGPP36300]. 
+    
 ~~~~~~
 
 {: #Fig--ProtocolArchi2 title="3GPP CIOT radio protocol architecture for DoNAS transmissions"} 
