@@ -441,33 +441,33 @@ NB-IoT and 3GPP wireless access, in general, assumes byte aligned payload. There
 ## NB-IoT with data over NAS
 
 ~~~~~~                                                                                                                                              
-                   +---+ +---+ +---+                    +----+ 
- Application       |AP1| |AP1| |AP2|                    | AP2| 
-(IP/non-IP)        |PDU| |PDU| |PDU|  ................. | PDU|
-                   +---+ +---+ +---+                    +----+ 
-                   |   |/   /  |    \                   |    | 
-NAS /RRC      +--------+---|---+----+             +----------+ 
-              |NAS/|AP1|AP1|AP2|NAS/|             |NAS/| AP2 | 
-              |RRC |PDU|PDU|PDU|RRC |             |RRC | PDU |
-              +--------+-|-+---+----+             +----------|
-              |          |\         |             |          |  
-              |<--Max. 1600 bytes-->|__           |_         |_
-              |          |  \__        \___         \_         \_            
-              |          |     \           \          \__        \_
-         +---------------|+-----|----------+             \         \
-RLC      |RLC | NAS/RRC  ||RLC  | NAS/RRC  |        +-----|--------+ 
-         |Head|  PDU(1/2)||Head | PDU (2/2)|        |RLC  | NAS/RRC| 
-         +---------------++----------------+        |Head | PDU    | 
-         |    |          | \                \       +--------------+  
-         |    |    LCID1 |  \                \      |              | 
-         |    |          |   \                \     |              |
-         |    |          |    \                \    |              |
-         |    |          |     \                \    \             |
-    +--------------------++-----|----------------++-----------------|---+ 
-MAC |MAC |RLC |    RLC   ||MAC  |RLC |  RLC      ||MAC |    RLC     |Pad| 
-    |Head|Head|  PAYLOAD ||Head |Head| PAYLOAD   ||Head|    PDU     |   |
-    +--------------------++----------------------++-----------------+---+
-             TB1                          TB2                       TB3           
+                   +---+ +---+ +---+                  +----+ 
+ Application       |AP1| |AP1| |AP2|                  |AP2 | 
+(IP/non-IP)        |PDU| |PDU| |PDU|  ............... |PDU | 
+                   +---+ +---+ +---+                  +----+ 
+                   |   |/   /  |    \                 |    | 
+NAS /RRC      +--------+---|---+----+            +---------+ 
+              |NAS/|AP1|AP1|AP2|NAS/|            |NAS/|AP2 | 
+              |RRC |PDU|PDU|PDU|RRC |            |RRC |PDU |
+              +--------+-|-+---+----+            +---------|
+              |          |\         |            |         |  
+              |<--Max. 1600 bytes-->|__          |_        |
+              |          |  \__        \___        \_       \_            
+              |          |     \           \         \__      \_
+         +---------------|+-----|----------+            \       \
+RLC      |RLC | NAS/RRC  ||RLC  | NAS/RRC  |       +----|-------+ 
+         |Head|  PDU(1/2)||Head | PDU (2/2)|       |RLC |NAS/RRC| 
+         +---------------++----------------+       |Head|PDU    | 
+         |    |          | \               |       +------------+  
+         |    |    LCID1 |  \              |       |           / 
+         |    |          |   \              \      |           |
+         |    |          |    \              \     |           |
+         |    |          |     \              \     \          |
+    +----+----+----------++-----|----+---------++----+---------|---+ 
+MAC |MAC |RLC |    RLC   ||MAC  |RLC |  RLC    ||MAC |  RLC    |Pad| 
+    |Head|Head|  PAYLOAD ||Head |Head| PAYLOAD ||Head|  PDU    |   |
+    +----+----+----------++-----+----+---------++----+---------+---+
+             TB1                   TB2                     TB3           
 
 ~~~~~~
 {: #Fig--ProtocolArchi4 title='Example of User Plane packet encapsulation for Data over NAS'} 
