@@ -36,7 +36,7 @@ author:
   email: sothy@ackl.io  
 normative: 
 informative:  
-  I-D.ietf-lpwan-overview:
+  RFC8376:
   I-D.ietf-lpwan-ipv6-static-context-hc:
   
 --- abstract
@@ -54,7 +54,7 @@ and provides elements for an efficient parameterization.
 
 The Static Context Header Compression (SCHC) {{I-D.ietf-lpwan-ipv6-static-context-hc}} defines a header compression scheme 
 and fragmentation functionality, both specially tailored for Low Power Wide Area Networks (LPWAN) networks defined in 
-{{I-D.ietf-lpwan-overview}}.  
+{{RFC8376}}.  
 
 Header compression is needed to efficiently bring Internet connectivity to the node within an NB-IoT network. SCHC uses a static context to performs header compression with specific parameters that need to be adapted into the NB-IoT wireless access. This document assumes functionality for NB-IoT of 3GPP release 15 otherwise other versions functionality is explicitly mentioned in the text.
 
@@ -62,7 +62,7 @@ This document describes the use of SCHC and its parameterizing over the NB-IoT w
 
 # Terminology
 
-This document will follow the terms defined in {{I-D.ietf-lpwan-ipv6-static-context-hc}}, in {{I-D.ietf-lpwan-overview}}, and the [TGPP23720]. 
+This document will follow the terms defined in {{I-D.ietf-lpwan-ipv6-static-context-hc}}, in {{RFC8376}}, and the [TGPP23720]. 
 
 * CIoT.    Cellular IoT
 * C-SGN. CIoT Serving Gateway Node
@@ -137,7 +137,7 @@ Another node introduced in the CIOT architecture is the SCEF (Service Capability
                                       +---------------+        +----------+    +-----------+
 
 ~~~~~~                                                                                                     
-{: #Fig--Archi title="3GPP optimized CIOT network architecture"}
+{: #Fig--Archi2 title="3GPP optimized CIOT network architecture"}
  
 ## Data Transmission
 3GPP networks deal not only with data transmitted end-to-end but also with in-band signaling that is used between the nodes and functions to configure, control and monitor the system functions and behaviors. The control data is handled using a Control Plane which has a specific set of protocols, handling processes and entities. In contrast, the end-to-end or user data utilize a User Plane with characteristics of its own separated from the Control Plane. The handling and setup of the Control Plane and User Plane spans over the whole 3GPP network and it has particular implications in the radio network (i.e., EUTRAN) and in the packet core (ex., EPC).
@@ -301,7 +301,7 @@ SCHC header compression and fragmentation are done E2E from the UE to the PGW wh
     *PDCP is bypassed until AS security is activated [TGPP36300].    
 ~~~~~~
 
-{: #Fig--ProtocolArchi title="3GPP CIOT radio protocol architecture for DoNAS transmissions"} 
+{: #Fig--ProtocolArchi2 title="3GPP CIOT radio protocol architecture for DoNAS transmissions"} 
 
 Depending on the data type signaled indication (IP or non-IP data), the network allocates an IP address or just establish a direct forwarding path. 
 DoNAS (Data over NAS)  is regulated under rate control upon previous agreement, meaning that a maximum number of bits per unit of time is agreed per device subscription beforehand and configured in the device. 
@@ -357,7 +357,7 @@ The use of DoNAS is typically expected when a terminal in a power saving state r
 
 ~~~~~~
 
-{: #Fig--ProtocolArchi title="DoNAS transmission sequence from an Uplink initiated access"} 
+{: #Fig--ProtocolArchi3 title="DoNAS transmission sequence from an Uplink initiated access"} 
   
 
 #### NB-IoT Channels
@@ -516,7 +516,7 @@ MAC   |MAC  |RLC  |      RLC        | |MAC  |RLC |      RLC      | |MAC  |    RL
                          TB1                              TB2                            TB3           
 
 ~~~~~~
-{: #Fig--ProtocolArchi title="Example of User Plane packet encapsulation for Data over NAS"} 
+{: #Fig--ProtocolArchi4 title="Example of User Plane packet encapsulation for Data over NAS"} 
 
 
 
