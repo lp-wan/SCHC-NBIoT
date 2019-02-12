@@ -307,57 +307,7 @@ Depending on the data type signaled indication (IP or non-IP data), the network 
 DoNAS (Data over NAS)  is regulated under rate control upon previous agreement, meaning that a maximum number of bits per unit of time is agreed per device subscription beforehand and configured in the device. 
 The use of DoNAS is typically expected when a terminal in a power saving state requires to do a short transmission and receive an acknowledgment or short feedback from the network.
  Depending on the size of buffered data to transmit, the UE might be instructed to deploy the connected mode transmissions instead, limiting and controlling the DoNAS transmissions to predefined thresholds and a good resource optimization balance for the terminal and the network. 
- The support for mobility of DoNAS is present but produces additional overhead. 
-
-~~~~~~
-      +--------+   +--------+   +--------+                                                                                                                    
-      |        |   |        |   |        |       +------------------+                                                                                                                             
-      |   UE   |   |  C-BS  |   |  C-SGN |       | Roaming Scenarios|                                                                                                                             
-      +----|---+   +--------+   +--------+       |   +--------+     |                                                                                                                             
-           |            |            |           |   |        |     |                                                                                                                            
-       +----------------|------------|+          |   |  P-GW  |     |                                                                                                                             
-       |        Attach                |          |   +--------+     |                                                                                                                             
-       +------------------------------+          |        |         |                                                                                                                             
-           |            |            |           |        |         |                                                                                                                             
-    +------|------------|--------+   |           |        |         |                                                                                                                              
-    |RRC Connection Establishment|   |           |        |         |                                                                                                                             
-    |with NAS PDU transmission   |   |           |        |         |                                                                                                                             
-    |& Ack Rsp                   |   |           |        |         |                                                                                                                             
-    +----------------------------+   |           |        |         |                                                                                                                             
-           |            |            |           |        |         |                                                                                                                             
-           |            |Initial UE  |           |        |         |                                                                                                                             
-           |            |message     |           |        |         |                                                                                                                             
-           |            |----------->|           |        |         |                                                                                                                             
-           |            |            |           |        |         |                                                                                                                             
-           |            | +---------------------+|        |         |                                                                                                                             
-           |            | |Checks Integrity     ||        |         |                                                                                                                             
-           |            | |protection, decrypts||        |         |                                                                                                                             
-           |            | |data                 ||        |         |                                                                                                                             
-           |            | +---------------------+|        |         |                                                                                                                             
-           |            |            |        Small data packet     |                                                                                                                             
-           |            |            |-------------------------------->                                                                                                                           
-           |            |            |        Small data packet     |                                                                                                                             
-           |            |            |<--------------------------------                                                                                                                           
-           |            | +----------|---------+ |        |         |                                                                                                                             
-           |            | Integrity protection,| |        |         |                                                                                                                             
-           |            | encrypts data        | |        |         |                                                                                                                             
-           |            | +--------------------+ |        |         |                                                                                                                             
-           |            |            |           |        |         |                                                                                                                             
-           |            |Downlink NAS|           |        |         |                                                                                                                             
-           |            |message     |           |        |         |                                                                                                                             
-           |            |<-----------|           |        |         |                                                                                                                             
-  +-----------------------+          |           |        |         |                                                                                                                             
-  |Small Data Delivery,   |          |           |        |         |                                                                                                                             
-  |RRC connection release |          |           |        |         |                                                                                                                             
-  +-----------------------+          |           |        |         |                                                                                                                             
-                                                 |                  |                                                                                                                             
-                                                 |                  |                                                                                                                             
-                                                 +------------------+  
-
-~~~~~~
-
-{: #Fig--DoNAS title="DoNAS transmission sequence from an Uplink initiated access"} 
-  
+The support for mobility of DoNAS is present but produces additional overhead. 
 
 #### NB-IoT Channels
 (Rule ID on L2)
