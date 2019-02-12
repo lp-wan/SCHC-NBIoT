@@ -1,7 +1,7 @@
 ---
 stand_alone: true
 ipr: trust200902
-docname: draft-minaburo-lpwan-nbiot-hc-01
+docname: draft-minaburo-lpwan-nbiot-hc-02
 cat: info
 pi:
   symrefs: 'yes'
