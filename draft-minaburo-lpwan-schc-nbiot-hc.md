@@ -101,7 +101,7 @@ the SCEF of the Home PLMN and is located in the Visited PLMN
    +--+                +--------+
    
 ~~~~~~
-{: #Fig--Archi title="3GPP network architecture"}
+{: #Fig--Archi title='3GPP network architecture'}
 
 
 The architecture for 3GPP LTE network has been reused for NB-IoT with some optimizations and simplifications known as Cellular IoT (CIoT). Considering the typical use cases for CIoT devices here are described some of the additions to the LTE architecture specific for CIoT. C-SGN(CIoT Serving Gateway Node) is a deployment option co-locating EPS entities in the control plane and user plane paths (for example, MME + SGW + P-GW) and the external interfaces of the entities supported. The C-SGN also supports at least some of the following CIoT EPS Optimizations:
@@ -141,7 +141,7 @@ Another node introduced in the CIOT architecture is the SCEF (Service Capability
 
 
 ~~~~~~                                                                                                     
-{: #Fig--Archi2 title="3GPP optimized CIOT network architecture"}
+{: #Fig--Archi2 title='3GPP optimized CIOT network architecture'}
  
 ## Data Transmission
 3GPP networks deal not only with data transmitted end-to-end but also with in-band signaling that is used between the nodes and functions to configure, control and monitor the system functions and behaviors. The control data is handled using a Control Plane which has a specific set of protocols, handling processes and entities. In contrast, the end-to-end or user data utilize a User Plane with characteristics of its own separated from the Control Plane. The handling and setup of the Control Plane and User Plane spans over the whole 3GPP network and it has particular implications in the radio network (i.e., EUTRAN) and in the packet core (ex., EPC).
@@ -189,7 +189,7 @@ The mode used depends on the operator configuration for the type of data to be t
        UE
        
 ~~~~~~
-{: #Fig--ProtocolArchi title="3GPP CIOT radio protocol architecture for data over user plane"} 
+{: #Fig--ProtocolArchi title='3GPP CIOT radio protocol architecture for data over user plane'} 
 
 ### NB-IoT Channels
 (Rule ID on L2)
@@ -307,7 +307,7 @@ SCHC header compression and fragmentation are done E2E from the UE to the PGW wh
     
 ~~~~~~
 
-{: #Fig--ProtocolArchi2 title="3GPP CIOT radio protocol architecture for DoNAS transmissions"} 
+{: #Fig--ProtocolArchi2 title='3GPP CIOT radio protocol architecture for DoNAS transmissions'} 
 
 Depending on the data type signaled indication (IP or non-IP data), the network allocates an IP address or just establish a direct forwarding path. 
 DoNAS (Data over NAS)  is regulated under rate control upon previous agreement, meaning that a maximum number of bits per unit of time is agreed per device subscription beforehand and configured in the device. 
@@ -471,7 +471,7 @@ MAC   |MAC  |RLC  |      RLC        | |MAC  |RLC |      RLC      | |MAC  |    RL
                          TB1                              TB2                            TB3           
 
 ~~~~~~
-{: #Fig--ProtocolArchi4 title="Example of User Plane packet encapsulation for Data over NAS"} 
+{: #Fig--ProtocolArchi4 title='Example of User Plane packet encapsulation for Data over NAS'} 
 
 
 
