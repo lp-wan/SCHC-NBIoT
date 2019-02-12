@@ -195,7 +195,7 @@ TBD
 
 The context is initialized during the channel opening between the UE and the MME which define the context to be used based on the HSS information of the user profile. 
 
-###### SCHC Rules
+##### SCHC Rules
 Rules are defined based on the IP/UDP packets, there may be a necessary amount of Rules to cover the different scenarios of IP addresses.
 The definition of these Rules is based on the Service Provider Network, the Device may have at least some Rules for IPv4, some for IPv6.
 
