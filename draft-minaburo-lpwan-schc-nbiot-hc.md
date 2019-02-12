@@ -54,11 +54,11 @@ and provides elements for an efficient parameterization.
 
 The Static Context Header Compression (SCHC) {{I-D.ietf-lpwan-ipv6-static-context-hc}} defines a header compression scheme 
 and fragmentation functionality, both specially tailored for Low Power Wide Area Networks (LPWAN) networks defined in 
-{{RFC8376}}.  
+{{RFC8376}}.
 
 Header compression is needed to efficiently bring Internet connectivity to the node within an NB-IoT network. SCHC uses a static context to performs header compression with specific parameters that need to be adapted into the NB-IoT wireless access. This document assumes functionality for NB-IoT of 3GPP release 15 otherwise other versions functionality is explicitly mentioned in the text.
 
-This document describes the use of SCHC and its parameterizing over the NB-IoT wireless access. 
+This document describes the use of SCHC and its parameterizing over the NB-IoT wireless access.
 
 # Terminology
 
@@ -120,24 +120,24 @@ Another node introduced in the CIOT architecture is the SCEF (Service Capability
 
 ~~~~~~
 
-                                              +-------+                                 
-                                              |  HSS  |
-                                              +-+-----+
-                                               /
-                             +-----------+  __/S6a
-                +--------+   | +-------+ +_/
-+------+ C-Uu   |        +---+-+  MME  | | T6i +----------+ T7 +------+
-| CIOT +--------+  eNB   |S1 | |       +-+-----+ IWK-SCEF +----+ SCEF |
-| UE   |        |(NB-IoT)|   | +-----+-+ |     +----------+    +------+
-+------+        +--------+   |       |   |        
-                             |  C-SGN|   |     
-                             |       |S11|
-                +--------+   |       |   |        
-+--------+LTE-Uu|        |   |  +----+-+ |        
-|LTE eMTC|(eMTC)| eNB    +---+--+ SGW  | | S8 +-------+    +-----------+
-|   UE   +------+ (eMTC) |S1 |  |      +-+----+  PGW  |SGi |Application|
-+--------+      +--------+   |  +------+ |    |       +----+Server (AS)|
-                             +-----------+    +-------+    +-----------+
+                                          +-------+                                 
+                                          |  HSS  |
+                                          +-+-----+
+                                           /
+                           +---------+  __/S6a
+              +--------+   | +-----+ +_/
++----+ C-Uu   |        +---+-+ MME | | T6i+--------+ T7 +----+
+|CIOT+--------+  eNB   |S1 | |     +-+----+IWK-SCEF+----+SCEF|
+|UE  |        |(NB-IoT)|   | +---+-+ |    +--------+    +----+
++----+        +--------+   |     |   |        
+                           |C-SGN|   |     
+                           |     |S11|
+                +------+   |     |   |        
++--------+LTE-Uu|      |   |  +--+-+ |        
+|LTE eMTC|(eMTC)|eNB   +---+--+SGW | | S8+---+    +-----------+
+|   UE   +------+(eMTC)|S1 |  |    +-+---+PGW|SGi |Application|
++--------+      +------+   |  +----+ |   |   +----+Server (AS)|
+                           +---------+   +---+    +-----------+
 
 
 ~~~~~~                                                                                                     
@@ -283,23 +283,24 @@ SCHC header compression and fragmentation are done E2E from the UE to the PGW wh
 
 ~~~~~~
 
-+---------+                       +---------+---------+  |  +---------+                           
-|IP/non-IP|--|-----------------|--|IP/non-IP|IP/non-IP|->|->|IP/non-IP|                          
-+---------+  |                 |  +---------+---------+  |  +---------+                       
-| NAS     |--|-----------------|--| NAS     | GTP-C/U |->|->| GTP-C/U |                         
-+---------+  |  +-----+-----+  |  +---------+---------+  |  +---------+                        
-| RRC     |--|--|RRC  |S1-AP|--|--| S1-AP   |         |  |  |         |                        
-+---------+  |  +-----+-----+  |  +---------+  UDP    |->|->|  UDP    |                        
-| PDCP*   |--|--|PDCP*|SCTP |--|--| SCTP    |         |  |  |         |                       
-+---------+  |  +-----+-----+  |  +---------+---------+  |  +---------+                        
-| RLC     |--|--| RLC | IP  |--|--| IP      | IP      |->|->| IP      |                        
-+---------+  |  +-----+-----+  |  +---------+---------+  |  +---------+                        
-| MAC     |--|--| MAC | L2  |--|--| L2      | L2      |->|->| L2      |                        
-+---------+  |  +-----+-----+  |  +---------+---------+  |  +---------+                        
-| PHY     |--|--| PHY | PHY |--|--| PHY     | PHY     |->|->| PHY     |                        
-+---------+     +-----+-----+     +---------+---------+  |  +---------+                        
-           C-Uu/             S1-lite                    SGi                         
-   CIOT/  LTE-Uu   C-BS/eNB                    C-SGN                PGW               
++--------+                       +--------+--------+  |  +--------+                           
+| IP/    |--|-----------------|--|  IP/   |   IP/  |->|->|   IP/  | 
+| Non-IP |  |                 |  | Non-IP | Non-IP |  |  | Non-IP |
++--------+  |                 |  +--------+--------+  |  +--------+                       
+| NAS    |--|-----------------|--| NAS    |GTP-C/U |->|->|GTP-C/U |                         
++--------+  |  +-----+-----+  |  +--------+--------+  |  +--------+                        
+| RRC    |--|--|RRC  |S1-AP|--|--| S1-AP  |        |  |  |        |                        
++--------+  |  +-----+-----+  |  +--------+  UDP   |->|->|  UDP   |                        
+| PDCP*  |--|--|PDCP*|SCTP |--|--| SCTP   |        |  |  |        |                       
++--------+  |  +-----+-----+  |  +--------+--------+  |  +--------+                        
+| RLC    |--|--| RLC | IP  |--|--| IP     | IP     |->|->| IP     |                        
++--------+  |  +-----+-----+  |  +--------+--------+  |  +--------+                        
+| MAC    |--|--| MAC | L2  |--|--| L2     | L2     |->|->| L2     |                        
++--------+  |  +-----+-----+  |  +--------+--------+  |  +--------+                        
+| PHY    |--|--| PHY | PHY |--|--| PHY    | PHY    |->|->| PHY    |                        
++--------+     +-----+-----+     +--------+--------+  |  +--------+                        
+           C-Uu/           S1-lite                   SGi                         
+   CIOT/  LTE-Uu   C-BS/eNB            C-SGN                PGW               
  LTE eMTC
    UE
 
@@ -440,33 +441,33 @@ NB-IoT and 3GPP wireless access, in general, assumes byte aligned payload. There
 ## NB-IoT with data over NAS
 
 ~~~~~~                                                                                                                                              
-                       +-----+ +---------+ +-------+                         +-----+ 
- Applications          | AP1 | |   AP1   | | AP2   |                         | AP2 | 
-(IP/non-IP)            | PDU | |   PDU   | | PDU   |  ¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨ | PDU |
-                       +-----+ +---------+ +-------+                         +-----+ 
-                       |     | /         /        /                          |     | 
- NAS /RRC         +----------+----------|--------+------+               +----------+ 
-                  |NAS/| AP1 |  AP1     |  AP2   | NAS/ |               |NAS/| AP2 | 
-                  |RRC | PDU |  PDU     |  PDU   | RRC  |               |RRC | PDU |
-                  +----------+------|---+--------+------+               +----------|
-                  |                 | \                 |               |          |  
-                  |<-----------Max. 1600 bytes--------->|               |          |
-                  |                 |   \                \              ¨\         ¨\            
-                  |                 |    --\             -\              \          \
-            +-----------------------| +-----|--------------+              \          \
-RLC         |RLC  |    NAS/RRC      | |RLC  |  NAS/RRC     |          +-----|--------+ 
-            |Head |    PDU(1/2)     | |Head |   PDU (2/2)  |          |RLC  | NAS/RRC| 
-            +-----------------------+ +--------------------+          |Head | PDU    | 
-            |     |                 |  \                    \         +--------------+  
-            |     |      LCID1      |   \                    \        |              | 
-            |     |                 |    \                    \       |              |
-            |     |                 |     \                    \      |              |
-            |     |                 |      \                    \      \             |
-      +-----------------------------+ +-----|--------------------+ +------------------|-------+ 
-MAC   |MAC  |RLC  |      RLC        | |MAC  |RLC |      RLC      | |MAC  |    RLC     |Padding| 
-      |Head |Head |     PAYLOAD     | |Head |Head|     PAYLOAD   | |Head |    PDU     |       |
-      +------------------------------ +----------------------- --+ +------------------+-------+
-                         TB1                              TB2                            TB3           
+                   +---+ +---+ +---+                    +----+ 
+ Application       |AP1| |AP1| |AP2|                    | AP2| 
+(IP/non-IP)        |PDU| |PDU| |PDU|  ................. | PDU|
+                   +---+ +---+ +---+                    +----+ 
+                   |   |/   /  |    \                   |    | 
+NAS /RRC      +--------+---|---+----+             +----------+ 
+              |NAS/|AP1|AP1|AP2|NAS/|             |NAS/| AP2 | 
+              |RRC |PDU|PDU|PDU|RRC |             |RRC | PDU |
+              +--------+-|-+---+----+             +----------|
+              |          |\         |             |          |  
+              |<--Max. 1600 bytes-->|__           |_         |_
+              |          |  \__        \___         \_         \_            
+              |          |     \           \          \__        \_
+         +---------------|+-----|----------+             \         \
+RLC      |RLC | NAS/RRC  ||RLC  | NAS/RRC  |        +-----|--------+ 
+         |Head|  PDU(1/2)||Head | PDU (2/2)|        |RLC  | NAS/RRC| 
+         +---------------++----------------+        |Head | PDU    | 
+         |    |          | \                \       +--------------+  
+         |    |    LCID1 |  \                \      |              | 
+         |    |          |   \                \     |              |
+         |    |          |    \                \    |              |
+         |    |          |     \                \    \             |
+    +--------------------++-----|----------------++-----------------|---+ 
+MAC |MAC |RLC |    RLC   ||MAC  |RLC |  RLC      ||MAC |    RLC     |Pad| 
+    |Head|Head|  PAYLOAD ||Head |Head| PAYLOAD   ||Head|    PDU     |   |
+    +--------------------++----------------------++-----------------+---+
+             TB1                          TB2                       TB3           
 
 ~~~~~~
 {: #Fig--ProtocolArchi4 title='Example of User Plane packet encapsulation for Data over NAS'} 
