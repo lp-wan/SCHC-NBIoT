@@ -186,21 +186,21 @@ The mode used depends on the operator configuration for the type of data to be t
 ~~~~~~
 {: #Fig--ProtocolArchi title="3GPP CIOT radio protocol architecture for data over user plane"} 
 
-## NB-IoT Channels
+#### NB-IoT Channels
 (Rule ID on L2)
 
 TBD
 
-# Static Context Header Compression
+#### Static Context Header Compression
 
 The context is initialized during the channel opening between the UE and the MME which define the context to be used based on the HSS information of the user profile. 
 
-## SCHC Rules
+###### SCHC Rules
 Rules are defined based on the IP/UDP packets, there may be a necessary amount of Rules to cover the different scenarios of IP addresses.
 The definition of these Rules is based on the Service Provider Network, the Device may have at least some Rules for IPv4, some for IPv6.
 
 
-### Rule ID 
+##### Rule ID 
 The Rule ID the SCHC identifies are:
 * In the SCHC C/D context the Rule used to keep the Field Description of the header packet. 
 
@@ -211,7 +211,7 @@ The Rule ID the SCHC identifies are:
 TBD
 
 
-## SCHC MAX_PACKET_SIZE
+##### SCHC MAX_PACKET_SIZE
 
 * In Transparent Mode  TBD
 * In Unacknowledged Mode TBD
@@ -219,22 +219,22 @@ TBD
 
 TBD
 
-# Fragmentation
+#### Fragmentation
 The RLC layer of NB-IoT can segment packets in suitable units that fit the selected transport blocks for transmissions of the physical layer.
 The selection of the blocks is done according to the input of the link adaptation function in the MAC layer and the quantity of data in the buffer. 
 The link adaptation layer may produce different results at each Time Transmission Interval (TTI) for what is very difficult to set a fragmentation value according to the transport block that is selected for each transmission. 
 Instead for NB-IoT SCHC must take care of keeping the application packets with a suitable size that do not exceed the MTU (1600 bytes).
 
-## Fragmentation in Transparent Mode
+##### Fragmentation in Transparent Mode
 For the Transparent Mode, the ACK-Always mode may be used. In these kinds of channels there may be out of order delivery and losses, ACK-Always can bring a good solution to increase reliability in this kind of channels. 
 Nevertheless, if the transmission needs to be non-reliable No-ACK maybe use too. 
 
-## Fragmentation in Unacknowledged Mode
+##### Fragmentation in Unacknowledged Mode
 In Unacknowledged Mode, the channel may bring some more reliable transmission,  the ACK-on-Error could be a solution when the characteristic of the channel change and the segmentation is not adapted.
 
 TBD
 
-## Fragmentation Parameters in Transparent Mode
+##### Fragmentation Parameters in Transparent Mode
 
 * Rule ID
 
@@ -252,7 +252,7 @@ TBD
 
 TBD
 
-## Fragmentation Parameters in Unacknowledged Mode
+##### Fragmentation Parameters in Unacknowledged Mode
 
 * Rule ID
 
@@ -360,33 +360,33 @@ The use of DoNAS is typically expected when a terminal in a power saving state r
 {: #Fig--ProtocolArchi title="DoNAS transmission sequence from an Uplink initiated access"} 
   
 
-## NB-IoT Channels
+#### NB-IoT Channels
 (Rule ID on L2)
 The channel between the Device and the MME is open during the negotiation of the channel, during this process, the context is initialized.
 
 TBD
 
-# Static Context Header Compression
+#### Static Context Header Compression
 
 TBD
 
-## SCHC Rules
+##### SCHC Rules
 In the Control plane, an IP packet may be sent, it can use IPv4 or IPv6 addresses. In the context,  some Rules for IPv4 and some for IPv6 may be defined using the most common values.
 
-### Rule ID 
+##### Rule ID 
 
 TBD
 
-## SCHC MAX_PACKET_SIZE
+##### SCHC MAX_PACKET_SIZE
 TBD
 
-# Fragmentation
+#### Fragmentation
 The SCHC fragmentation solution will improve the performance of this transmission because it includes some reliability options. 
 In this use case, the ACK-on-Error mode seems to be more adapted, the windows will let to send a complete IP packet over this tiny packet of 2Kbytes.
  
 TBD
 
-## Fragmentation Parameters
+##### Fragmentation Parameters
 * Rule ID
 
 * DTag
@@ -407,16 +407,16 @@ TBD
 ### NoIP Data over SGI Tunneling
 Application Payload may be carried from the UE through the control plane using the CSGN tunnel. As it is purely payload so SCHC can be used to fragment the information from the UE to the PGW.
 
-## NB-IoT Channels
+#### NB-IoT Channels
 (Rule ID on L2)
 
 TBD
 
-# Fragmentation
+#### Fragmentation
 
 IF the channel allows some feedback the ACK-on-Error mode may be used. IF not the No-ACK mode will bring a good solution for this channel.
 
-## Fragmentation Parameters
+##### Fragmentation Parameters
 * Rule ID. The use of a special Rule ID where only fragmentation is performed may be used in this case. 
 
 * DTag
@@ -438,15 +438,15 @@ TBD
 The MME opens a dedicated channel between the UE and the SCEF gateway, where the SCHC fragmentation can be used. 
 
 
-## NB-IoT Channels
+#### NB-IoT Channels
 (Rule ID on L2)
 
 TBD
 
-# Fragmentation
+#### Fragmentation
 IF the channel allows some feedback the ACK-on-Error mode may be used. IF not the No-ACK mode will bring a good solution for this channel.
 
-## Fragmentation Parameters
+##### Fragmentation Parameters
 * Rule ID. The use of a special Rule ID where only fragmentation is performed may be used in this case. 
 
 * DTag
