@@ -149,24 +149,22 @@ For the CIOT cases, additionally to transmissions of data over User Plane, 3GPP 
 
 The maximum recommended MTU size is 1358 Bytes. The radio network protocols limit the packet sizes to be transmitted over the air including radio protocol overhead to 1600 Octets. But the value is reduced further to avoid fragmentation in the backbone of the network due to the payload encryption size (multiple of 16) and handling of the additional core transport overhead.
 
+NB-IoT and in general the cellular technologies interfaces and functions are standardized by 3GPP. Therefore the introduction of SCHC entities to UE, eNB and C-SGN does need to be specified in the NB-IoT standard. This implies that standard specified SCHC support would not be backwards compatible. A terminal or a network supporting a version of the standard without support of SCHC or without capability implementation (in case of not being standardized as mandatory capability) is not able to utilize the compression services with this approach.
 
-SCHC could be deployed differently depending on the placing of the entities in the architecture. NB-IoT and in general the cellular technologies interfaces are standardized by 3GPP.  Therefore the introduction of SCHC entities in the RAN (Radio Access Network) would require support from both the network and terminal entities.  If SCHC entities are to be placed in RAN it would require to be added to be specified as an option for the UE - Base Station/C-SGN interfaces. 
+SCHC could be deployed differently depending on where the header compression and the fragmentation are applied. The SCHC functionalities could be applied to the packets about to be transmitted over the air, or to the whole end-to-end link. To accomplish the first, it is required to place SCHC compression and decompression entities in the eNB and in the UE for transmissions over the User Plane. Additionally, to handle the case of the transmissions over Control Plane or Data Over NAS, the network SCHC entity has to be placed in the C-SGN as well. For these two cases, the functions are to be standardized by 3GPP.
 
-Another option is to place the SCHC entities in the applications layer, and the SCHC packets would be transmitted as non-IP packets. 
-The first option allows the deployment of IP for routing and addressing as well. 
+Another possibility is to apply SCHC functinalities to the end-to-end connection or at least up to the operator network edge. In that case, the SCHC entities would be placed in the application layer of the terminal in one end, and either in the application servers or in a broker function in the edge of the operator network in the other end. For the radio network, the packets are transmitted as non-IP traffic, which can be currently served utilizing IP tunneling or SCEF services. Since this option does not necessarily require 3GPP standardization, it is possible to also benefit legacy devices with SCHC by utilizing the non-IP transmission features of the operator network.
 
-There are four different scenarios where SCHC maybe used in the NB-IoT architecture, the following sections will describe each one:
+Accordingly, there are four different scenarios where SCHC can be used in the NB-IoT architecture. IP header compression on the data transmission over User Plane, IP header compression on the optimized transmissions over Control Plane (i.e.,DoNAS), non-IP transmissions of SCHC packets by IP tunneling, and non-IP transmissions of SCHC packets by SCEF forwarding. The following sections describe each of them in more detail. The first two scenarios refer to transmissions using the 3GPP IP transmission capabilities and the last two refers to transmission using the Non-IP capabilities.
 
-## IP data in the PDCP layer
+# IP based Data Transmission
+## SCHC over User Plane transmissions
 
-In this architecture the header compression is done between the Terminal and the e-NB where the low bandwidth channels are established, SCHC is performed in the PDCP layer. There are three different L2 (RLC) modes, that bring different levels of reliability to the transmission in the User Plane.
+Deploying SCHC only over the radio link would require to place it as part of the User Plane data transmission. The User Plane utilizes the protocol stack of the Access Stratum (AS) for data transfer. AS (Access Stratum) is the functional layer responsible for transporting data over wireless connection and managing radio resources. The user plane AS has support for features such as reliability, segmentation and concatenation. The transmissions of the AS employ link adaptation, meaning that the transport format utilized for the transmissions are optimized according to the radio conditions, the number of bits to transmit and the power and interference constrains. That means that the number of bits transmitted over the air depends of the Modulation and Coding Schemes (MCS) selected. The transmissions in the physical layer happens at network synchronized intervals of times called TTI (Transmission Time Interval). The transmission of a Transport Block (TB) is completed during, at least, one TTI. Each Transport Block has a different MCS and number of bits available to transmit. The Transport Blocks characteristics are defined by the MAC technical specification [TGPP36321]. The Access Stratum for User Plane is comprised by Packet Data Convergence Protocol (PDCP) [TGPP36323], Radio Link Protocol (RLC)[TGPP36322], Medium Access Control protocol (MAC)[TGPP36321] and the Physical Layer [TGPP36201]. More details of this protocols are given in the Appendix.
 
-The mode used depends on the operator configuration for the type of data to be transmitted.  For example, data transmissions supporting mobility or requiring high reliability would be most likely configured using AM, meanwhile streaming and real-time data would be mapped to a UM configuration.
+The current architecture provides support for header compression in PDCP utilizing RoHC {{RFC5795}}. Therefore SCHC entities can be deployed in similar fashion without need for major changes in the 3GPP specifications.
 
-* In Transparent Mode. SCHC header compression and fragmentation may be used. In this mode, the RLC layer does not add any reliable to the channel.
-* In Unacknowledged Mode. SCHC header compression/decompression and fragmentation/assembly may be used. Even if the RLC layer performs a segmentation/concatenation in this mode. Because when there are changes in the radio conditions and  triggering the selection
-  of a smaller transport block, the segmentation is not adapted. However, the use of SCHC fragmentation/assembly may improve the behavior in this case. 
-* In Acknowledge Mode. SCHC header compression/decompression may be used only. In this mode, the RLC layer also performs segmentation and concatenation behavior.
+In this scenario, RLC takes care of the handling of fragmentation (if transparent mode is not configured) when packets exceeds the transport block size at the time of transmission. Therefore SCHC fragmentation is not needed and should not be used to avoid additional protocol overhead. It is not common to configure RLC in Transparent Mode for IP based user plane data. But given the case in the future, SCHC fragmentation may be used. In that case, a SCHC tile would match the minimum transport block size minus the PDCP and MAC headers.
 
 ~~~~~~
 
@@ -230,16 +228,8 @@ The selection of the blocks is done according to the input of the link adaptatio
 The link adaptation layer may produce different results at each Time Transmission Interval (TTI) for what is very difficult to set a fragmentation value according to the transport block that is selected for each transmission. 
 Instead for NB-IoT SCHC must take care of keeping the application packets with a suitable size that do not exceed the MTU (1600 bytes).
 
-#### Fragmentation in Transparent Mode
-For the Transparent Mode, the ACK-Always mode may be used. In these kinds of channels there may be out of order delivery and losses, ACK-Always can bring a good solution to increase reliability in this kind of channels. 
-Nevertheless, if the transmission needs to be non-reliable No-ACK maybe use too. 
 
-#### Fragmentation in Unacknowledged Mode
-In Unacknowledged Mode, the channel may bring some more reliable transmission,  the ACK-on-Error could be a solution when the characteristic of the channel change and the segmentation is not adapted.
-
-TBD
-
-#### Fragmentation Parameters in Transparent Mode
+#### Fragmentation Parameters 
 
 * Rule ID
 
@@ -257,28 +247,8 @@ TBD
 
 TBD
 
-#### Fragmentation Parameters in Unacknowledged Mode
-
-* Rule ID
-
-* DTag
-
-* FCN
-
-* Retransmission Timer
-
-* Inactivity Timer
-
-* MAX_ACK_Retries
-
-* MAX_ATTEMPS
-
-TBD
-
-## IP Data Over Control Plane
-The Non-Access Stratum (NAS), conveys mainly control signaling between the UE and the cellular network [TGPP24301].
-The NAS makes the lower layer transparent to the transmission as a tunnel. And so in this case, either SCHC C/D and F/A are deployed between the User Equipment and the C-SGN (service in the MME) or
-SCHC header compression and fragmentation are done E2E from the UE to the PGW where the tunnel ends before going to the Application Server.
+## Data over Control Plane
+The Non-Access Stratum (NAS), conveys mainly control signaling between the UE and the cellular network [TGPP24301]. NAS is transported on top of the Access Stratum (AS) already mentioned in the previous section. NAS has been adapted to provide support for user plane data transmissions to reduce the overhead when transmitting infrequent small quantities of data. This is known as Data over NAS (DoNAS) or Control Plane CIoT EPS optimization. In DoNAS the UE makes use of the pre-established NAS security and piggyback uplink small data into the initial NAS uplink message, and uses an additional NAS message to receive downlink small data response. The data encryption from the network side is performed by the C-SGN in a NAS PDU. Additional details of DoNAS are given in the Appendix. In this scenario SCHC can be applied in the NAS protocol layer instead of PDCP. The same principles than for user plane transmissions applies here as well. The main difference is the physical placing of the SCHC entities in the network side as the C-SGN (placed in the core network) is the terminating node for NAS instead of the eNB.
 
 ~~~~~~
 
@@ -314,11 +284,6 @@ The use of DoNAS is typically expected when a terminal in a power saving state r
  Depending on the size of buffered data to transmit, the UE might be instructed to deploy the connected mode transmissions instead, limiting and controlling the DoNAS transmissions to predefined thresholds and a good resource optimization balance for the terminal and the network. 
 The support for mobility of DoNAS is present but produces additional overhead. 
 
-### NB-IoT Channels
-(Rule ID on L2)
-The channel between the Device and the MME is open during the negotiation of the channel, during this process, the context is initialized.
-
-TBD
 
 ### Static Context Header Compression
 
@@ -357,13 +322,39 @@ TBD
 
 TBD
 
+# Non-IP based Data Transmission
+The Non-IP Data Delivery (NIDD) services of 3GPP enable the possibility of transmitting SCHC packets compressed by the application layer. The packets can be delivered by means of IP-tunnels to the 3GPP network or using SCEF functions (i.e., API calls). In both cases the packet IP is not understood by the 3GPP network since it is already compressed and the network does not has information of the context used for compression. Therefore the network will treat the packet as a Non-IP traffic and deliver it to the UE without any other stack element, directly under the L2.
 
-## NoIP Data over SGI Tunneling
-Application Payload may be carried from the UE through the control plane using the CSGN tunnel. As it is purely payload so SCHC can be used to fragment the information from the UE to the PGW.
+~~~~~~
 
-### NB-IoT Channels
-(Rule ID on L2)
++---------+       XXXXXXXXXXXXXXXXXXXXXXXX             +--------+
+| SCHC    |      XXX                    XXX            | SCHC   |
+|(Non-IP) +-----XX........................XX....+--*---+(Non-IP)|
++---------+    XX                  +----+  XX   |  |   +--------+
+|         |    XX                  |SCEF+-------+  |   |        |
+|         |   XXX     3GPP RAN &   +----+  XXX     +---+  UDP   |
+|         |   XXX    CORE NETWORK          XXX     |   |        |
+|  L2     +---+XX                  +------------+  |   +--------+
+|         |     XX                 |IP TUNNELING+--+   |        |
+|         |      XXX               +------------+  +---+  IP    |
++---------+       XXXX                 XXXX        |   +--------+
+| PHY     +------+ XXXXXXXXXXXXXXXXXXXXXXX         +---+  PHY   |
++---------+                                            +--------+
+   UE                                                       AS
+    
+~~~~~~
+{: #Fig--NIDD title='SCHC entities placed when using Non-IP Delivery (NIDD) 3GPP Sevices'} 
 
+In the two scenarios using NIDD, SCHC entities are located almost in top of the stack. In the terminal, it may be implemented by a application utilizing the NB-IoT connectivity services. In the network side, the SCHC entities are located in the Application Server (AS). The IP tunneling scenario requires that the Application Server sends the compressed packet over an IP connection that is terminated by the 3GPP core network. If instead the SCEF services are used, then it is possible to utilize a API call to transfer the SCHC packets between the core network and the AS, also an IP tunnel could be established by the AS, if negotiated with the SCEF.
+
+#### SCHC Rules
+In the Control plane, an IP packet may be sent, it can use IPv4 or IPv6 addresses. In the context,  some Rules for IPv4 and some for IPv6 may be defined using the most common values.
+
+#### Rule ID 
+
+TBD
+
+#### SCHC MAX_PACKET_SIZE
 TBD
 
 ### Fragmentation
@@ -392,9 +383,14 @@ TBD
 The MME opens a dedicated channel between the UE and the SCEF gateway, where the SCHC fragmentation can be used. 
 
 
-### NB-IoT Channels
-(Rule ID on L2)
+#### SCHC Rules
+In the Control plane, an IP packet may be sent, it can use IPv4 or IPv6 addresses. In the context,  some Rules for IPv4 and some for IPv6 may be defined using the most common values.
 
+#### Rule ID 
+
+TBD
+
+#### SCHC MAX_PACKET_SIZE
 TBD
 
 ### Fragmentation
@@ -437,7 +433,47 @@ NB-IoT and 3GPP wireless access, in general, assumes byte aligned payload. There
 
               
 # Appendix
-## NB-IoT with data over NAS
+## NB-IoT User Plane protocol architecture
+
+### Packet Data Convergence Protocol (PDCP)
+Each of the Radio Bearers (RB) are associated with one PDCP entity. And a PDCP entity is associated with one or two RLC entities depending of the unidirectional or bi-directional characteristics of the RB and RLC mode used. A PDCP entity is associated either control plane or user plane which independent configuration and functions. The maximum supported size for NB-IoT of a PDCP SDU is 1600 octets. The main services and functions of the PDCP sublayer for NB-IoT for the user plane include:
+
+* Header compression and decompression by means of ROHC (Robust Header Compression)
+* Transfer of user and control data to higher and lower layers
+* Duplicate detection of lower layer SDUs when re-establishing connection (when RLC with Acknowledge Mode in use for User Plane only)
+* Ciphering and deciphering
+* Timer-based SDU discard in uplink
+
+### Radio Link Protocol (RLC)
+RLC is a layer-2 protocol that operates between the UE and the base station (eNB). It supports the packet delivery from higher layers to MAC creating packets that are transmitted over the air optimizing the Transport Block utilization. RLC flow of data packets is unidirectional and it is composed of a transmitter located in the transmission device and a receiver located in the destination device. Therefore to configure bi-directional flows, two set of entities, one in each direction (downlink and uplink) must be configured and they are effectively peered to each other. The peering allows the transmission of control packets (ex., status reports) between entities. RLC can be configured for data transfer in one of the following modes:
+
+* Transparent Mode (TM). In this mode RLC do not segment or concatenate SDUs from higher layers and do not include any header to the payload. When acting as a transmitter, RLC receives SDUs from upper layers and transmit directly to its flow RLC receiver via lower layers. Similarly, an TM RLC receiver would only deliver without additional processing the packets to higher layers upon reception.
+
+* Unacknowledged Mode (UM). This mode provides support for segmentation and concatenation of payload. The size of the RLC packet depends of the indication given at a particular transmission opportunity by the lower layer (MAC) and are octets aligned. The packet delivery to the receiver do not include support for reliability and the lost of a segment from a packet means a whole packet loss. Also in case of lower layer retransmissions there is no support for re-segmentation in case of change of the radio conditions triggering the selection of a smaller transport block. Additionally it provides PDU duplication detection and discard, reordering of out of sequence and loss detection.
+ 
+* Acknowledged Mode (AM). Additional to the same functions supported from UM, this mode also adds a moving windows based reliability service on top of the lower layer services. It also provides support for re-segmentation and it requires bidirectional communication to exchange acknowledgment reports called RLC Status Report and trigger retransmissions is needed. Protocol error detection is also supported by this mode. The mode uses depends of the operator configuration for the type of data to be transmitted. For example, data transmissions supporting mobility or requiring high reliability would be most likely configured using AM, meanwhile streaming and real time data would be map to a UM configuration.
+
+### Medium Access Control (MAC)
+MAC provides a mapping between the higher layers abstraction called Logical Channels comprised by the previously described protocols to the Physical layer channels (transport channels). Additionally, MAC may multiplex packets from different Logical Channels and prioritize what to fit into one Transport Block if there is data and space available to maximize the efficiency of data transmission. MAC also provides error correction and reliability support by means of HARQ, transport format selection and scheduling information reporting from the terminal to the network. MAC also adds the necessary padding and piggyback control elements when possible additional to the higher layers data.
+
+~~~~~~
+
+
+    
+~~~~~~
+{: #Fig--MAC title='Example of User Plane packet encapsulation for two transport blocks'} 
+
+## NB-IoT Data over NAS (DoNAS)
+The AS protocol stack used by DoNAS is somehow special. Since the security associations are not established yet in the radio network, to reduce the protocol overhead, PDCP (Packet Data Convergence Protocol) is bypassed until AS security is activated. RLC (Radio Link Control protocol) is configured by default in AM mode, but depending of the features supported by the network and the terminal it may be configured in other modes by the network operator. For example, the transparent mode does not add any header or does not process the payload in any way reducing the overhead, but the MTU would be limited by the transport block used to transmit the data which is couple of thousand of bits maximum. If UM (only Release 15 compatible terminals) is used, the RLC mechanisms of reliability is disabled and only the reliability provided by the MAC layer by Hybrid Automatic Repeat reQuest (HARQ) is available. In this case, the protocol overhead might be smaller than for the AM case because the lack of status reporting but with the same support for segmentation up to 16000 Bytes. NAS packet are encapsulated within a RRC (Radio Resource Control)[TGPP36331] message.
+
+Depending of the data type indication signaled (IP or non-IP data), the network allocates an IP address or just establish a direct forwarding path. DoNAS is regulated under rate control upon previous agreement, meaning that a maximum number of bits per unit of time is agreed per device subscription beforehand and configured in the device. The use of DoNAS is typically expected when a terminal in a power saving state requires to do a short transmission and receive an acknowledgment or short feedback from the network. Depending of the size of buffered data to transmit, the UE might be instructed to deploy the connected mode transmissions instead, limiting and controlling the DoNAS transmissions to predefined thresholds and a good resource optimization balance for the terminal and the network. The support for mobility of DoNAS is present but produces additional overhead.
+
+~~~~~~                                                                                                                       
+
+
+
+~~~~~~
+{: #Fig--ProtocolArchi4 title='DoNAS transmission sequence from an Uplink initiated access'} 
 
 ~~~~~~                                                                                                                                              
                    +---+ +---+ +---+                  +----+ 
@@ -469,7 +505,7 @@ MAC |MAC |RLC |    RLC   ||MAC  |RLC |  RLC    ||MAC |  RLC    |Pad|
              TB1                   TB2                     TB3           
 
 ~~~~~~
-{: #Fig--ProtocolArchi4 title='Example of User Plane packet encapsulation for Data over NAS'} 
+{: #Fig--ProtocolArchi5 title='Example of User Plane packet encapsulation for Data over NAS'} 
 
 
 
