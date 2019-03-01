@@ -458,8 +458,32 @@ MAC provides a mapping between the higher layers abstraction called Logical Chan
 
 ~~~~~~
 
-
-    
+                                            <Max. 1600 bytes>
+                    +---+         +---+           +------+
+Application         |AP1|         |AP1|           |  AP2 |
+(IP/non-IP)         |PDU|         |PDU|           |  PDU |  
+                    +---+         +---+           +------+
+                    |   |         |   |           |      |
+PDCP           +--------+    +--------+      +-----------+
+               |PDCP|AP1|    |PDCP|AP1|      |PDCP|  AP2 |
+               |Head|PDU|    |Head|PDU|      |Head|  PDU |
+               +--------+    +--------+      +--------+--\
+               |    |   |    |     |  |      |    |   |\  `----\
+         +---------------------------+      |    |(1)| `-----\(2)'-\
+RLC      |RLC |PDCP|AP1|RLC |PDCP|AP1| +-------------+    +----|---+
+         |Head|Head|PDU|Head|Head|PDU| |RLC |PDCP|AP2|    |RLC |AP2|
+         +-------------|-------------+ |Head|Head|PDU|    |Head|PDU|
+         |         |   |         |   | +---------|---+    +--------+
+         |         |   | LCID1   |   | /         /   /    |        |
+         |         |   |         |   |/         /   / LCID2|       |
+         |         |   |         |   |         |   |       |       |
+         |         |   |         |   |         |   |       |       |
+    +----------------------------------------------+ +---------+-------+
+MAC |MAC |RLC |PDCP|AP1|RLC |PDCP|AP1|RLC |PDCP|AP2| |MAC |RLC |AP2|Pad|
+    |Head|Head|Head|PDU|Head|Head|PDU|Head|Head|PDU| |Head|Head|PDU|   |
+    +----------------------------------------------+ +-------------+---+
+                      TB1                                  TB2
+                                  
 ~~~~~~
 {: #Fig--MAC title='Example of User Plane packet encapsulation for two transport blocks'} 
 
@@ -470,7 +494,49 @@ Depending of the data type indication signaled (IP or non-IP data), the network 
 
 ~~~~~~                                                                                                                       
 
-
+    +--------+   +--------+   +--------+
+    |        |   |        |   |        |       +-----------------+
+    |   UE   |   |  C-BS  |   |  C-SGN |       |Roaming Scenarios|
+    +----|---+   +--------+   +--------+       |  +--------+     | 
+         |            |            |           |  |        |     |
+     +----------------|------------|+          |  |  P-GW  |     | 
+     |        Attach                |          |  +--------+     | 
+     +------------------------------+          |       |         | 
+         |            |            |           |       |         | 
+  +------|------------|--------+   |           |       |         |  
+  |RRC Connection Establishment|   |           |       |         | 
+  |with NAS PDU transmission   |   |           |       |         | 
+  |& Ack Rsp                   |   |           |       |         | 
+  +----------------------------+   |           |       |         | 
+         |            |            |           |       |         | 
+         |            |Initial UE  |           |       |         | 
+         |            |message     |           |       |         | 
+         |            |----------->|           |       |         | 
+         |            |            |           |       |         | 
+         |            | +---------------------+|       |         |
+         |            | |Checks Integrity     ||       |         | 
+         |            | |protection, decrypts ||       |         |
+         |            | |data                 ||       |         |
+         |            | +---------------------+|       |         | 
+         |            |            |       Small data packet     | 
+         |            |            |-------------------------------> 
+         |            |            |       Small data packet     |
+         |            |            |<-------------------------------
+         |            | +----------|---------+ |       |         |
+         |            | Integrity protection,| |       |         |
+         |            | encrypts data        | |       |         | 
+         |            | +--------------------+ |       |         | 
+         |            |            |           |       |         | 
+         |            |Downlink NAS|           |       |         | 
+         |            |message     |           |       |         | 
+         |            |<-----------|           |       |         | 
+ +-----------------------+         |           |       |         | 
+ |Small Data Delivery,   |         |           |       |         | 
+ |RRC connection release |         |           |       |         | 
+ +-----------------------+         |           |       |         | 
+                                               |                 | 
+                                               |                 | 
+                                               +-----------------+  
 
 ~~~~~~
 {: #Fig--ProtocolArchi4 title='DoNAS transmission sequence from an Uplink initiated access'} 
