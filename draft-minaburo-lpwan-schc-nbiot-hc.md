@@ -454,7 +454,7 @@ Depending of the data type indication signaled (IP or non-IP data), the network 
                                                +-----------------+  
 
 ~~~~~~
-{: #Fig--ProtocolArchi4 title='DoNAS transmission sequence from an Uplink initiated access'} 
+{: #Fig--DONAS title='DoNAS transmission sequence from an Uplink initiated access'} 
 
 ~~~~~~                                                                                                                 
                    +---+ +---+ +---+                  +----+ 
