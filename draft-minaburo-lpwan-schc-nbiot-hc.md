@@ -389,15 +389,16 @@ RLC      |RLC |PDCP|AP1|RLC |PDCP|AP1| +-------------+    +----|---+
          |Head|Head|PDU|Head|Head|PDU| |RLC |PDCP|AP2|    |RLC |AP2|
          +-------------|-------------+ |Head|Head|PDU|    |Head|PDU|
          |         |   |         |   | +---------|---+    +--------+
-         |         |   | LCID1   |   | /         /   /    |        |
-         |         |   |         |   |/         /   / LCID2|       |
-         |         |   |         |   |         |   |       |       |
-         |         |   |         |   |         |   |       |       |
-    +----------------------------------------------+ +---------+-------+
-MAC |MAC |RLC |PDCP|AP1|RLC |PDCP|AP1|RLC |PDCP|AP2| |MAC |RLC |AP2|Pad|
-    |Head|Head|Head|PDU|Head|Head|PDU|Head|Head|PDU| |Head|Head|PDU|   |
-    +----------------------------------------------+ +-------------+---+
-                      TB1                                  TB2
+         |         |   | LCID1   |   | /         /   /   /         /
+        /         /   /        _/  _//        _/  _/    / LCID2   /
+        |        |   |        |   | /       _/  _/     /      ___/
+        |        |   |        |   ||       |   |      /      /   
+    +------------------------------------------+ +-----------+---+
+MAC |MAC|RLC|PDCP|AP1|RLC|PDCP|AP1|RLC|PDCP|AP2| |MAC|RLC|AP2|Pad|
+    |Hea|Hea|Hea |PDU|Hea|Hea |PDU|Hea|Hea |PDU| |Hea|Hea|PDU|din|
+    |der|der|der |   |der|der |   |der|der |   | |der|der|   |g  |
+    +------------------------------------------+ +-----------+---+
+                      TB1                               TB2
                                   
 ~~~~~~
 {: #Fig--MAC title='Example of User Plane packet encapsulation for two transport blocks'} 
