@@ -81,7 +81,6 @@ This document will follow the terms defined in {{I-D.ietf-lpwan-ipv6-static-cont
 * IWK-SCEF. InterWorking Service Capabilities Exposure Function. Used in roaming scenarios and serves for interconnection with the SCEF of the Home PLMN and is located in the Visited PLMN
 * SCEF. Service Capability Exposure Function. EPC node for exposure of 3GPP network service capabilities to 3rd party applications.
 
-
 # Architecture
 
 ~~~~~~
@@ -248,22 +247,22 @@ This must include the Compression Residue in addition to the Rule ID. In the oth
 
 * In SCHC Fragmentation the specific modes and settings.     (No need to discuss fragmentation. Since it is not needed in these scenarios )-->																																					
 ### SCHC MAX_PACKET_SIZE
-   
+The Access Stratum can handle the fragmentation of SCHC packets if needed including reliability. Hence the packet size is limited by the MTU possible to be handled by the AS radio protocols that corresponds to 1600 bytes for 3GPP Release 15.
 
-The Access Stratum can handle the fragmentation of SCHC packets if needed including reliability. Hence the packet size is limited by the MTU possible to be handled by the AS radio protocols that corresponds to 1600 bytes for 3GPP Release 15.																																			
 ### Fragmentation
 For these scenarios the SCHC fragmentation functions are recommend to be disabled. The RLC layer of NB-IoT can segment packets in suitable units that fit the selected transport blocks for transmissions of the physical layer. The selection of the blocks is done according to the input of the link adaptation function in the MAC layer and the quantity of data in the buffer. The link adaptation layer may produce different results at each Time Transmission Interval (TTI) resulting in varying physical transport blocks that depends of the network load, interference and number of bits to be transmitted and QoS. Even if setting a value that allows the construction of data units following SCHC tiles principle, the protocol overhead may be greater or equal than allowing the AS radio protocols to take care of the fragmentation natively. 
    
 #### Fragmentation in Transparent Mode
 If RLC is configured to operate in Transparent Mode, there could be a case to activate a fragmentation function together with a light reliability function such as the ACK-Always mode. In practice , it is very rare to transmit user plane data using this configuration and it is mainly targeting control plane transmissions. In those cases the reliability is normally ensured by MAC based mechanisms, such as repetitions or automatic retransmissions, and additional reliability might only generate protocol overhead.
 
-In future operations, it could be devised the utilization of SCHC to reduce radio network protocols overhead and support the reliability of the transmissions, and targeting small data with the fewer possible transmissions.  This could be realized by using fixed or limited set of transport blocks compatible with the tiling SCHC fragmentation handling.			
+In future operations, it could be devised the utilization of SCHC to reduce radio network protocols overhead and support the reliability of the transmissions, and targeting small data with the fewer possible transmissions.  This could be realized by using fixed or limited set of transport blocks compatible with the tiling SCHC fragmentation handling.
 
 # Non-IP based Data Transmission
 The Non-IP Data Delivery (NIDD) services of 3GPP enable the possibility of transmitting SCHC packets compressed by the application layer. The packets can be delivered by means of IP-tunnels to the 3GPP network or using SCEF functions (i.e., API calls). In both cases the packet IP is not understood by the 3GPP network since it is already compressed and the network does not has information of the context used for compression. Therefore the network will treat the packet as a Non-IP traffic and deliver it to the UE without any other stack element, directly under the L2.
 
 ## SCHC Entities Placing
-In the two scenarios using NIDD, SCHC entities are located almost in top of the stack. In the terminal, it may be implemented by a application utilizing the NB-IoT connectivity services. In the network side, the SCHC entities are located in the Application Server (AS). The IP tunneling scenario requires that the Application Server sends the compressed packet over an IP connection that is terminated by the 3GPP core network. If instead the SCEF services are used, then it is possible to utilize a API call to transfer the SCHC packets between the core network and the AS, also an IP tunnel could be established by the AS, if negotiated with the SCEF.															 
+In the two scenarios using NIDD, SCHC entities are located almost in top of the stack. In the terminal, it may be implemented by a application utilizing the NB-IoT connectivity services. In the network side, the SCHC entities are located in the Application Server (AS). The IP tunneling scenario requires that the Application Server sends the compressed packet over an IP connection that is terminated by the 3GPP core network. If instead the SCEF services are used, then it is possible to utilize a API call to transfer the SCHC packets between the core network and the AS, also an IP tunnel could be established by the AS, if negotiated with the SCEF.
+
 ~~~~~~						   
 
 +---------+       XXXXXXXXXXXXXXXXXXXXXXXX             +--------+
@@ -299,14 +298,13 @@ The Rule ID the SCHC identifies are:
 * In the SCHC C/D context the Rule used to keep the Field Description of the header packet. 
 
 * In SCHC Fragmentation the specific modes and settings.
-											
 
 ### SCHC MAX_PACKET_SIZE
-In these scenarios the maximum recommended MTU size that applies is 1358 Bytes, since the SCHC packets (and fragments) are traversing the whole 3GPP network infrastructure (core and radio), and not only the radio as the IP transmissions case. 
-																											
+In these scenarios the maximum recommended MTU size that applies is 1358 Bytes, since the SCHC packets (and fragments) are traversing the whole 3GPP network infrastructure (core and radio), and not only the radio as the IP transmissions case.
+
 ## Fragmentation
 In principle the fragmentation function should be activated for packets greater than 1358 Bytes. Since the 3GPP reliability functions take great deal care of it, for simple point to point connections may be enough a NO-ACK mode. Nevertheless additional considerations for more complex cases are mentioned in the next subsection to be taken in account.
- 
+
 ### Fragmentation modes
 Depending of the QoS that has been assigned to the packets, it is possible that packets are lost before they arrive to 3GPP radio network transmission, for example in between the links of a capillarity gateway, or due to buffer overflow handling in a backhaul connection. 
 In consequence, it is possible to secure additional reliability on the packets transmitted with a small trade-off on additional transmissions to signal the packets arrival indication end-to-end if no transport protocol takes care of retransmission.  To achieve this, the packets fragmentation is activated with the ACK-on-Error mode enabled.
@@ -349,9 +347,6 @@ NB-IoT and 3GPP wireless access, in general, assumes byte aligned payload. There
 * [TGPP36300]   3GPP, "TS 36.300 v15.1.0 - Evolved Universal Terrestrial Radio Access (E-UTRA) and Evolved Universal Terrestrial Radio Access Network (E-UTRAN); Overall description; Stage 2", 2018
 * [TGPP24301]   3GPP "TS 24.301 v15.2.0 - Non-Access-Stratum (NAS) protocol for Evolved Packet System (EPS); Stage 3", 2018 
 
-
-
-              
 # Appendix
 ## NB-IoT User Plane protocol architecture
 
@@ -461,7 +456,7 @@ Depending of the data type indication signaled (IP or non-IP data), the network 
 ~~~~~~
 {: #Fig--ProtocolArchi4 title='DoNAS transmission sequence from an Uplink initiated access'} 
 
-~~~~~~                                                                                                                                              
+~~~~~~                                                                                                                 
                    +---+ +---+ +---+                  +----+ 
  Application       |AP1| |AP1| |AP2|                  |AP2 | 
 (IP/non-IP)        |PDU| |PDU| |PDU|  ............... |PDU | 
