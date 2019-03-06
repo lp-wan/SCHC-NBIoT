@@ -295,11 +295,7 @@ Even when the transmissions content are not visible for the 3GPP network, the sa
 
 ### Rule ID 
 
-The Rule ID the SCHC identifies are:
-
-* In the SCHC C/D context the Rule used to keep the Field Description of the header packet. 
-
-* In SCHC Fragmentation the specific modes and settings.
+Similarly to the case of IP transmissions, the Rule ID size can be dynamically set prior the context delivery. For example negotiated between the applications when choosing a profile according to the type of traffic and type of application deployed. Same considerations related to the transport block size and performance mentioned for the IP type of traffic has to be follow when choosing a size value for the Rule ID field.
 											
 
 ### SCHC MAX_PACKET_SIZE
@@ -314,6 +310,8 @@ In consequence, it is possible to secure additional reliability on the packets t
 In some cases, it is even desirable to keep track of all the SCHC packets delivered, in that case, the fragmentation function could be active for all packets transmitted by the applications (SCHC MAX_PACKET_SIZE == 1 Byte) and the ACK-on-Error mode.
 
 #### Fragmentation Parameters
+(TBD)
+
 * Rule ID
 
 * DTag
@@ -333,6 +331,7 @@ In some cases, it is even desirable to keep track of all the SCHC packets delive
 * MAX_ATTEMPS
 
 * MIC (size and algorithm)
+
 # Padding
 NB-IoT and 3GPP wireless access, in general, assumes byte aligned payload. Therefore the L2 word for NB-IoT MUST be considered 8 bits and the treatment of padding should use this value accordingly.
 
@@ -493,12 +492,6 @@ MAC |MAC |RLC |    RLC   ||MAC  |RLC |  RLC    ||MAC |  RLC    |Pad|
 ~~~~~~
 {: #Fig--ProtocolArchi5 title='Example of User Plane packet encapsulation for Data over NAS'} 
 
-
-
-
-
-## NB-IoT example with mobility
-## LTE-M considerations 
 
 --- back
 
