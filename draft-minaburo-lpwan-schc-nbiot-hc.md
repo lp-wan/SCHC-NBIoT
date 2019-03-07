@@ -113,6 +113,7 @@ The architecture for 3GPP LTE network has been reused for NB-IoT with some optim
 * Support for Attach without PDN (Packet Data Network) connectivity.
 
 Another node introduced in the CIOT architecture is the SCEF (Service Capability Exposure Function) that provide means to securely expose service and network capabilities to entities external to the network operator. The northbound APIS are defined by OMA and OneM2M. The main functions of a SCEF are:
+
 * Non-IP Data Delivery (NIDD) established through the SCEF.
 * Monitoring and exposure of event related to UE reachability, loss of connectivity, location reporting, roaming status, communication failure and change of IMEI-IMSI association.
 
@@ -157,6 +158,7 @@ Another possibility is to apply SCHC functionalities to the end-to-end connectio
 Accordingly, there are four different scenarios where SCHC can be used in the NB-IoT architecture. IP header compression on the data transmission over User Plane, IP header compression on the optimized transmissions over Control Plane (i.e.,DoNAS), non-IP transmissions of SCHC packets by IP tunneling, and non-IP transmissions of SCHC packets by SCEF forwarding. The following sections describe each of them in more detail. The first two scenarios refer to transmissions using the 3GPP IP transmission capabilities and the last two refers to transmission using the Non-IP capabilities.
 
 # IP based Data Transmission
+
 ## SCHC over User Plane transmissions															  
 Deploying SCHC only over the radio link would require to place it as part of the User Plane data transmission. The User Plane utilizes the protocol stack of the Access Stratum (AS) for data transfer. AS (Access Stratum) is the functional layer responsible for transporting data over wireless connection and managing radio resources. The user plane AS has support for features such as reliability, segmentation and concatenation. The transmissions of the AS make use of link adaptation, meaning that the transport format utilized for the transmissions are optimized according to the radio conditions, the number of bits to transmit and the power and interference constrains. That means that the number of bits transmitted over the air depends of the Modulation and Coding Schemes (MCS) selected. The transmissions in the physical layer happens at network synchronized intervals of times called TTI (Transmission Time Interval). The transmission of a Transport Block (TB) is completed during, at least, one TTI. Each Transport Block has a different MCS and number of bits available to transmit. The Transport Blocks characteristics are defined by the MAC technical specification [TGPP36321]. The Access Stratum for User Plane is comprised by Packet Data Convergence Protocol (PDCP) [TGPP36323], Radio Link Protocol (RLC)[TGPP36322], Medium Access Control protocol (MAC)[TGPP36321] and the Physical Layer [TGPP36201]. More details of this protocols are given in the Appendix.
 
@@ -230,6 +232,7 @@ In this scenario SCHC can be applied in the NAS protocol layer instead of PDCP. 
 		 
 
 ## Parameters for Static Context Header Compression (SCHC)
+
 ### SCHC Context initialization
 RRC (Radio Resource Control) protocol is the main tool used to configure the operation parameters of the AS transmissions for 3GPP technologies. RoHC operation is configured with this protocol and it is to expect that SCHC will be configured and the static context distributed in similar fashion for these scenarios.
  
@@ -245,7 +248,9 @@ This must include the Compression Residue in addition to the Rule ID. In the oth
 
 * In the SCHC C/D context the Rule used to keep the Field Description of the header packet. 
 
-* In SCHC Fragmentation the specific modes and settings.     (No need to discuss fragmentation. Since it is not needed in these scenarios )-->																																					
+* In SCHC Fragmentation the specific modes and settings.     (No need to discuss fragmentation. Since it is not needed in these scenarios )-->	
+
+
 ### SCHC MAX_PACKET_SIZE
 The Access Stratum can handle the fragmentation of SCHC packets if needed including reliability. Hence the packet size is limited by the MTU possible to be handled by the AS radio protocols that corresponds to 1600 bytes for 3GPP Release 15.
 
@@ -285,6 +290,7 @@ In the two scenarios using NIDD, SCHC entities are located almost in top of the 
 
 
 ## Parameters for Static Context Header Compression
+
 ### SCHC Context initialization
 The static context is handled in the application layer level, consequently the contexts are required to be distributed according to the applications own capabilities, perhaps utilizing IP data transmissions up to context initialization. Also the same IP tunneling or SCEF services used later for the SCHC packets transport may be used by the applications in both ends to deliver the static contexts to be used. 
  
@@ -345,6 +351,7 @@ NB-IoT and 3GPP wireless access, in general, assumes byte aligned payload. There
 * [TGPP24301]   3GPP "TS 24.301 v15.2.0 - Non-Access-Stratum (NAS) protocol for Evolved Packet System (EPS); Stage 3", 2018 
 
 # Appendix
+
 ## NB-IoT User Plane protocol architecture
 
 ### Packet Data Convergence Protocol (PDCP)
