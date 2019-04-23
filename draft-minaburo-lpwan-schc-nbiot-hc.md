@@ -13,13 +13,6 @@ title: SCHC over NB-IoT
 abbrev: SCHC NB-IoT
 wg: lpwan Working Group
 author:
-- ins: A. Minaburo
-  name: Ana Minaburo
-  org: Acklio
-  street: 2bis rue de la Chataigneraie
-  city: 35510 Cesson-Sevigne Cedex
-  country: France
-  email: ana@ackl.io
 - ins: E. Ramos
   name: Edgar Ramos
   org: Ericsson 
@@ -27,6 +20,13 @@ author:
   city: 02420 Jorvas, Kirkkonummi
   country: Finland
   email: edgar.ramos@ericsson.com
+- ins: A. Minaburo
+  name: Ana Minaburo
+  org: Acklio
+  street: 2bis rue de la Chataigneraie
+  city: 35510 Cesson-Sevigne Cedex
+  country: France
+  email: ana@ackl.io
 - ins: S. Shanmugalingam
   name: Sivasothy Shanmugalingam 
   org: Acklio
