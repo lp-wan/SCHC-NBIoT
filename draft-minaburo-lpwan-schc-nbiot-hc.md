@@ -1,7 +1,7 @@
 ---
 stand_alone: true
 ipr: trust200902
-docname: draft-minaburo-lpwan-nbiot-hc-02
+docname: draft-ietf-lpwan-schc-over-nbiot-00
 cat: info
 pi:
   symrefs: 'yes'
@@ -9,7 +9,7 @@ pi:
   strict: 'yes'
   compact: 'yes'
   toc: 'yes'
-title: LPWAN Static Context Header Compression (SCHC) over NB-IoT
+title: SCHC over NB-IoT
 abbrev: SCHC NB-IoT
 wg: lpwan Working Group
 author:
