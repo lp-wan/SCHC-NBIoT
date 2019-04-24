@@ -23,14 +23,14 @@ author:
 - ins: A. Minaburo
   name: Ana Minaburo
   org: Acklio
-  street: 2bis rue de la Chataigneraie
+  street: 1137A Avenue des Champs Blancs
   city: 35510 Cesson-Sevigne Cedex
   country: France
   email: ana@ackl.io
 - ins: S. Shanmugalingam
   name: Sivasothy Shanmugalingam 
   org: Acklio
-  street: 2bis rue de la Chataigneraie
+  street: 1137A Avenue des Champs Blancs
   city: 35510 Cesson-Sevigne Cedex
   country: France
   email: sothy@ackl.io  
