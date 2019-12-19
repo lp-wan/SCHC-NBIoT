@@ -314,7 +314,7 @@ No_ACK. Can take 1 bit value
 ACK_on_Error. Can take 1 bit value.
 
 * FCN
-No_ACK.
+No_ACK.Takes 1 bit wide
 ACK_on_Error.
 
 * W (number of bits)
