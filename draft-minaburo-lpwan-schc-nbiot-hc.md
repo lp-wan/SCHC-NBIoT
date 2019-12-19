@@ -307,25 +307,43 @@ In some cases, it is even desirable to keep track of all the SCHC packets delive
 
 ### Fragmentation Parameters(TBD)
 
-* Rule ID
+* Rule ID. The Fragmentation Rule ID is given when choosing the profile according to the fragmentation mode require. 1 bit can be used to recognize each mode.
 
-* DTag
+* DTag. 
+No_ACK. Can take 1 bit value 
+ACK_on_Error. Can take 1 bit value.
 
 * FCN
+No_ACK.
+ACK_on_Error.
 
 * W (number of bits)
+No_ACK. This field is not used in this mode
+ACK_on_Error.
 
 * WINDOW_SIZE
+No_ACK. This mode does not use windows
+ACK_on_Error.
 
 * Retransmission Timer
+No_ACK. This timmer is not used in this mode
+ACK_on_Error. This timer needs to be set to 1h or 10h 
 
 * Inactivity Timer
+No_ACK. Must be maintained and needs to be bigger than 1h or 10h
+ACK_on_Error. Must be bigger than 1h or 10h
 
 * MAX_ACK_Retries
+No_ACK. Not used in this mode.
+ACK_on_Error.
 
 * MAX_ATTEMPS
+No_ACK.
+ACK_on_Error.
 
 * MIC (size and algorithm)
+No_ACK.
+ACK_on_Error.
 
 # Padding
 NB-IoT and 3GPP wireless access, in general, assumes byte aligned payload. Therefore the L2 word for NB-IoT MUST be considered 8 bits and the treatment of padding should use this value accordingly.
