@@ -320,7 +320,7 @@ In some cases, it is even desirable to keep track of all the SCHC packets delive
 
   No_ACK. The value of N is 1.
 
-  ACK_on_Error.
+  ACK_on_Error. The value of N depends on the 
 
 
 * W (M value)
