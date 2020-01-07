@@ -310,42 +310,74 @@ In some cases, it is even desirable to keep track of all the SCHC packets delive
 * Rule ID. The Fragmentation Rule ID is given when choosing the profile according to the fragmentation mode require. 1 bit can be used to recognize each mode.
 
 * DTag. 
-  No_ACK. Can take 1 bit value.
+
+  No_ACK. May take 1 bit.
   
-  ACK_on_Error. Can take 1 bit value.
+  ACK_on_Error. May take 1 bit.
 
 
-* FCN
-No_ACK.Takes 1 bit wide
-ACK_on_Error.
+* FCN (N value).
 
-* W (number of bits)
-No_ACK. This field is not used in this mode
-ACK_on_Error.
+  No_ACK. The value of N is 1.
+
+  ACK_on_Error.
+
+
+* W (M value)
+
+  No_ACK. This field is not used in this mode
+
+  ACK_on_Error.
+
 
 * WINDOW_SIZE
-No_ACK. This mode does not use windows
-ACK_on_Error.
+
+  No_ACK. This mode does not use windows
+
+  ACK_on_Error.
+
 
 * Retransmission Timer
-No_ACK. This timmer is not used in this mode
-ACK_on_Error. This timer needs to be set to 1h or 10h 
+
+  No_ACK. This timmer is not used in this mode
+
+  ACK_on_Error. This timer needs to be set to 1h or 10h 
+
 
 * Inactivity Timer
-No_ACK. Must be maintained and needs to be bigger than 1h or 10h
-ACK_on_Error. Must be bigger than 1h or 10h
 
-* MAX_ACK_Retries
-No_ACK. Not used in this mode.
-ACK_on_Error.
+  No_ACK. Must be maintained and needs to be bigger than 1h or 10h
 
-* MAX_ATTEMPS
-No_ACK.
-ACK_on_Error.
+  ACK_on_Error. Must be bigger than 1h or 10h
+
+
+* MAX_ACK_REQUESTS
+
+  No_ACK. Not used in this mode.
+
+  ACK_on_Error.
+
 
 * MIC (size and algorithm)
-No_ACK.
-ACK_on_Error.
+
+  No_ACK.
+
+  ACK_on_Error.
+  
+  
+* RCS  
+
+   No_ACK
+   
+   ACK_on_Error.
+   
+* Tiles size
+
+   No_ACK. Not used in this mode.
+   
+   ACK_on_Error. (also mention if the last tile is carried in a regular fragment or in All-1 fragment)
+   
+   
 
 # Padding
 NB-IoT and 3GPP wireless access, in general, assumes byte aligned payload. Therefore the L2 word for NB-IoT MUST be considered 8 bits and the treatment of padding should use this value accordingly.
