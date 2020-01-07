@@ -310,8 +310,10 @@ In some cases, it is even desirable to keep track of all the SCHC packets delive
 * Rule ID. The Fragmentation Rule ID is given when choosing the profile according to the fragmentation mode require. 1 bit can be used to recognize each mode.
 
 * DTag. 
-No_ACK. Can take 1 bit value 
-ACK_on_Error. Can take 1 bit value.
+  No_ACK. Can take 1 bit value.
+  
+  ACK_on_Error. Can take 1 bit value.
+
 
 * FCN
 No_ACK.Takes 1 bit wide
