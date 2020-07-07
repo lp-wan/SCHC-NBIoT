@@ -56,7 +56,7 @@ This document describes the use of SCHC and its parameterizing over the NB-IoT w
 
 # Terminology
 
-This document will follow the terms defined in {{I-D.ietf-lpwan-ipv6-static-context-hc}}, in {{RFC8376}}, and the [TGPP23720]. 
+This document will follow the terms defined in {{RFC8724}}, in {{RFC8376}}, and the [TGPP23720]. 
 
 * CIoT.    Cellular IoT
 * C-SGN. CIoT Serving Gateway Node
@@ -303,7 +303,7 @@ In principle the fragmentation function should be activated for packets greater 
 Depending of the QoS that has been assigned to the packets, it is possible that packets are lost before they arrive to 3GPP radio network transmission, for example in between the links of a capillarity gateway, or due to buffer overflow handling in a backhaul connection. 
 In consequence, it is possible to secure additional reliability on the packets transmitted with a small trade-off on additional transmissions to signal the packets arrival indication end-to-end if no transport protocol takes care of retransmission.  To achieve this, the packets fragmentation is activated with the ACK-on-Error mode enabled.
 In some cases, it is even desirable to keep track of all the SCHC packets delivered, in that case, the fragmentation function could be active for all packets transmitted by the applications (SCHC MAX_PACKET_SIZE == 1 Byte) and the ACK-on-Error mode.
-In the NAS stratum, the use of only fragmentation when a non-IP packet is transmitted is possible if this packet is considered as a SCHC packet and is identifyed using the RuleID for non-compressing packets as {{rfc8724}} allows it, depending on the application an ACK-onError mode may be used.
+In the NAS stratum, the use of only fragmentation when a non-IP packet is transmitted is possible if this packet is considered as a SCHC packet and is identifyed using the RuleID for non-compressing packets as {RFC8724} allows it, depending on the application an ACK-onError mode may be used.
 
 ### Fragmentation Parameters
 The Fragmentation Rule ID is given when choosing the profile according to the fragmentation mode, 1 bit can be used to recognize each mode. 
