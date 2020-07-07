@@ -306,6 +306,17 @@ In some cases, it is even desirable to keep track of all the SCHC packets delive
 
 
 ### Fragmentation Parameters(TBD)
+In terms of how SCHC is defined in RFC 8724, your large non-IP packet can
+still be considered a "SCHC Packet". I guess you may need to either take
+the following into account to be RFC 8724-compliant:
+
+            "If the header compression process is
+            unable to actually compress the packet header, the packet
+            with the uncompressed header is still called a SCHC Packet
+            (in this case, a RuleID is used to indicate that the packet
+            header has not been compressed)."
+
+
 
 * Rule ID. The Fragmentation Rule ID is given when choosing the profile according to the fragmentation mode require. 1 bit can be used to recognize each mode.
 
