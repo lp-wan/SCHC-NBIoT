@@ -313,7 +313,7 @@ To adapt SCHC to the NB-IoT constraints, two configuration are proposed to fill 
 * 8 bits-Header_size configuration, with the size of the header fields as follow: Rule ID 3 bits, DTag 1 bit, FCN 3 bits, W 1 bits. This configuration may ne used with TB less than 300 bits. 
 * 16 bits-Header_size configuration, with the size of the header fields as follow: Rules ID 8 - 10 bits, DTag 1 or 2 bits, FCN 3 bits, W 2 or 3 bits. This configuration may be used with TB above 300 bits.
 
-The IoT applications has been adapted to the LPWAN networks, the OMA-XXX shows that the applications timers are adapted to these networks. So, the Innactivity Timer may be above 1h or 10h and the Retransmission Timer may be below than 1h or 10h.
+The IoT devices communicates with small data transfer and have a battery life of 10 years. To minise the power consumption these devices use the Power Save Mode and the Idle Mode DRX which govern how often the device wakes up, stays up and are reachable. The Table 10.5.163a in {3GPP-TS_24.088} specifies a range for the radio timers as N to 3N in increments of one where the units of N can be 1 hour or 10 hours. To adapt SCHC to the NB-IoT activities, the Innactivity Timer may be above 1h or 10h and the Retransmission Timer may be below than 1h or 10h.
 
 # Padding
 NB-IoT and 3GPP wireless access, in general, assumes byte aligned payload. Therefore the L2 word for NB-IoT MUST be considered 8 bits and the treatment of padding should use this value accordingly.
@@ -330,6 +330,7 @@ NB-IoT and 3GPP wireless access, in general, assumes byte aligned payload. There
 * [TGPP36331]   3GPP, "TS 36.331 v13.2.0 - Evolved Universal Terrestrial Radio Access (E-UTRA); Radio Resource Control (RRC); Protocol specification", 2016.
 * [TGPP36300]   3GPP, "TS 36.300 v15.1.0 - Evolved Universal Terrestrial Radio Access (E-UTRA) and Evolved Universal Terrestrial Radio Access Network (E-UTRAN); Overall description; Stage 2", 2018
 * [TGPP24301]   3GPP "TS 24.301 v15.2.0 - Non-Access-Stratum (NAS) protocol for Evolved Packet System (EPS); Stage 3", 2018 
+* [TGPP24088]   3GPP, "TS 24.088 v12.9.0 - Mobile radio interface Layer 3 specification;Core network protocols; Stage 3", 2015.
 
 # Appendix
 
