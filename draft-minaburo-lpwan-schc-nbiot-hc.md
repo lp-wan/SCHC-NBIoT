@@ -303,17 +303,17 @@ In principle the fragmentation function should be activated for packets greater 
 Depending of the QoS that has been assigned to the packets, it is possible that packets are lost before they arrive to 3GPP radio network transmission, for example in between the links of a capillarity gateway, or due to buffer overflow handling in a backhaul connection. 
 In consequence, it is possible to secure additional reliability on the packets transmitted with a small trade-off on additional transmissions to signal the packets arrival indication end-to-end if no transport protocol takes care of retransmission.  To achieve this, the packets fragmentation is activated with the ACK-on-Error mode enabled.
 In some cases, it is even desirable to keep track of all the SCHC packets delivered, in that case, the fragmentation function could be active for all packets transmitted by the applications (SCHC MAX_PACKET_SIZE == 1 Byte) and the ACK-on-Error mode.
+In the NAS stratum, the use of only fragmentation when a non-IP packet is transmitted is possible if this packet is considered as a SCHC packet and is identifyed using the RuleID for non-compressing packets as {{rfc8724}} allows it, depending on the application an ACK-onError mode may be used.
 
+### Fragmentation Parameters
+The Fragmentation Rule ID is given when choosing the profile according to the fragmentation mode, 1 bit can be used to recognize each mode. 
 
-### Fragmentation Parameters(TBD)
-The Fragmentation Rule ID is given when choosing the profile according to the fragmentation mode. 1 bit can be used to recognize each mode. In the NAS stratum, the use of only fragmentation when a non-IP packet is transmitted is possible if this packet is considered as a SCHC packet and is identifyed using the RuleID for non-compressing packets as {{rfc8724}} allows it.
+To adapt SCHC to the NB-IoT constraints, two configuration are proposed to fill the best the transfer block (TB). The Header size needs to be multiple of 4 and the Tiles can keep a fix value of 4 or 8 bits to avoid the need of padding. 
 
-To adapt SCHC to the NB-IoT constraint, two configuration may be used to fill the best the transfer block (TB). The Header size needs to be multiple of 4 and the Tiles can keep a fix value of 4 or 8 bits to avoid the need of padding. 
+* 8 bits-Header_size configuration, with the size of the header fields as follow: Rule ID 3 bits, DTag 1 bit, FCN 3 bits, W 1 bits. This configuration may ne used with TB less than 300 bits. 
+* 16 bits-Header_size configuration, with the size of the header fields as follow: Rules ID 8 - 10 bits, DTag 1 or 2 bits, FCN 3 bits, W 2 or 3 bits. This configuration may be used with TB above 300 bits.
 
-The first configuration, 8bits-Header_size, where Rule ID 2 bits, DTag 1 bit, FCN 3 bits, W 2 bits; can be used
-The second configuration, 16bits-Header_size, Rules ID 8 - 10 bits, DTag 1 or 2 bits, FCN 3 bits, W 2 or 3 bits. 
-
-
+The IoT applications has been adapted to the LPWAN networks, the OMA-XXX shows that the applications timers are adapted to these networks. So, the Innactivity Timer may be above 1h or 10h and the Retransmission Timer may be below than 1h or 10h.
 
 # Padding
 NB-IoT and 3GPP wireless access, in general, assumes byte aligned payload. Therefore the L2 word for NB-IoT MUST be considered 8 bits and the treatment of padding should use this value accordingly.
