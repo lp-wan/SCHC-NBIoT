@@ -306,89 +306,14 @@ In some cases, it is even desirable to keep track of all the SCHC packets delive
 
 
 ### Fragmentation Parameters(TBD)
-In terms of how SCHC is defined in RFC 8724, your large non-IP packet can
-still be considered a "SCHC Packet". I guess you may need to either take
-the following into account to be RFC 8724-compliant:
+The Fragmentation Rule ID is given when choosing the profile according to the fragmentation mode. 1 bit can be used to recognize each mode. In the NAS stratum, the use of only fragmentation when a non-IP packet is transmitted is possible if this packet is considered as a SCHC packet and is identifyed using the RuleID for non-compressing packets as {{rfc8724}} allows it.
 
-            "If the header compression process is
-            unable to actually compress the packet header, the packet
-            with the uncompressed header is still called a SCHC Packet
-            (in this case, a RuleID is used to indicate that the packet
-            header has not been compressed)."
+To adapt SCHC to the NB-IoT constraint, two configuration may be used to fill the best the transfer block (TB). The Header size needs to be multiple of 4 and the Tiles can keep a fix value of 4 or 8 bits to avoid the need of padding. 
+
+The first configuration, 8bits-Header_size, where Rule ID 2 bits, DTag 1 bit, FCN 3 bits, W 2 bits; can be used
+The second configuration, 16bits-Header_size, Rules ID 8 - 10 bits, DTag 1 or 2 bits, FCN 3 bits, W 2 or 3 bits. 
 
 
-
-* Rule ID. The Fragmentation Rule ID is given when choosing the profile according to the fragmentation mode require. 1 bit can be used to recognize each mode.
-
-* DTag. 
-
-  No_ACK. May take 1 bit.
-  
-  ACK_on_Error. May take 1 bit.
-
-
-* FCN (N value).
-
-  No_ACK. The value of N is 1.
-
-  ACK_on_Error. The value of N depends on the 
-
-
-* W (M value)
-
-  No_ACK. This field is not used in this mode
-
-  ACK_on_Error.
-
-
-* WINDOW_SIZE
-
-  No_ACK. This mode does not use windows
-
-  ACK_on_Error.
-
-
-* Retransmission Timer
-
-  No_ACK. This timmer is not used in this mode
-
-  ACK_on_Error. This timer needs to be set to 1h or 10h 
-
-
-* Inactivity Timer
-
-  No_ACK. Must be maintained and needs to be bigger than 1h or 10h
-
-  ACK_on_Error. Must be bigger than 1h or 10h
-
-
-* MAX_ACK_REQUESTS
-
-  No_ACK. Not used in this mode.
-
-  ACK_on_Error.
-
-
-* MIC (size and algorithm)
-
-  No_ACK.
-
-  ACK_on_Error.
-  
-  
-* RCS  
-
-   No_ACK
-   
-   ACK_on_Error.
-   
-* Tiles size
-
-   No_ACK. Not used in this mode.
-   
-   ACK_on_Error. (also mention if the last tile is carried in a regular fragment or in All-1 fragment)
-   
-   
 
 # Padding
 NB-IoT and 3GPP wireless access, in general, assumes byte aligned payload. Therefore the L2 word for NB-IoT MUST be considered 8 bits and the treatment of padding should use this value accordingly.
