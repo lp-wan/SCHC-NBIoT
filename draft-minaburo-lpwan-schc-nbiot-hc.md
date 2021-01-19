@@ -27,8 +27,7 @@ author:
   city: 35510 Cesson-Sevigne Cedex
   country: France
   email: ana@ackl.io
-normative: 
-informative:  
+normative:  
   RFC8376:
   RFC8724:
   RFC5795:
@@ -78,21 +77,21 @@ This document will follow the terms defined in {{RFC8724}}, in {{RFC8376}}, and 
 
 ~~~~~~
 
-  +--+
-D |UE| \              +-----+     +------+
-  +--+  \             | MME |-----| HSS  |
-E        \          / +-----+     +------+
-  +--+    \+-----+ /      |
-V |UE| ----| RGW |-       |
-  +--+     |(eNB)|        |
-I         /+-----+ \      |
-         /          \ +------+
-C       /            \|  NGW |  +------+   Service PDN
-  +--+ /              |(S-GW)|--|  NGW |-- e.g. Internet
-E |UE|                |      |  |(P-GW)|
-  +--+                +------+  +------+
-S   
-
+   +--+
+ D |UE| \              +-----+     +------+
+   +--+  \             | MME |-----| HSS  |
+ E        \          / +-----+     +------+
+   +--+    \+-----+ /      |
+ V |UE| ----| RGW |-       |
+   +--+     |(eNB)|        |
+ I         /+-----+ \      |
+          /          \ +------+
+ C       /            \|  NGW |  +------+   Service PDN
+   +--+ /              |(S-GW)|--|  NGW |-- e.g. Internet
+ E |UE|                |      |  |(P-GW)|
+   +--+                +------+  +------+
+ S   
+ 
 ~~~~~~
 {: #Fig--Archi title='3GPP network architecture'}
 
