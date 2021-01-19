@@ -31,8 +31,6 @@ normative:
   RFC8376:
   RFC8724:
   RFC5795:
-informative:
-  TGPP23720
 		  
   
 --- abstract
@@ -57,9 +55,9 @@ This document describes the use of SCHC and its parameterizing over the NB-IoT w
 
 # Terminology
 
-This document will follow the terms defined in {{RFC8724}}, in {{RFC8376}}, and the [TGPP23720]. 
+This document will follow the terms defined in {{RFC8724}}, in {{RFC8376}}, and the TGPP23720. 
 
-* CIoT.    Cellular IoT
+* CIoT. Cellular IoT
 * C-SGN. CIoT Serving Gateway Node
 * UE. User Equipment
 * eNB. Node B. Base Station that controls the UE 
