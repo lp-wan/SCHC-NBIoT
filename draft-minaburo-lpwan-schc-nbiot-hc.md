@@ -78,19 +78,21 @@ This document will follow the terms defined in {{RFC8724}}, in {{RFC8376}}, and 
 
 ~~~~~~
 
-   +--+
-   |UE| \              +-----+     +------+
-   +--+  \             | MME |-----| HSS  |
-          \          / +-----+     +------+
-   +--+    \+-----+ /      |
-   |UE| ----| eNB |-       |
-   +--+    /+-----+ \      |
-          /          \ +------+
-         /            \|      |  +------+   Service PDN
-   +--+ /              | S-GW |--| P-GW |-- e.g. Internet
-   |UE|                |      |  +------+
-   +--+                +------+
-   
+  +--+
+D |UE| \              +-----+     +------+
+  +--+  \             | MME |-----| HSS  |
+E        \          / +-----+     +------+
+  +--+    \+-----+ /      |
+V |UE| ----| RGW |-       |
+  +--+     |(eNB)|        |
+I         /+-----+ \      |
+         /          \ +------+
+C       /            \|  NGW |  +------+   Service PDN
+  +--+ /              |(S-GW)|--|  NGW |-- e.g. Internet
+E |UE|                |      |  |(P-GW)|
+  +--+                +------+  +------+
+S   
+
 ~~~~~~
 {: #Fig--Archi title='3GPP network architecture'}
 
@@ -115,9 +117,9 @@ Another node introduced in the CIOT architecture is the SCEF (Service Capability
                                           +-------+                                 
                                           |  HSS  |
                                           +-+-----+
-                                           /
-                           +---------+  __/S6a
-              +--------+   | +-----+ +_/
+                               NGW         /
+ DEV              RGW      +---------+  __/S6a
+              +--------+   | +-----+ +_/                  NGW
 +----+ C-Uu   |        +---+-+ MME | | T6i+--------+ T7 +----+
 |CIOT+--------+  eNB   |S1 | |     +-+----+IWK-SCEF+----+SCEF|
 |UE  |        |(NB-IoT)|   | +---+-+ |    +--------+    +----+
@@ -130,7 +132,7 @@ Another node introduced in the CIOT architecture is the SCEF (Service Capability
 |   UE   +------+(eMTC)|S1 |  |    +-+---+PGW|SGi |Application|
 +--------+      +------+   |  +----+ |   |   +----+Server (AS)|
                            +---------+   +---+    +-----------+
-
+   DEV            RGW          NGW        NGW         App
 
 ~~~~~~                                                                                                     
 {: #Fig--Archi2 title='3GPP optimized CIOT network architecture'}
