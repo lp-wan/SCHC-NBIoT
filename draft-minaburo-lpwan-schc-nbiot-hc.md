@@ -31,7 +31,7 @@ normative:
   RFC8376:
   RFC8724:
   RFC5795:
-informative
+informative:
   TGPP23720
 		  
   
