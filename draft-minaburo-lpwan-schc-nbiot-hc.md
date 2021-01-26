@@ -45,11 +45,11 @@ This document describes the use of SCHC over the NB-IoT wireless access, and pro
  
 # Introduction {#Introduction}
 
-The Static Context Header Compression (SCHC) {RFC8724} defines a header compression scheme 
+The Static Context Header Compression (SCHC) {{RFC8724}} defines a header compression scheme 
 and fragmentation functionality, both specially tailored for Low Power Wide Area Networks (LPWAN) networks defined in 
 {{RFC8376}}.
 
-Header compression is needed to efficiently bring Internet connectivity to the node within an NB-IoT network. SCHC uses a static context to performs header compression with specific parameters that need to be adapted into the NB-IoT wireless access. This document assumes functionality for NB-IoT of 3GPP release 15 otherwise other versions functionality is explicitly mentioned in the text.
+Header compression is needed to efficiently bring Internet connectivity to the node within an NB-IoT network. SCHC uses a static context to performs header compression with specific parameters that need to be adapted into the NB-IoT wireless access. This document assumes functionality for NB-IoT of 3GPP release 15. Otherwise other versions' functionality is explicitly mentioned in the text.
 
 This document describes the use of SCHC and its parameterizing over the NB-IoT wireless access.
 
