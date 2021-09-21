@@ -99,13 +99,13 @@ This document will follow the terms defined in {{RFC8724}}, in {{RFC8376}}, and 
 {: #Fig--Archi title='3GPP network architecture'}
 
 The NB-IoT architecture reuses the one from 3GPP LTE with some optimizations and simplifications. 
-It has a more complex configuration than the one design for the LPWAN Architecture explained in the RFC8724. 
+It has a more complex configuration than the one design for the LPWAN Architecture explained in the {{RFC8724}}. 
 
 The NBIoT architecture can send data by different paths. 
-Figure-Archi shows this architecture where the NGW called C-SGN (CIoT Serving Gateway Node) optimizes co-locating entities in different paths. 
+{{Fig-Archi}} shows this architecture where the NGW called C-SGN (CIoT Serving Gateway Node) optimizes co-locating entities in different paths. 
 For example, a service sending from the NGW-MME crossing the NGW-SGW and NGW-PGW.
 
-/-- The NGW-CSGN also supports at least some of the following CIoT EPS Optimizations:
+--/ The NGW-CSGN also supports at least some of the following CIoT EPS Optimizations:
 
 * Control Plane CIoT EPS Optimization for small data transmission.
 * User Plane CIoT EPS Optimization for small data transmission.
@@ -113,7 +113,7 @@ For example, a service sending from the NGW-MME crossing the NGW-SGW and NGW-PGW
 * SMS without combined attach for NB-IoT only UEs.
 * Paging optimizations for coverage enhancements.
 * Support for non-IP data transmission via SGi tunneling and/or SCEF.
-* Support for Attach without PDN (Packet Data Network) connectivity. --/
+* Support for Attach without PDN (Packet Data Network) connectivity. /--
 
 Another node introduced in the CIOT architecture is the SCEF (Service Capability Exposure Function) that provide means to securely expose service and network capabilities to entities external to the network operator. The northbound APIS are defined by OMA and OneM2M. The main functions of a SCEF are:
 
