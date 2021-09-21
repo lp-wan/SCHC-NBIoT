@@ -1,7 +1,7 @@
 ---
 stand_alone: true
 ipr: trust200902
-docname: draft-ietf-lpwan-schc-over-nbiot-05
+docname: draft-ietf-lpwan-schc-over-nbiot-06
 cat: info
 pi:
   symrefs: 'yes'
@@ -90,20 +90,22 @@ This document will follow the terms defined in {{RFC8724}}, in {{RFC8376}}, and 
  I         /+-----+ \    |       +------+         |
           /          \ +------+                   |
  C       /            \|  NGW |  +------+   +-----------+
-   +--+ /              |(S-GW)|--|  NGW |---|Application|
- E |UE|                |      |  |(P-GW)|   |   Server  |
+   +--+ /              |(SGW) |--|  NGW |---|Application|
+ E |UE|                |      |  |(PGW) |   |   Server  |
    +--+                +------+  +------+   +-----------+
  S    
  
 ~~~~~~
 {: #Fig--Archi title='3GPP network architecture'}
 
+The NB-IoT architecture reuses the one from 3GPP LTE with some optimizations and simplifications. 
+It has a more complex configuration than the one design for the LPWAN Architecture explained in the RFC8724. 
 
-The architecture for NB-IoT reuses the one from 3GPP LTE with some optimizations and simplifications, and it corresponds to the LPWAN Architecture explained in the RFC8724. The NBIoT architecture has a more complex configuration and data can be sent by different paths, the figure-Archi shows this architecture. T--here are different NGW The NGW called C-SGN (CIoT Serving Gateway Node) optimizes co-locating entities 
+The NBIoT architecture can send data by different paths. 
+Figure-Archi shows this architecture where the NGW called C-SGN (CIoT Serving Gateway Node) optimizes co-locating entities in different paths. 
+For example, a service sending from the NGW-MME crossing the NGW-SGW and NGW-PGW.
 
-
-
-The architecture for 3GPP LTE network has been reused for NB-IoT with some optimizations and simplifications known as Cellular IoT (CIoT). Considering the typical use cases for CIoT devices here are described some of the additions to the LTE architecture specific for CIoT. C-SGN(CIoT Serving Gateway Node) is a deployment option co-locating EPS entities in the control plane and user plane paths (for example, MME + SGW + P-GW) and the external interfaces of the entities supported. The C-SGN also supports at least some of the following CIoT EPS Optimizations:
+/-- The NGW-CSGN also supports at least some of the following CIoT EPS Optimizations:
 
 * Control Plane CIoT EPS Optimization for small data transmission.
 * User Plane CIoT EPS Optimization for small data transmission.
@@ -111,7 +113,7 @@ The architecture for 3GPP LTE network has been reused for NB-IoT with some optim
 * SMS without combined attach for NB-IoT only UEs.
 * Paging optimizations for coverage enhancements.
 * Support for non-IP data transmission via SGi tunneling and/or SCEF.
-* Support for Attach without PDN (Packet Data Network) connectivity.
+* Support for Attach without PDN (Packet Data Network) connectivity. --/
 
 Another node introduced in the CIOT architecture is the SCEF (Service Capability Exposure Function) that provide means to securely expose service and network capabilities to entities external to the network operator. The northbound APIS are defined by OMA and OneM2M. The main functions of a SCEF are:
 
