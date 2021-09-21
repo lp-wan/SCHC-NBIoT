@@ -103,7 +103,7 @@ The NBIoT architecture can send data by different paths with different character
 {{Fig-Archi}} shows this architecture where the NGW called CSGN (CIoT Serving Gateway Node) optimizes co-locating entities in different paths. 
 For example, a service sending from the NGW-MME (Mobility Management Entity) crossing the NGW-SGW (Serving Gateway) and NGW-PGW (Packet Data Node Gateway)will not get more than one thousand bytes of bandwidth.
 
---/ The NGW-CSGN also supports at least some of the following CIoT EPS Optimizations:
+<!-- The NGW-CSGN also supports at least some of the following CIoT EPS Optimizations:
 
 * Control Plane CIoT EPS Optimization for small data transmission.
 * User Plane CIoT EPS Optimization for small data transmission.
@@ -111,7 +111,7 @@ For example, a service sending from the NGW-MME (Mobility Management Entity) cro
 * SMS without combined attach for NB-IoT only UEs.
 * Paging optimizations for coverage enhancements.
 * Support for non-IP data transmission via SGi tunneling and/or SCEF.
-* Support for Attach without PDN (Packet Data Network) connectivity. /--
+* Support for Attach without PDN (Packet Data Network) connectivity. -->
 
 Another node introduced in the CIOT architecture is the SCEF (Service Capability Exposure Function) that provide means to securely expose service and network capabilities to entities external to the network operator. The northbound APIS are defined by OMA and OneM2M. The main functions of a SCEF are:
 
