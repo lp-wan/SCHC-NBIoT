@@ -75,8 +75,6 @@ This document will follow the terms defined in {{RFC8724}}, in {{RFC8376}}, and 
 
 # Architecture
 
-
-
 ~~~~~~
                     
    +--+                            +------+
@@ -96,14 +94,14 @@ This document will follow the terms defined in {{RFC8724}}, in {{RFC8376}}, and 
  S    
  
 ~~~~~~
-{: #Fig--Archi title='3GPP network architecture'}
+{: #Fig-Archi title='3GPP network architecture'}
 
 The NB-IoT architecture reuses the one from 3GPP LTE with some optimizations and simplifications. 
 It has a more complex configuration than the one design for the LPWAN Architecture explained in the {{RFC8724}}. 
 
-The NBIoT architecture can send data by different paths. 
+The NBIoT architecture can send data by different paths with different characteristics as for example, bandwidths from hundreds of bytes to thousands of bytes.
 {{Fig-Archi}} shows this architecture where the NGW called CSGN (CIoT Serving Gateway Node) optimizes co-locating entities in different paths. 
-For example, a service sending from the NGW-MME (Mobility Management Entity) crossing the NGW-SGW (Serving Gateway) and NGW-PGW (Packet Data Node Gateway).
+For example, a service sending from the NGW-MME (Mobility Management Entity) crossing the NGW-SGW (Serving Gateway) and NGW-PGW (Packet Data Node Gateway)will not get more than one thousand bytes of bandwidth.
 
 --/ The NGW-CSGN also supports at least some of the following CIoT EPS Optimizations:
 
