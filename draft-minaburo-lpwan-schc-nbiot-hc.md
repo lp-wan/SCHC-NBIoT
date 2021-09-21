@@ -58,42 +58,49 @@ This document describes the use of SCHC and its parameterizing over the NB-IoT w
 This document will follow the terms defined in {{RFC8724}}, in {{RFC8376}}, and the TGPP23720. 
 
 * CIoT. Cellular IoT
-* C-SGN. CIoT Serving Gateway Node
-* UE. User Equipment
-* eNB. Node B. Base Station that controls the UE 
+* NGW-C-SGN. Network Gateway - CIoT Serving Gateway Node
+* Dev-UE. Device - User Equipment
+* RGW-eNB. Radio Gateway - Node B. Base Station that controls the UE 
 * EPC. Evolved Packet Connectivity. Core network of 3GPP LTE systems.
 * EUTRAN. Evolved Universal Terrestrial Radio Access Network. Radio network from LTE based systems.
-* MME. Mobility Management Entity. Handle mobility of the UE
+* NGW-MME. Network Gateway - Mobility Management Entity. Handle mobility of the UE
 * NB-IoT. Narrow Band IoT. Referring to 3GPP LPWAN technology based in LTE architecture but with additional optimization for IoT and using a Narrow Band spectrum frequency. 
-* SGW. Serving Gateway. Routes and forwards the user data packets through the access network
+* NGW-SGW. Network Gateway - Serving Gateway. Routes and forwards the user data packets through the access network
 * HSS. Home Subscriber Server. It is a database that performs mobility management
-* PGW. Packet Data Node Gateway. An interface between the internal with the external network
+* NGW-PGW. Network Gateway - Packet Data Node Gateway. An interface between the internal with the external network
 * PDU. Protocol Data Unit. Data packets including headers that are transmitted between entities through a protocol.
 * SDU. Service Data Unit. Data packets (PDUs) from higher layers protocols used by lower layer protocols as a payload of their own PDUs that has not yet been encapsulated.
 * IWK-SCEF. InterWorking Service Capabilities Exposure Function. Used in roaming scenarios and serves for interconnection with the SCEF of the Home PLMN and is located in the Visited PLMN
-* SCEF. Service Capability Exposure Function. EPC node for exposure of 3GPP network service capabilities to 3rd party applications.
+* NGW-SCEF. Network Gateway - Service Capability Exposure Function. EPC node for exposure of 3GPP network service capabilities to 3rd party applications.
 
 # Architecture
 
-~~~~~~
 
-   +--+
- D |UE| \              +-----+     +------+
-   +--+  \             | MME |-----| HSS  |
- E        \          / +-----+     +------+
-   +--+    \+-----+ /      |
- V |UE| ----| RGW |-       |
-   +--+     |(eNB)|        |
- I         /+-----+ \      |
-          /          \ +------+
- C       /            \|  NGW |  +------+   Service PDN
-   +--+ /              |(S-GW)|--|  NGW |-- e.g. Internet
- E |UE|                |      |  |(P-GW)|
-   +--+                +------+  +------+
- S   
+
+~~~~~~
+                    
+   +--+                            +------+
+ D |UE| \              +-----+ ----| HSS  |    
+   +--+  \             | NGW |     +------+
+                       |(MME)|\__
+ E        \          / +-----+   \   
+   +--+    \+-----+ /    |       +------+
+ V |UE| ----| RGW |-     |       |  NGW |
+   +--+     |(eNB)|      |       |(SCEF)|---------+
+ I         /+-----+ \    |       +------+         |
+          /          \ +------+                   |
+ C       /            \|  NGW |  +------+   +-----------+
+   +--+ /              |(S-GW)|--|  NGW |---|Application|
+ E |UE|                |      |  |(P-GW)|   |   Server  |
+   +--+                +------+  +------+   +-----------+
+ S    
  
 ~~~~~~
 {: #Fig--Archi title='3GPP network architecture'}
+
+
+The architecture for NB-IoT reuses the one from 3GPP LTE with some optimizations and simplifications, and it corresponds to the LPWAN Architecture explained in the RFC8724. The NBIoT architecture has a more complex configuration and data can be sent by different paths, the figure-Archi shows this architecture. T--here are different NGW The NGW called C-SGN (CIoT Serving Gateway Node) optimizes co-locating entities 
+
 
 
 The architecture for 3GPP LTE network has been reused for NB-IoT with some optimizations and simplifications known as Cellular IoT (CIoT). Considering the typical use cases for CIoT devices here are described some of the additions to the LTE architecture specific for CIoT. C-SGN(CIoT Serving Gateway Node) is a deployment option co-locating EPS entities in the control plane and user plane paths (for example, MME + SGW + P-GW) and the external interfaces of the entities supported. The C-SGN also supports at least some of the following CIoT EPS Optimizations:
