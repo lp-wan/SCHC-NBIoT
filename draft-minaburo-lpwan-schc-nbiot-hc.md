@@ -88,11 +88,11 @@ This document will follow the terms defined in {{RFC8724}}, in {{RFC8376}}, and 
  V |UE| ----| RGW |-     |       |  NGW |
    +--+     |(eNB)|      |       |(SCEF)|---------+
  I         /+-----+ \    |       +------+         |
-          /          \ +------+                   |
- C       /            \|  NGW |  +------+   +-----------+
-   +--+ /              |(SGW) |--|  NGW |---|Application|
- E |UE|                |      |  |(PGW) |   |   Server  |
-   +--+                +------+  +------+   +-----------+
+          /          \ +-------+                  |
+ C       /            \|  NGW  |  +------+   +-----------+
+   +--+ /              |(CSGW) |--|  NGW |---|Application|
+ E |UE|                |       |  |(PGW) |   |   Server  |
+   +--+                +-------+  +------+   +-----------+
  S    
  
 ~~~~~~
@@ -102,8 +102,8 @@ The NB-IoT architecture reuses the one from 3GPP LTE with some optimizations and
 It has a more complex configuration than the one design for the LPWAN Architecture explained in the {{RFC8724}}. 
 
 The NBIoT architecture can send data by different paths. 
-{{Fig-Archi}} shows this architecture where the NGW called C-SGN (CIoT Serving Gateway Node) optimizes co-locating entities in different paths. 
-For example, a service sending from the NGW-MME crossing the NGW-SGW and NGW-PGW.
+{{Fig-Archi}} shows this architecture where the NGW called CSGN (CIoT Serving Gateway Node) optimizes co-locating entities in different paths. 
+For example, a service sending from the NGW-MME (Mobility Management Entity) crossing the NGW-SGW (Serving Gateway) and NGW-PGW (Packet Data Node Gateway).
 
 --/ The NGW-CSGN also supports at least some of the following CIoT EPS Optimizations:
 
