@@ -77,33 +77,28 @@ This document will follow the terms defined in {{RFC8724}}, in {{RFC8376}}, and 
 
 ~~~~~~
                     
-   +--+                            +------+
- D |UE| \              +-----+ ----| HSS  |    
-   +--+  \             | NGW |     +------+
-                       |(MME)|\__
- E        \          / +-----+   \   
-   +--+    \+-----+ /    |       +------+
- V |UE| ----| RGW |-     |       |  NGW |
-   +--+     |(eNB)|      |       |(SCEF)|---------+
- I         /+-----+ \    |       +------+         |
-          /          \ +-------+                  |
- C       /            \|  NGW  |  +------+   +-----------+
-   +--+ /              |(CSGW) |--|  NGW |---|Application|
- E |UE|                |       |  |(PGW) |   |   Server  |
-   +--+                +-------+  +------+   +-----------+
- S    
+  +---+                            +------+
+  |Dev| \              +-----+ ----| HSS  |    
+  +---+  \             | NGW |     +------+
+         |             |-MME |\__
+          \          / +-----+   \   
+  +---+    \+-----+ /    |       +------+
+  |Dev| ----| RGW |-     |       | NGW- |
+  +---+     |-eNB |      |       | SCEF |---------+
+           /+-----+ \    |       +------+         |
+          /          \ +------+  ;                |
+         /            \| NGW- |  +-----+   +-----------+
+  +---+ /              | CSGW |--| NGW-|---|Application|
+  |Dev|                |      |  | PGW |   |   Server  |
+  +---+                +------+  +-----+   +-----------+
+ 
  
 ~~~~~~
 {: #Fig-Archi title='3GPP network architecture'}
 
-The NB-IoT architecture reuses the one from 3GPP LTE with some optimizations and simplifications. 
-As {{Figure-Archi}} shows, it has a more complex configuration than the one described for the LPWAN Architecture in the RFC8724. 
-
-The NBIoT architecture can send data by different paths, each path with different characteristics such as 
-bandwidths from hundreds of bytes to thousands of bytes. {{Figure-Archi}} shows this architecture where 
-the Network Gateway (NGW) called  CIoT Serving Gateway Node (CSGN) optimizes co-locating entities in different paths. 
-For example, a service sending from the NGW-Mobility Management Entity (MME) crossing the 
-NGW-Serving Gateway (SGW) and NGW-Packet Data Node Gateway (PGW) will not get more than one thousand bytes of bandwidth.
+The NBIoT architecture can send data by different paths, each path with different characteristics such as bandwidths, 
+feedback, and layer two reliability and segmentation. 
+{{Figure-Archi}} shows this architecture where the Network Gateway called  CIoT Serving Gateway Node (NGW-CSGN) optimizes co-locating entities in different paths. For example, a service sending from the NGW-Mobility Management Entity (MME) crossing the NGW-Serving Gateway (SGW) and NGW-Packet Data Node Gateway (PGW) may get a reduced bandwidth from some bytes to hundreds of bytes.
 
 <!-- The NGW-CSGN also supports at least some of the following CIoT EPS Optimizations:
 
@@ -115,14 +110,13 @@ NGW-Serving Gateway (SGW) and NGW-Packet Data Node Gateway (PGW) will not get mo
 * Support for non-IP data transmission via SGi tunneling and/or SCEF.
 * Support for Attach without PDN (Packet Data Network) connectivity. -->
 
-Another node introduced in the CIoT architecture is the Service Capability Exposure Function Network Gateway (NGW-SCEF), 
-which securely exposes service and network capabilities to entities external to the network operator. OMA and OneM2M define the northbound APIS. 
-The main functions of the NGW-SCEF are:
+Another node introduced in the NBIoT architecture is the Service Capability Exposure Function Network Gateway (NGW-SCEF), 
+which securely exposes service and network capabilities to entities external to the network operator. OMA and OneM2M define the northbound APIS. The main functions of the NGW-SCEF are:
 * Connectivity path 
 * Device Monitoring 
 
 <!--* Non-IP Data Delivery (NIDD) established through the SCEF.
-* Monitoring and exposure of event related to UE reachability, loss of connectivity, location reporting, roaming status, communication failure and change of IMEI-IMSI association. -->
+* Monitoring and exposure of event related to UE reachability, loss of connectivity, location reporting, roaming status, communication failure and change of IMEI-IMSI association. 
 
 ~~~~~~
 
@@ -148,7 +142,8 @@ The main functions of the NGW-SCEF are:
 
 ~~~~~~                                                                                                     
 {: #Fig--Archi2 title='3GPP optimized CIOT network architecture'}
- 
+-->+ 
+
 # Data Transmission
 3GPP networks deal not only with data transmitted end-to-end but also with in-band signaling that is used between the nodes and functions to configure, control and monitor the system functions and behaviors. The control data is handled using a Control Plane which has a specific set of protocols, handling processes and entities. In contrast, the end-to-end or user data utilize a User Plane with characteristics of its own separated from the Control Plane. The handling and setup of the Control Plane and User Plane spans over the whole 3GPP network and it has particular implications in the radio network (i.e., EUTRAN) and in the packet core (ex., EPC).
 
