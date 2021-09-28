@@ -37,7 +37,7 @@ normative:
 
 The Static Context Header Compression (SCHC) specification describes header compression and fragmentation 
 functionalities for LPWAN (Low Power Wide Area Networks) technologies.  
-The Narrow Band Internet of Things (NBIoT) architecture may adapt SCHC to improve its capacities.
+The Narrow Band Internet of Things (NB-IoT) architecture may adapt SCHC to improve its capacities.
 
 This document describes the use of SCHC over the NB-IoT wireless access and provides elements for efficient parameterization.
 
@@ -94,12 +94,13 @@ This document will follow the terms defined in {{RFC8724}}, in {{RFC8376}}, and 
  
  
 ~~~~~~
-{: #Fig-Archi title='3GPP network architecture'}
+{: #Figure-Archi title='3GPP network architecture'}
 
-The NBIoT architecture can send data by different paths, each path with different characteristics such as bandwidths, 
+The Narrow Band Internet of Things (NB-IoT) architecture can send data by different paths, 
+each path with different characteristics such as bandwidths, 
 feedback, and layer two reliability and segmentation. 
-{{Figure-Archi}} shows this architecture where the Network Gateway CIoT Serving Gateway Node (NGW-CSGN) optimizes co-locating entities in different paths. For example, a Dev sending from the Network Gateway Mobility Management Entity (NGW-MME) crossing the Network Gateway Serving Gateway (NGW-SGW) and Network Gateway Packet Data Node Gateway (NGW-PGW) may get a reduced bandwidth from some bytes to hundreds of bytes only.
-
+{{Figure-Archi}} shows this architecture where the Network Gateway Cellular Internet of Things Serving Gateway Node (NGW-CSGN) optimizes co-locating entities in different paths. For example, a Dev using the path form by the Network Gateway Mobility Management Entity (NGW-MME), the NGW-CSGW, and Network Gateway Packet Data Node Gateway (NGW-PGW) may get a small bandwidth transmission from some bytes to one thousand bytes only. 
+                                                                                                                                                               
 <!-- The NGW-CSGN also supports at least some of the following CIoT EPS Optimizations:
 
 * Control Plane CIoT EPS Optimization for small data transmission.
@@ -111,7 +112,7 @@ feedback, and layer two reliability and segmentation.
 * Support for Attach without PDN (Packet Data Network) connectivity. -->
 
 Another node introduced in the NBIoT architecture is the Network Gateway Service Capability Exposure Function (NGW-SCEF), 
-which securely exposes service and network capabilities to entities external to the network operator. OMA and OneM2M define the northbound APIS. The main functions of the NGW-SCEF are:
+which securely exposes service and network capabilities to entities external to the network operator. OMA and OneM2M define the northbound APIS. In this case the path is small for data transmission . The main functions of the NGW-SCEF are:
 * Connectivity path 
 * Device Monitoring 
 
