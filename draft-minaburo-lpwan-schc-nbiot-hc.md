@@ -98,7 +98,7 @@ This document will follow the terms defined in {{RFC8724}}, in {{RFC8376}}, and 
 
 The NBIoT architecture can send data by different paths, each path with different characteristics such as bandwidths, 
 feedback, and layer two reliability and segmentation. 
-{{Figure-Archi}} shows this architecture where the Network Gateway called  CIoT Serving Gateway Node (NGW-CSGN) optimizes co-locating entities in different paths. For example, a service sending from the NGW-Mobility Management Entity (MME) crossing the NGW-Serving Gateway (SGW) and NGW-Packet Data Node Gateway (PGW) may get a reduced bandwidth from some bytes to hundreds of bytes.
+{{Figure-Archi}} shows this architecture where the Network Gateway CIoT Serving Gateway Node (NGW-CSGN) optimizes co-locating entities in different paths. For example, a Dev sending from the Network Gateway Mobility Management Entity (NGW-MME) crossing the Network Gateway Serving Gateway (NGW-SGW) and Network Gateway Packet Data Node Gateway (NGW-PGW) may get a reduced bandwidth from some bytes to hundreds of bytes only.
 
 <!-- The NGW-CSGN also supports at least some of the following CIoT EPS Optimizations:
 
@@ -110,7 +110,7 @@ feedback, and layer two reliability and segmentation.
 * Support for non-IP data transmission via SGi tunneling and/or SCEF.
 * Support for Attach without PDN (Packet Data Network) connectivity. -->
 
-Another node introduced in the NBIoT architecture is the Service Capability Exposure Function Network Gateway (NGW-SCEF), 
+Another node introduced in the NBIoT architecture is the Network Gateway Service Capability Exposure Function (NGW-SCEF), 
 which securely exposes service and network capabilities to entities external to the network operator. OMA and OneM2M define the northbound APIS. The main functions of the NGW-SCEF are:
 * Connectivity path 
 * Device Monitoring 
@@ -145,6 +145,7 @@ which securely exposes service and network capabilities to entities external to 
 -->+ 
 
 # Data Transmission
+
 3GPP networks deal not only with data transmitted end-to-end but also with in-band signaling that is used between the nodes and functions to configure, control and monitor the system functions and behaviors. The control data is handled using a Control Plane which has a specific set of protocols, handling processes and entities. In contrast, the end-to-end or user data utilize a User Plane with characteristics of its own separated from the Control Plane. The handling and setup of the Control Plane and User Plane spans over the whole 3GPP network and it has particular implications in the radio network (i.e., EUTRAN) and in the packet core (ex., EPC).
 
 For the CIOT cases, additionally to transmissions of data over User Plane, 3GPP has specified optimizations for small data transmissions, allowing to transport user data (IP, Non-IP) within signaling on the access network (Data transmission over Control Plane or Data Over NAS).
