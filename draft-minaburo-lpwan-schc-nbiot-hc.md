@@ -142,7 +142,7 @@ which securely exposes service and network capabilities to entities external to 
 
 ~~~~~~                                                                                                     
 {: #Fig--Archi2 title='3GPP optimized CIOT network architecture'}
--->+ 
+-->
 
 # Data Transmission
 
