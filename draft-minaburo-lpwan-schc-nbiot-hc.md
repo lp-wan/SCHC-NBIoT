@@ -86,7 +86,7 @@ This document will follow the terms defined in {{RFC8724}}, in {{RFC8376}}, and 
   |Dev| ----| RGW |-     |       | NGW- |
   +---+     |-eNB |      |       | SCEF |---------+
            /+-----+ \    |       +------+         |
-          /          \ +------+  ;                |
+          /          \ +------+                   |
          /            \| NGW- |  +-----+   +-----------+
   +---+ /              | CSGW |--| NGW-|---|Application|
   |Dev|                |      |  | PGW |   |   Server  |
@@ -96,10 +96,10 @@ This document will follow the terms defined in {{RFC8724}}, in {{RFC8376}}, and 
 ~~~~~~
 {: #Figure-Archi title='3GPP network architecture'}
 
-The Narrow Band Internet of Things (NB-IoT) architecture can send data by different paths, 
-each path with different characteristics such as bandwidths, 
-feedback, and layer two reliability and segmentation. 
-{{Figure-Archi}} shows this architecture where the Network Gateway Cellular Internet of Things Serving Gateway Node (NGW-CSGN) optimizes co-locating entities in different paths. For example, a Dev using the path form by the Network Gateway Mobility Management Entity (NGW-MME), the NGW-CSGW, and Network Gateway Packet Data Node Gateway (NGW-PGW) may get a small bandwidth transmission from some bytes to one thousand bytes only. 
+The Narrow Band Internet of Things (NB-IoT) architecture has a more complex structure. 
+It relies on different NGWs from different providers and can send data by different paths, each path with different characteristics such as bandwidths, feedback, and layer two reliability and segmentation. 
+
+{{Figure-Archi}} shows this architecture where the Network Gateway Cellular Internet of Things Serving Gateway Node (NGW-CSGN) optimizes co-locating entities in different paths. For example, a Dev using the path form by the Network Gateway Mobility Management Entity (NGW-MME), the NGW-CSGW, and Network Gateway Packet Data Node Gateway (NGW-PGW) may get a small bandwidth transmission from some bytes to one thousand bytes only.
                                                                                                                                                                
 <!-- The NGW-CSGN also supports at least some of the following CIoT EPS Optimizations:
 
@@ -112,7 +112,7 @@ feedback, and layer two reliability and segmentation.
 * Support for Attach without PDN (Packet Data Network) connectivity. -->
 
 Another node introduced in the NBIoT architecture is the Network Gateway Service Capability Exposure Function (NGW-SCEF), 
-which securely exposes service and network capabilities to entities external to the network operator. OMA and OneM2M define the northbound APIS. In this case the path is small for data transmission . The main functions of the NGW-SCEF are:
+which securely exposes service and network capabilities to entities external to the network operator. OMA and OneM2M define the northbound APIS. In this case, the path is small for data transmission. The main functions of the NGW-SCEF are:
 * Connectivity path 
 * Device Monitoring 
 
@@ -147,19 +147,15 @@ which securely exposes service and network capabilities to entities external to 
 
 # Data Transmission
 
-3GPP networks deal not only with data transmitted end-to-end but also with in-band signaling that is used between the nodes and functions to configure, control and monitor the system functions and behaviors. The control data is handled using a Control Plane which has a specific set of protocols, handling processes and entities. In contrast, the end-to-end or user data utilize a User Plane with characteristics of its own separated from the Control Plane. The handling and setup of the Control Plane and User Plane spans over the whole 3GPP network and it has particular implications in the radio network (i.e., EUTRAN) and in the packet core (ex., EPC).
+NB-IoT networks deal with end-to-end user data and in-band signaling between the nodes and functions to configure, control, and monitor the system functions and behaviors. The signaling data uses a different path with specific protocols, handling processes, and entities but can transport end-to-end user data for IoT services. In contrast, the end-to-end application only transports end-to-end data. 
 
-For the CIOT cases, additionally to transmissions of data over User Plane, 3GPP has specified optimizations for small data transmissions, allowing to transport user data (IP, Non-IP) within signaling on the access network (Data transmission over Control Plane or Data Over NAS).
+The maximum recommended MTU size is 1358 Bytes. The radio network protocols limit the packet sizes over the air, including radio protocol overhead to 1600 Octets. However, the MTU is smaller to avoid fragmentation in the network backbone due to the payload encryption size (multiple of 16) and the additional core transport overhead handling.
 
-The maximum recommended MTU size is 1358 Bytes. The radio network protocols limit the packet sizes to be transmitted over the air including radio protocol overhead to 1600 Octets. But the value is reduced further to avoid fragmentation in the backbone of the network due to the payload encryption size (multiple of 16) and handling of the additional core transport overhead.
+3GPP standardizes NB-IoT and, in general, the cellular technologies interfaces and functions. Therefore the introduction of SCHC entities to Dev, RGW-eNB, and NGW-CSGN needs to be specified in the NB-IoT standard, which implies that standard specified SCHC support would not be backward compatible. A terminal or a network supporting a version of the standard without SCHC or without capability implementation (in case of not being standardized as mandatory capability) cannot utilize the compression services with this approach.
 
-NB-IoT and in general the cellular technologies interfaces and functions are standardized by 3GPP. Therefore the introduction of SCHC entities to UE, eNB and C-SGN does need to be specified in the NB-IoT standard. This implies that standard specified SCHC support would not be backwards compatible. A terminal or a network supporting a version of the standard without support of SCHC or without capability implementation (in case of not being standardized as mandatory capability) is not able to utilize the compression services with this approach.
+SCHC could be deployed differently depending on where the header compression and the fragmentation are applied. The SCHC functionalities can be used over the radio transmission only, between the Dev and the RGW-eNB. Alternatively, the packets transmitted over the end-to-end link can use SCHC. Else, when the transmissions over the NGW-MME or NGW-SCEF, the NGW-CSGN uses SCHC entity. For these two cases, the functions are to be standardized by 3GPP.
 
-SCHC could be deployed differently depending on where the header compression and the fragmentation are applied. The SCHC functionalities could be applied to the packets about to be transmitted over the air, or to the whole end-to-end link. To accomplish the first, it is required to place SCHC compression and decompression entities in the eNB and in the UE for transmissions over the User Plane. Additionally, to handle the case of the transmissions over Control Plane or Data Over NAS, the network SCHC entity has to be placed in the C-SGN as well. For these two cases, the functions are to be standardized by 3GPP.
-
-Another possibility is to apply SCHC functionalities to the end-to-end connection or at least up to the operator network edge. In that case, the SCHC entities would be placed in the application layer of the terminal in one end, and either in the application servers or in a broker function in the edge of the operator network in the other end. For the radio network, the packets are transmitted as non-IP traffic, which can be currently served utilizing IP tunneling or SCEF services. Since this option does not necessarily require 3GPP standardization, it is possible to also benefit legacy devices with SCHC by utilizing the non-IP transmission features of the operator network.
-
-Accordingly, there are four different scenarios where SCHC can be used in the NB-IoT architecture. IP header compression on the data transmission over User Plane, IP header compression on the optimized transmissions over Control Plane (i.e.,DoNAS), non-IP transmissions of SCHC packets by IP tunneling, and non-IP transmissions of SCHC packets by SCEF forwarding. The following sections describe each of them in more detail. The first two scenarios refer to transmissions using the 3GPP IP transmission capabilities and the last two refers to transmission using the Non-IP capabilities.
+Another possibility is to apply SCHC functionalities to the end-to-end connection or at least up to the operator network edge. SCHC functionalities are available in the application layer of the Dev and the Application Servers or a broker function at the edge of the operator network. The radio network transmits the packets as non-IP traffic using IP tunneling or SCEF services. Since this option does not necessarily require 3GPP standardization, it is possible to also benefit legacy devices with SCHC by utilizing the non-IP transmission features of the operator network.
 
 # IP based Data Transmission
 
