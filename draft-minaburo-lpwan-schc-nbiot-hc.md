@@ -160,7 +160,7 @@ Another possibility is to apply SCHC functionalities to the end-to-end connectio
 # IP based Data Transmission
 
 ## SCHC over the Radio link 															  
-Deploying SCHC only over the radio link would require placing it as part of the protocol stack for data transfer. This stack is the functional layer responsible for transporting data over the wireless connection and managing radio resources. There is support for features such as reliability, segmentation, and concatenation. The transmissions use link adaptation, meaning that the system will optimize the transport format used according to the radio conditions, the number of bits to transmit, and the power and interference constraints. That means that the number of bits transmitted over the air depends on the Modulation and Coding Schemes (MCS) selected. A Transport Block (TB) transmissions happen in the physical layer at network synchronized intervals called Transmission Time Interval (TTI). Each Transport Block has a different MCS and number of bits available to transmit. The MAC layer [TGPP36321] defines the Transport Blocks characteristics. The Radio link stack comprises the Packet Data Convergence Protocol (PDCP) [TGPP36323], Radio Link Protocol (RLC) [TGPP36322], Medium Access Control protocol (MAC) [TGPP36321], and the Physical Layer [TGPP36201]. The Appendix gives more details of these protocols.
+Deploying SCHC only over the radio link would require placing it as part of the protocol stack for data transfer between the Dev and the RGW-eNB. This stack is the functional layer responsible for transporting data over the wireless connection and managing radio resources. There is support for features such as reliability, segmentation, and concatenation. The transmissions use link adaptation, meaning that the system will optimize the transport format used according to the radio conditions, the number of bits to transmit, and the power and interference constraints. That means that the number of bits transmitted over the air depends on the Modulation and Coding Schemes (MCS) selected. A Transport Block (TB) transmissions happen in the physical layer at network synchronized intervals called Transmission Time Interval (TTI). Each Transport Block has a different MCS and number of bits available to transmit. The MAC layer [TGPP36321] defines the Transport Blocks characteristics. The Radio link {{Fig-ProtocolArchi3}}stack comprises the Packet Data Convergence Protocol (PDCP) [TGPP36323], Radio Link Protocol (RLC) [TGPP36322], Medium Access Control protocol (MAC) [TGPP36321], and the Physical Layer [TGPP36201]. The Appendix gives more details of these protocols.
 
 ### SCHC Entities Placing
 The current architecture provides support for header compression in PDCP with RoHC {{RFC5795}}. Therefore SCHC entities can be deployed similarly without the need for significant changes in the 3GPP specifications.
@@ -181,15 +181,14 @@ In this scenario, RLC takes care of fragmentation unless for the transparent mod
   +---------+   |   +---------------+   |  +---------+  |
   | PHY     +-------+ PHY   | PHY   +------+ PHY     +->+
   +---------+       +---------------+      +---------+  |
-               C-Uu/                    S1-U             SGi
-     CIOT/     LTE+Uu     C-BS/eNB             C-SGN
-    LTE eMTC
-      UE
+             C-Uu/                    S1-U             SGi
+     Dev                RGW-eNB             NGW-CSGN
+      
        
 ~~~~~~
-{: #Fig--ProtocolArchi3 title='SCHC entities placement in the 3GPP CIOT radio protocol architecture for data over user plane'} 
+{: #Fig-ProtocolArchi3 title='SCHC over the Radio link'} 
 
-## Data Over Control Plane
+## Data between the Dev and the NGW-MME
 The Non-Access Stratum (NAS), conveys mainly control signaling between the UE and the cellular network TGPP24301. NAS is transported on top of the Access Stratum (AS) already mentioned in the previous section.
 
 NAS has been adapted to provide support for user plane data transmissions to reduce the overhead when transmitting infrequent small quantities of data. This is known as Data over NAS (DoNAS) or Control Plane CIoT EPS optimization. In DoNAS the UE makes use of the pre-established NAS security and piggyback uplink small data into the initial NAS uplink message, and uses an additional NAS message to receive downlink small data response.
