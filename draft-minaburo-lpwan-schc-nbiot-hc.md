@@ -266,11 +266,11 @@ If RLC operates in Transparent Mode, there could be a case to activate a fragmen
 
 SCHC may reduce radio network protocols overhead in future operations, support reliable transmissions, and transmit small data with fewer possible transmissions by using fixed or limited transport blocks compatible with the tiling SCHC fragmentation handling.
 
-# Non-IP based Data Transmission
-The Non-IP Data Delivery (NIDD) services of 3GPP enable the possibility of transmitting SCHC packets compressed by the application layer. The packets can be delivered by means of IP-tunnels to the 3GPP network or using SCEF functions (i.e., API calls). In both cases the packet IP is not understood by the 3GPP network since it is already compressed and the network does not has information of the context used for compression. Therefore the network will treat the packet as a Non-IP traffic and deliver it to the UE without any other stack element, directly under the L2.
+# End-to-End Compression
+The Non-IP Data Delivery (NIDD) services of 3GPP enable the transmission of SCHC packets compressed by the application layer. The packets can be delivered using IP-tunnels to the 3GPP network or NGW-SCEF functions (i.e., API calls). In both cases, as compression occurs before transmission, the network will not understand the packet, and the network does not have context information of this compression. Therefore the network will treat the packet as Non-IP traffic and deliver it to the Dev without any other stack element, directly under the L2.
 
 ## SCHC Entities Placing
-In the two scenarios using NIDD, SCHC entities are located almost in top of the stack. In the terminal, it may be implemented by a application utilizing the NB-IoT connectivity services. In the network side, the SCHC entities are located in the Application Server (AS). The IP tunneling scenario requires that the Application Server sends the compressed packet over an IP connection that is terminated by the 3GPP core network. If instead the SCEF services are used, then it is possible to utilize a API call to transfer the SCHC packets between the core network and the AS, also an IP tunnel could be established by the AS, if negotiated with the SCEF.
+In the two scenarios using End-to-End compression, SCHC entities are located almost on top of the stack. In the Dev, an application using the NB-IoT connectivity services may implement SCHC and the Application Server. The IP tunneling scenario requires that the Application Server send the compressed packet over an IP connection terminated by the 3GPP core network. If the transmission uses the NGW-SCEF services, it is possible to utilize an API call to transfer the SCHC packets between the core network and the Application Server. Also, an IP tunnel could be established by the Application Server if negotiated with the NGW-SCEF.
 
 ~~~~~~						   
 
@@ -296,19 +296,20 @@ In the two scenarios using NIDD, SCHC entities are located almost in top of the 
 ## Parameters for Static Context Header Compression
 
 ### SCHC Context initialization
-The static context is handled in the application layer level, consequently the contexts are required to be distributed according to the applications own capabilities, perhaps utilizing IP data transmissions up to context initialization. Also the same IP tunneling or SCEF services used later for the SCHC packets transport may be used by the applications in both ends to deliver the static contexts to be used. 
+The application layer handles the static context; consequently, the context distribution must be according to the application's capabilities, perhaps utilizing IP data transmissions up to context initialization. Also, 
+the static contexts delivery may use the same IP tunneling or NGW-SCEF services used later for the SCHC packets transport. 
  
 ### SCHC Rules
-Even when the transmissions content are not visible for the 3GPP network, the same limitations than for IP based data transmissions applies in these scenarios in terms of aiming to use the minimum number of transmission and minimize the protocol overhead. 
+Even when the transmission content is not visible for the 3GPP network, the same limitations as for IP-based data transmissions applies in these scenarios in terms of aiming to use the minimum number of transmission and minimize the protocol overhead. 
 
 ### Rule ID 
-Similarly to the case of IP transmissions, the Rule ID size can be dynamically set prior the context delivery. For example negotiated between the applications when choosing a profile according to the type of traffic and type of application deployed. Same considerations related to the transport block size and performance mentioned for the IP type of traffic has to be follow when choosing a size value for the Rule ID field.
+Similar to the case of IP transmissions, the Rule ID size can be dynamically set before the context delivery. For example, negotiated between the applications when choosing a profile according to the type of traffic and application deployed. The same considerations related to the transport block size and performance mentioned for the IP type of traffic must be followed when choosing a size value for the Rule ID field.
 											
 ### SCHC MAX_PACKET_SIZE
-In these scenarios the maximum recommended MTU size that applies is 1358 Bytes, since the SCHC packets (and fragments) are traversing the whole 3GPP network infrastructure (core and radio), and not only the radio as the IP transmissions case.
+In these scenarios, the maximum recommended MTU size that applies is 1358 Bytes since the SCHC packets (and fragments) are traversing the whole 3GPP network infrastructure (core and radio), not only the radio as the IP transmissions case.
 
 ## Fragmentation
-In principle the fragmentation function should be activated for packets greater than 1358 Bytes. Since the 3GPP reliability functions take great deal care of it, for simple point to point connections may be enough a NO-ACK mode. Nevertheless additional considerations for more complex cases are mentioned in the next subsection to be taken in account.
+In principle, packets larger than 1358 bytes need the fragmentation function. Since the 3GPP uses reliability functions, the No-ACK fragmentation mode may be enough in point-to-point connections. Nevertheless, additional considerations are described below for more complex cases.
 
 ### Fragmentation modes
 Depending of the QoS that has been assigned to the packets, it is possible that packets are lost before they arrive to 3GPP radio network transmission, for example in between the links of a capillarity gateway, or due to buffer overflow handling in a backhaul connection. 
