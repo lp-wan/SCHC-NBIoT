@@ -312,26 +312,26 @@ In these scenarios, the maximum recommended MTU size that applies is 1358 Bytes 
 In principle, packets larger than 1358 bytes need the fragmentation function. Since the 3GPP uses reliability functions, the No-ACK fragmentation mode may be enough in point-to-point connections. Nevertheless, additional considerations are described below for more complex cases.
 
 ### Fragmentation modes
-Depending of the QoS that has been assigned to the packets, it is possible that packets are lost before they arrive to 3GPP radio network transmission, for example in between the links of a capillarity gateway, or due to buffer overflow handling in a backhaul connection. 
-In consequence, it is possible to secure additional reliability on the packets transmitted with a small trade-off on additional transmissions to signal the packets arrival indication end-to-end if no transport protocol takes care of retransmission.  To achieve this, the packets fragmentation is activated with the ACK-on-Error mode enabled.
-In some cases, it is even desirable to keep track of all the SCHC packets delivered, in that case, the fragmentation function could be active for all packets transmitted by the applications (SCHC MAX_PACKET_SIZE == 1 Byte) and the ACK-on-Error mode.
-In the NAS stratum, the use of only fragmentation when a non-IP packet is transmitted is possible if this packet is considered as a SCHC packet and is identifyed using the RuleID for non-compressing packets as {RFC8724} allows it, depending on the application an ACK-onError mode may be used.
+A global service assigns a QoS to the packets depending on the billing. Packets with very low QoS may get lost before they arrive in the 3GPP radio network transmission, for example, in between the links of a capillarity gateway or due to buffer overflow handling in a backhaul connection. 
+The use of SCHC fragmentation with the ACK-on-Error mode is recommended to secure additional reliability on the packets transmitted with a small trade-off on additional transmissions to signal the end-to-end arrival of the packets if no transport protocol takes care of retransmission.  
+Also, the ACK-on-Error mode is even desirable to keep track of all the SCHC packets delivered. In that case, the fragmentation function could be active for all packets transmitted by the applications (SCHC MAX_PACKET_SIZE == 1 Byte).
+SCHC ACK-on-Error fragmentation may be active for the transmission of non-IP packets on the NGW-MME. If these packets are considering to use SCHC with the RuleID for non-compressing packets as {RFC8724} allows it.
 
 ### Fragmentation Parameters
-The Fragmentation Rule ID is given when choosing the profile according to the fragmentation mode, 1 bit can be used to recognize each mode. 
+SCHC profile with the fragmentation mode will have specific Rules. SCHC defines the Rule ID according to the fragmentation mode;  2 bits could recognize all the fragmentation modes or another solution depending on the Rules implementation. 
 
-To adapt SCHC to the NB-IoT constraints, two configuration are proposed to fill the best the transfer block (TB). The Header size needs to be multiple of 4 and the Tiles can keep a fix value of 4 or 8 bits to avoid the need of padding. 
+SCHC parametrization considers that NBIoT aligns the bit and uses padding and the size of the Transfer Block. SCHC will try to reduce padding to optimize the compression of the information. The Header size needs to be multiple of 4, and the Tiles may keep a fixed value of 4 or 8 bits to avoid padding except for transfer block equals 16 bits where Tiles may be of 2 bits.  For the other parameters, the transfer block size has a wide range that needs two configurations. 
 
-* 8 bits-Header_size configuration, with the size of the header fields as follow: Rule ID 3 bits, DTag 1 bit, FCN 3 bits, W 1 bits. This configuration may ne used with TB less than 300 bits. 
-* 16 bits-Header_size configuration, with the size of the header fields as follow: Rules ID 8 - 10 bits, DTag 1 or 2 bits, FCN 3 bits, W 2 or 3 bits. This configuration may be used with TB above 300 bits.
+* For Transfer Blocks smaller than 300bits: 8 bits-Header_size configuration, with the size of the header fields as follows: Rule ID 3 bits, DTag 1 bit, FCN 3 bits, W 1 bits. 
+* For Transfer Blocks bigger than 300 bits: 16 bits-Header_size configuration, with the size of the header fields as follows: Rules ID 8 - 10 bits, DTag 1 or 2 bits, FCN 3 bits, W 2 or 3 bits. 
 
-The IoT devices communicates with small data transfer and have a battery life of 10 years. To minise the power consumption these devices use the Power Save Mode and the Idle Mode DRX which govern how often the device wakes up, stays up and are reachable. The Table 10.5.163a in {3GPP-TS_24.088} specifies a range for the radio timers as N to 3N in increments of one where the units of N can be 1 hour or 10 hours. To adapt SCHC to the NB-IoT activities, the Innactivity Timer may be above 1h or 10h and the Retransmission Timer may be below than 1h or 10h.
+The IoT devices communicate with small data transfer and have a battery life of 10 years. These devices use the Power Save Mode and the Idle Mode DRX, which govern how often the device wakes up, stays up, and is reachable. Table 10.5.163a in {3GPP-TS_24.088} specifies a range for the radio timers as N to 3N in increments of one where the units of N can be 1 hour or 10 hours. To adapt SCHC to the NB-IoT activities, the Inactivity Timer and the Retransmission Timer may use these limits.
 
 # Padding
-NB-IoT and 3GPP wireless access, in general, assumes byte aligned payload. Therefore the L2 word for NB-IoT MUST be considered 8 bits and the treatment of padding should use this value accordingly.
+NB-IoT and 3GPP wireless access, in general, assumes byte-aligned payload. Therefore the L2 word for NB-IoT MUST be considered 8 bits, and the padding treatment should use this value accordingly.
 
 # Security considerations
-3GPP access security is specified in (TGPP33203).
+3GPP access security is specified in [TGPP33203].
 
 # 3GPP References
 
