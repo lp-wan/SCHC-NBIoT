@@ -100,48 +100,7 @@ The Narrow Band Internet of Things (NB-IoT) architecture has a more complex stru
 It relies on different NGWs from different providers and can send data by different paths, each path with different characteristics such as bandwidths, feedback, and layer two reliability and segmentation. 
 
 {{Figure-Archi}} shows this architecture where the Network Gateway Cellular Internet of Things Serving Gateway Node (NGW-CSGN) optimizes co-locating entities in different paths. For example, a Dev using the path form by the Network Gateway Mobility Management Entity (NGW-MME), the NGW-CSGW, and Network Gateway Packet Data Node Gateway (NGW-PGW) may get a small bandwidth transmission from some bytes to one thousand bytes only.
-                                                                                                                                                               
-<!--
- The NGW-CSGN also supports at least some of the following CIoT EPS Optimizations:
-
-* Control Plane CIoT EPS Optimization for small data transmission.
-* User Plane CIoT EPS Optimization for small data transmission.
-* Necessary security procedures for efficient small data transmission.
-* SMS without combined attach for NB-IoT only UEs.
-* Paging optimizations for coverage enhancements.
-* Support for non-IP data transmission via SGi tunneling and/or SCEF.
-* Support for Attach without PDN (Packet Data Network) connectivity. 
-
-llslsls
-* Non-IP Data Delivery (NIDD) established through the SCEF.
-* Monitoring and exposure of event related to UE reachability, loss of connectivity, location reporting, roaming status, communication failure and change of IMEI-IMSI association. 
-
-~~~~~~
-
-                                          +-------+                                 
-                                          |  HSS  |
-                                          +-+-----+
-                            NGW-MME        /
-               RGW-eNB     +---------+  __/S6a
-  DEV         +--------+   | +-----+ +_/              NGW-SCEF
-+----+ C-Uu   |        +---+-+ MME | | T6i+--------+ T7 +----+
-|CIOT+--------+  eNB   |S1 | |     +-+----+IWK-SCEF+----+SCEF|
-|UE  |        |(NB-IoT)|   | +---+-+ |    +--------+    +----+
-+----+        +--------+   |     |   |        
-                           |CSGN |   |     
-                           |     |S11|
-                +------+   |     |   |        
-+--------+LTE-Uu|      |   |  +--+-+ |        
-|LTE eMTC|(eMTC)|eNB   +---+--+SGW | | S8+---+    +-----------+
-|   UE   +------+(eMTC)|S1 |  |    +-+---+PGW|SGi |Application|
-+--------+      +------+   |  +----+ |   |   +----+  Server   |
-   DEV           RGW-eNB   +---------+   +---+    +-----------+
-                            NGW-CSGN    NGW-PGW       App
-
-~~~~~~                                                                                                     
-{: #Fig-Archi2 title='3GPP optimized CIOT network architecture'}
-qqqqq
--->
+                                                                                                                               
 
 Another node introduced in the NBIoT architecture is the Network Gateway Service Capability Exposure Function (NGW-SCEF), 
 which securely exposes service and network capabilities to entities external to the network operator. OMA and OneM2M define the northbound APIS. In this case, the path is small for data transmission. The main functions of the NGW-SCEF are:
