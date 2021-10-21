@@ -118,35 +118,7 @@ which securely exposes service and network capabilities to entities external to 
 * Connectivity path 
 * Device Monitoring 
 
-<!-- 
-* Non-IP Data Delivery (NIDD) established through the SCEF.
-* Monitoring and exposure of event related to UE reachability, loss of connectivity, location reporting, roaming status, communication failure and change of IMEI-IMSI association. 
 
-~~~~~~
-
-                                          +-------+                                 
-                                          |  HSS  |
-                                          +-+-----+
-                            NGW-MME        /
-               RGW-eNB     +---------+  __/S6a
-  DEV         +--------+   | +-----+ +_/              NGW-SCEF
-+----+ C-Uu   |        +---+-+ MME | | T6i+--------+ T7 +----+
-|CIOT+--------+  eNB   |S1 | |     +-+----+IWK-SCEF+----+SCEF|
-|UE  |        |(NB-IoT)|   | +---+-+ |    +--------+    +----+
-+----+        +--------+   |     |   |        
-                           |CSGN |   |     
-                           |     |S11|
-                +------+   |     |   |        
-+--------+LTE-Uu|      |   |  +--+-+ |        
-|LTE eMTC|(eMTC)|eNB   +---+--+SGW | | S8+---+    +-----------+
-|   UE   +------+(eMTC)|S1 |  |    +-+---+PGW|SGi |Application|
-+--------+      +------+   |  +----+ |   |   +----+  Server   |
-   DEV           RGW-eNB   +---------+   +---+    +-----------+
-                            NGW-CSGN    NGW-PGW       App
-
-~~~~~~                                                                                                     
-{: #Fig--Archi2 title='3GPP optimized CIOT network architecture'}
--->
 
 # Data Transmission
 
