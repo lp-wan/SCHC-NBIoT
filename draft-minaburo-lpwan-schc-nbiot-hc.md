@@ -139,7 +139,7 @@ llslsls
                             NGW-CSGN    NGW-PGW       App
 
 ~~~~~~                                                                                                     
-{: #Fig--Archi2 title='3GPP optimized CIOT network architecture'}
+{: #Fig-Archi2 title='3GPP optimized CIOT network architecture'}
 qqqqq
 -->
 
