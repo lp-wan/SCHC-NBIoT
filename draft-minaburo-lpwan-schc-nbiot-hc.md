@@ -111,6 +111,36 @@ It relies on different NGWs from different providers and can send data by differ
 * Paging optimizations for coverage enhancements.
 * Support for non-IP data transmission via SGi tunneling and/or SCEF.
 * Support for Attach without PDN (Packet Data Network) connectivity. 
+
+llslsls
+* Non-IP Data Delivery (NIDD) established through the SCEF.
+* Monitoring and exposure of event related to UE reachability, loss of connectivity, location reporting, roaming status, communication failure and change of IMEI-IMSI association. 
+
+~~~~~~
+
+                                          +-------+                                 
+                                          |  HSS  |
+                                          +-+-----+
+                            NGW-MME        /
+               RGW-eNB     +---------+  __/S6a
+  DEV         +--------+   | +-----+ +_/              NGW-SCEF
++----+ C-Uu   |        +---+-+ MME | | T6i+--------+ T7 +----+
+|CIOT+--------+  eNB   |S1 | |     +-+----+IWK-SCEF+----+SCEF|
+|UE  |        |(NB-IoT)|   | +---+-+ |    +--------+    +----+
++----+        +--------+   |     |   |        
+                           |CSGN |   |     
+                           |     |S11|
+                +------+   |     |   |        
++--------+LTE-Uu|      |   |  +--+-+ |        
+|LTE eMTC|(eMTC)|eNB   +---+--+SGW | | S8+---+    +-----------+
+|   UE   +------+(eMTC)|S1 |  |    +-+---+PGW|SGi |Application|
++--------+      +------+   |  +----+ |   |   +----+  Server   |
+   DEV           RGW-eNB   +---------+   +---+    +-----------+
+                            NGW-CSGN    NGW-PGW       App
+
+~~~~~~                                                                                                     
+{: #Fig--Archi2 title='3GPP optimized CIOT network architecture'}
+qqqqq
 -->
 
 Another node introduced in the NBIoT architecture is the Network Gateway Service Capability Exposure Function (NGW-SCEF), 
