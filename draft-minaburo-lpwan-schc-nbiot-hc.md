@@ -130,7 +130,7 @@ Deploying SCHC only over the radio link would require placing it as part of the 
 ### SCHC Entities Placing
 The current architecture provides support for header compression in PDCP with RoHC {{RFC5795}}. Therefore SCHC entities can be deployed similarly without the need for significant changes in the 3GPP specifications.
 
-In this scenario, RLC takes care of fragmentation unless for the transparent mode. When packets exceed the transport block size at the time of transmission, SCHC fragmentation is unnecessary and should not be used to avoid the additional protocol overhead. It is not common to configure RLC in Transparent Mode for IP-based data. However, given the case in the future, SCHC fragmentation may be used. In that case, an SCHC tile would match the minimum transport block size minus the PDCP and MAC headers.
+In this scenario, RLC takes care of fragmentation unless for the transparent mode. When packets exceed the transport block size at the time of transmission, SCHC fragmentation is unnecessary and should not be used to avoid the additional protocol overhead. It is not common to configure RLC in Transparent Mode for IP-based data. However, given the case in the future, SCHC fragmentation may be used. In that case, a SCHC tile would match the minimum transport block size minus the PDCP and MAC headers.
 
 ~~~~~~
 
