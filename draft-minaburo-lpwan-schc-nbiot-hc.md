@@ -103,7 +103,7 @@ It relies on different NGWs from different providers and can send data by differ
                                                                                                                                
 
 Another node introduced in the NBIoT architecture is the Network Gateway Service Capability Exposure Function (NGW-SCEF), 
-which securely exposes service and network capabilities to entities external to the network operator. OMA and OneM2M define the northbound APIS. In this case, the path is small for data transmission. The main functions of the NGW-SCEF are:
+which securely exposes service and network capabilities to entities external to the network operator. OMA and OneM2M define the northbound APIS [TGPP33203]. In this case, the path is small for data transmission. The main functions of the NGW-SCEF are:
 
 * Connectivity path 
 * Device Monitoring 
