@@ -204,7 +204,7 @@ RRC (Radio Resource Control) protocol is the main tool used to configure the par
 ### SCHC Rules
 The network operator in these scenarios defines the number of rules in a context. The operator must be aware of the type of IP traffic that the device will carry out. Implying that the operator might use provision sets of rules compatible with the use case of the device. For devices acting as gateways of other devices, several rules may match the diversity of devices and protocols used by the devices associated with the gateway. Meanwhile, simpler devices (for example, an electricity meter) may have a predetermined set of fixed protocols and parameters. Additionally, the deployment of IPv4 addresses and IPv6 may force different rules to deal with each case.
 
-### Rule ID 
+### Rule ID {#RuleID}
 There is a reasonable assumption of 9 bytes of radio protocol overhead for these transmission scenarios in NB-IoT, where PDCP uses 5 bytes due to header and integrity protection, and  RLC and MAC use 4 bytes. The minimum physical Transport Blocks (TB) that can withhold this overhead value according to 3GPP Release 15 specifications are 88, 104, 120, and 144 bits. 
 A transmission optimization may require only one physical layer transmission. SCHC overhead should not exceed the available number of effective bits of the smallest physical TB available. 
 The packets handled by 3GPP networks are byte-aligned, and therefore the minimum payload possible (including padding) is 8 bits. Therefore in order to use the smallest TB, the maximum SCHC header is 12 bits.
@@ -283,12 +283,12 @@ Also, the ACK-on-Error mode is even desirable to keep track of all the SCHC pack
 SCHC ACK-on-Error fragmentation may be active for the transmission of non-IP packets on the NGW-MME. If these packets are considering to use SCHC with the RuleID for non-compressing packets as {RFC8724} allows it.
 
 ### Fragmentation Parameters
-SCHC profile with the fragmentation mode will have specific Rules. The Rule ID will identify the fragmentation mode used, and it is defined in section 
+SCHC profile with the fragmentation mode will have specific Rules. The Rule ID will identify the fragmentation mode used, and it is defined in section {{#RuleID}}.
 
 SCHC parametrization considers that NBIoT aligns the bit and uses padding and the size of the Transfer Block. SCHC will try to reduce padding to optimize the compression of the information. The Header size needs to be multiple of 4, and the Tiles may keep a fixed value of 4 or 8 bits to avoid padding except for transfer block equals 16 bits where Tiles may be of 2 bits.  For the other parameters, the transfer block size has a wide range that needs two configurations. 
 
-* For Transfer Blocks smaller than 300bits: 8 bits-Header_size configuration, with the size of the header fields as follows: Rule ID 3 bits, DTag 1 bit, FCN 3 bits, W 1 bits. 
-* For Transfer Blocks bigger than 300 bits: 16 bits-Header_size configuration, with the size of the header fields as follows: Rules ID 8 - 10 bits, DTag 1 or 2 bits, FCN 3 bits, W 2 or 3 bits. 
+* For Transfer Blocks smaller than 300bits: 8 bits-Header_size configuration, with the size of the header fields as follows: Rule ID from 1 - 3 bits, DTag 1 bit, FCN 3 bits, W 1 bits. 
+* For Transfer Blocks bigger than 300 bits: 16 bits-Header_size configuration, with the size of the header fields as follows: Rules ID from 1 to 8 or 10 bits, DTag 1 or 2 bits, FCN 3 bits, W 2 or 3 bits. 
 
 The IoT devices communicate with small data transfer and have a battery life of 10 years. These devices use the Power Save Mode and the Idle Mode DRX, which govern how often the device wakes up, stays up, and is reachable. Table 10.5.163a in {3GPP-TS_24.088} specifies a range for the radio timers as N to 3N in increments of one where the units of N can be 1 hour or 10 hours. To adapt SCHC to the NB-IoT activities, the Inactivity Timer and the Retransmission Timer may use these limits.
 
