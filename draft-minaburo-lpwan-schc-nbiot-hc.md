@@ -1,7 +1,7 @@
 ---
 stand_alone: true
 ipr: trust200902
-docname: draft-ietf-lpwan-schc-over-nbiot-06
+docname: draft-ietf-lpwan-schc-over-nbiot-07
 cat: info
 pi:
   symrefs: 'yes'
