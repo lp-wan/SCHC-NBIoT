@@ -283,7 +283,7 @@ Also, the ACK-on-Error mode is even desirable to keep track of all the SCHC pack
 SCHC ACK-on-Error fragmentation may be active for the transmission of non-IP packets on the NGW-MME. If these packets are considering to use SCHC with the RuleID for non-compressing packets as {RFC8724} allows it.
 
 ### Fragmentation Parameters
-SCHC profile with the fragmentation mode will have specific Rules. The Rule ID will identify the fragmentation mode used, and it is defined in section {{#RuleID}}.
+SCHC profile with the fragmentation mode will have specific Rules. The Rule ID will identify the fragmentation mode used, and it is defined in section {{RuleID}}.
 
 SCHC parametrization considers that NBIoT aligns the bit and uses padding and the size of the Transfer Block. SCHC will try to reduce padding to optimize the compression of the information. The Header size needs to be multiple of 4, and the Tiles may keep a fixed value of 4 or 8 bits to avoid padding except for transfer block equals 16 bits where Tiles may be of 2 bits.  For the other parameters, the transfer block size has a wide range that needs two configurations. 
 
