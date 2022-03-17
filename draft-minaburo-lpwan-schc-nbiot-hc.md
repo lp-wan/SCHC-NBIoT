@@ -1,7 +1,7 @@
 ---
 stand_alone: true
 ipr: trust200902
-docname: draft-ietf-lpwan-schc-over-nbiot-07
+docname: draft-ietf-lpwan-schc-over-nbiot-08
 cat: info
 pi:
   symrefs: 'yes'
@@ -31,26 +31,27 @@ normative:
   RFC8376:
   RFC8724:
   RFC5795:
+  3GPP.ORG/RELEASE15
 		  
   
 --- abstract
 
-The Static Context Header Compression (SCHC) specification describes header compression and fragmentation 
+The Static Context Header Compression and Fragmentation (SCHC) specification describes header compression and fragmentation 
 functionalities for LPWAN (Low Power Wide Area Networks) technologies.  
-The Narrow Band Internet of Things (NB-IoT) architecture may adapt SCHC to improve its capacities.
+The Narrowband Internet of Things (NB-IoT) architecture may adapt SCHC to improve its capacities.
 
-This document describes the use of SCHC over the NB-IoT wireless access and provides elements for efficient parameterization.
+This document describes the use of SCHC over the NB-IoT wireless access and provides usecases for efficient parameterization.
 
 --- middle
  
 # Introduction {#Introduction}
 
 The Static Context Header Compression (SCHC) {{RFC8724}} defines a header compression scheme, 
-and fragmentation functionality suitable for the Low Power Wide Area Networks (LPWAN) networks defined in {{RFC8376}}.
+and fragmentation functionality, suitable for the Low Power Wide Area Networks (LPWAN) networks described in {{RFC8376}}.
 
-In an NB-IoT network, header compression efficiently brings Internet connectivity to the node. 
-This document describes the SCHC parameters used to performs the static context header compression into the NB-IoT wireless access. 
-This document assumes functionality for NB-IoT of 3GPP release 15. 
+In a Narrowband Internet of Things (NB-IoT) network, header compression efficiently brings Internet connectivity to the Device - User Equipment (Dev-UE). 
+This document describes the SCHC parameters used to performs the static context header compression over the NB-IoT wireless access. 
+This document assumes functionality for NB-IoT of 3GPP release 15 {{TODOREF3GPP-15}}. 
 Otherwise, the text explicitly mentions other versions' functionality.
 
 # Terminology
@@ -79,19 +80,20 @@ This document will follow the terms defined in {{RFC8724}}, in {{RFC8376}}, and 
                     
   +---+                            +------+
   |Dev| \              +-----+ ----| HSS  |    
-  +---+  \             | NGW |     +------+
-         |             |-MME |\__
+  |-UE|  \             | NGW |     +------+
+  +---+  |             |-MME |\__
           \          / +-----+   \   
   +---+    \+-----+ /    |       +------+
   |Dev| ----| RGW |-     |       | NGW- |
-  +---+     |-eNB |      |       | SCEF |---------+
-           /+-----+ \    |       +------+         |
+  |-UE|     |-eNB |      |       | SCEF |---------+
+  +---+    /+-----+ \    |       +------+         |
           /          \ +------+                   |
          /            \| NGW- |  +-----+   +-----------+
   +---+ /              | CSGW |--| NGW-|---|Application|
   |Dev|                |      |  | PGW |   |   Server  |
-  +---+                +------+  +-----+   +-----------+
- 
+  |-UE|                +------+  +-----+   +-----------+
+  +---+
+  
  
 ~~~~~~
 {: #Figure-Archi title='3GPP network architecture'}
@@ -147,7 +149,7 @@ In this scenario, RLC takes care of fragmentation unless for the transparent mod
   | PHY     +-------+ PHY   | PHY   +------+ PHY     +->+
   +---------+       +---------------+      +---------+  |
              C-Uu/                    S1-U             SGi
-     Dev                RGW-eNB             NGW-CSGN
+    Dev-UE                RGW-eNB             NGW-CSGN
       
        
 ~~~~~~
@@ -185,7 +187,7 @@ SCHC may reside in the Non-Access Stratum (NAS) protocol layer in this scenario.
 | PHY    +--+--+ PHY | PHY +--+--+ PHY    | PHY    +-----+ PHY    |
 +--------+     +-----+-----+     +--------+--------+  |  +--------+
            C-Uu/           S1-lite                   SGi
-   Dev           RGW-eNB               NGW-MME             NGW-PGW
+ Dev-UE           RGW-eNB               NGW-MME             NGW-PGW
  
    
 
