@@ -50,31 +50,40 @@ The Static Context Header Compression (SCHC) {{RFC8724}} defines a header compre
 and fragmentation functionality, suitable for the Low Power Wide Area Networks (LPWAN) networks described in {{RFC8376}}.
 
 In a Narrowband Internet of Things (NB-IoT) network, header compression efficiently brings Internet connectivity to the Device - User Equipment (Dev-UE). 
-This document describes the SCHC parameters used to performs the static context header compression over the NB-IoT wireless access. 
-This document assumes functionality for NB-IoT of 3GPP release 15. 
+This document describes the SCHC parameters used to support the static context header compression and fragmentation over the NB-IoT wireless access. 
+This document assumes functionality for NB-IoT of 3GPP release 15 [3GPPR15]. 
 Otherwise, the text explicitly mentions other versions' functionality.
 
 # Terminology
 
-This document will follow the terms defined in {{RFC8724}}, in {{RFC8376}}, and the TGPP23720. 
+This document will follow the terms defined in {{RFC8724}}, in {{RFC8376}}, and the [TGPP23720]. 
 
-* CIoT. Cellular IoT
-* NGW-C-SGN. Network Gateway - CIoT Serving Gateway Node
-* Dev-UE. Device - User Equipment
-* RGW-eNB. Radio Gateway - Node B. Base Station that controls the UE 
+* CIoT. Cellular IoT.
+* NGW-C-SGN. Network Gateway - CIoT Serving Gateway Node.
+* Dev-UE. Device - User Equipment.
+* RGW-eNB. Radio Gateway - Node B. Base Station that controls the UE.
 * EPC. Evolved Packet Connectivity. Core network of 3GPP LTE systems.
-* EUTRAN. Evolved Universal Terrestrial Radio Access Network. Radio network of LTE based systems.
+* EUTRAN. Evolved Universal Terrestrial Radio Access Network. Radio access network of LTE-based systems.
 * NGW-MME. Network Gateway - Mobility Management Entity. An entity in charge of handling mobility of the Dev-UE.
-* NB-IoT. Narrowband IoT. Referring to 3GPP LPWAN technology based in LTE architecture but with additional optimization for IoT and using a Narrowband spectrum frequency. 
-* NGW-SGW. Network Gateway - Serving Gateway. Routes and forwards the user data packets through the access network
-* HSS. Home Subscriber Server. It is a database that performs mobility management
-* NGW-PGW. Network Gateway - Packet Data Node Gateway. An interface between the internal with the external network
-* PDU. Protocol Data Unit. Data packets including headers that are transmitted between entities through a protocol.
-* SDU. Service Data Unit. Data packets (PDUs) from higher layers protocols used by lower layer protocols as a payload of their own PDUs that has not yet been encapsulated.
-* IWK-SCEF. InterWorking Service Capabilities Exposure Function. Used in roaming scenarios and serves for interconnection with the SCEF of the Home PLMN and is located in the Visited PLMN
+* NB-IoT. Narrowband IoT. A 3GPP LPWAN technology based on the LTE architecture but with additional optimization for IoT and using a Narrowband spectrum frequency. 
+* NGW-SGW. Network Gateway - Serving Gateway. It routes and forwards the user data packets through the access network.
+* HSS. Home Subscriber Server. It is a database that performs mobility management.
+* NGW-PGW. Network Gateway - Packet Data Node Gateway. An interface between the internal with the external network.
+* PDU. Protocol Data Unit. A data packet including headers that are transmitted between entities through a protocol.
+* SDU. Service Data Unit. A data packet (PDU) from higher layer protocols used by lower layer protocols as a payload of their own PDUs.
+* IWK-SCEF. InterWorking Service Capabilities Exposure Function. It is used in roaming scenarios, it is located in the Visited PLMN and serves for interconnection with the SCEF of the Home PLMN.
 * NGW-SCEF. Network Gateway - Service Capability Exposure Function. EPC node for exposure of 3GPP network service capabilities to 3rd party applications.
 
 # Architecture
+
+The Narrowband Internet of Things (NB-IoT) architecture has a complex structure. 
+It relies on different NGWs from different providers and can send data via different paths, each path with different characteristics in terms of bandwidths, acknowledgments, and layer two reliability and segmentation. 
+
+{{Figure-Archi}} shows this architecture, where the Network Gateway Cellular Internet of Things Serving Gateway Node (NGW-CSGN) optimizes co-locating entities in different paths. For example, a Dev-UE using the path formed by the Network Gateway Mobility Management Entity (NGW-MME), the NGW-CSGW, and Network Gateway Packet Data Node Gateway (NGW-PGW) may get a limited bandwidth transmission from few bytes/s to one thousand bytes/s only.
+
+Another node introduced in the NB-IoT architecture is the Network Gateway Service Capability Exposure Function (NGW-SCEF), 
+which securely exposes service and network capabilities to entities external to the network operator. OMA and OneM2M define the northbound APIS [TGPP33203]. In this case, the path is small for data transmission. The main functions of the NGW-SCEF are: Connectivity path and Device Monitoring. 
+
 
 ~~~~~~
                     
@@ -98,41 +107,27 @@ This document will follow the terms defined in {{RFC8724}}, in {{RFC8376}}, and 
 ~~~~~~
 {: #Figure-Archi title='3GPP network architecture'}
 
-The Narrowband Internet of Things (NB-IoT) architecture has a more complex structure. 
-It relies on different NGWs from different providers and can send data by different paths, each path with different characteristics such as bandwidths, acknowledgments, and layer two reliability and segmentation. 
 
-{{Figure-Archi}} shows this architecture where the Network Gateway Cellular Internet of Things Serving Gateway Node (NGW-CSGN) optimizes co-locating entities in different paths. For example, a Dev-UE using the path form by the Network Gateway Mobility Management Entity (NGW-MME), the NGW-CSGW, and Network Gateway Packet Data Node Gateway (NGW-PGW) may get a limited bandwidth transmission from few bytes/s to one thousand bytes/s only.
-                                                                                                                               
-
-Another node introduced in the NBIoT architecture is the Network Gateway Service Capability Exposure Function (NGW-SCEF), 
-which securely exposes service and network capabilities to entities external to the network operator. OMA and OneM2M define the northbound APIS [TGPP33203]. In this case, the path is small for data transmission. The main functions of the NGW-SCEF are:
-
-* Connectivity path 
-* Device Monitoring 
-
-
-
-# Data Transmission
+# Data Transmission in the 3GPP Architecture
 
 NB-IoT networks deal with end-to-end user data and in-band signaling between the nodes and functions to configure, control, and monitor the system functions and behaviors. The signaling data uses a different path with specific protocols, handling processes, and entities but can transport end-to-end user data for IoT services. In contrast, the end-to-end application only transports end-to-end data. 
 
-The maximum recommended MTU size is 1358 Bytes. The radio network protocols limit the packet sizes over the air, including radio protocol overhead to 1600 Bytes. However, the MTU is smaller to avoid fragmentation in the network backbone due to the payload encryption size (multiple of 16) and the additional core transport overhead handling.
+The maximum recommended 3GPP MTU size is 1358 Bytes. The radio network protocols limit the packet sizes over the air, including radio protocol overhead, to 1600 Bytes. However, the recommended MTU is smaller to avoid fragmentation in the network backbone due to the payload encryption size (multiple of 16) and the additional core transport overhead handling.
 
-3GPP standardizes NB-IoT and, in general, the cellular technologies interfaces and functions. Therefore the introduction of SCHC entities to Dev-UE, RGW-eNB, and NGW-CSGN needs to be specified in the NB-IoT standard, which implies that standard specifying SCHC support would not be backward compatible. A terminal or a network supporting a version of the standard without SCHC or without capability implementation (in case of not being standardized as mandatory capability) cannot utilize the compression services with this approach.
+3GPP standardizes NB-IoT and, in general, the cellular technologies interfaces and functions. Therefore the introduction of SCHC entities to Dev-UE, RGW-eNB, and NGW-CSGN needs to be specified in the NB-IoT standard, which implies that standard specifying SCHC support would not be backward compatible. A terminal or a network supporting a version of the standard without SCHC or without an implementation capability (in case of not being standardized as mandatory capability) cannot utilize SCHC with this approach.
 
-SCHC could be deployed differently depending on where the header compression and the fragmentation are applied. The SCHC functionalities can be used over the radio transmission only, between the Dev-UE and the RGW-eNB. Alternatively, the packets transmitted over the end-to-end link can use SCHC. Else, when the transmissions over the NGW-MME or NGW-SCEF, the NGW-CSGN uses SCHC entity. For these two cases, the functions are to be standardized by 3GPP.
+SCHC could be deployed differently depending on where the header compression and the fragmentation are applied. The SCHC functionalities can be used over the radio transmission only, between the Dev-UE and the RGW-eNB. Alternatively, the packets transmitted over the path can use SCHC. Else, when the transmissions go over the NGW-MME or NGW-SCEF, the NGW-CSGN uses SCHC entity. For these two cases, the functions need to be standardized by 3GPP.
 
 Another possibility is to apply SCHC functionalities to the end-to-end connection or at least up to the operator network edge. SCHC functionalities are available in the application layer of the Dev-UE and the Application Servers or a broker function at the edge of the operator network. The radio network transmits the packets as non-IP traffic using IP tunneling or SCEF services. Since this option does not necessarily require 3GPP standardization, it is possible to also benefit legacy devices with SCHC by using the non-IP transmission features of the operator network.
 
-# IP based Data Transmission
 
-## SCHC over the Radio link 															  
-Deploying SCHC only over the radio link would require placing it as part of the protocol stack for data transfer between the Dev-UE and the RGW-eNB. This stack is the functional layer responsible for transporting data over the wireless connection and managing radio resources. There is support for features such as reliability, segmentation, and concatenation. The transmissions use link adaptation, meaning that the system will optimize the transport format used according to the radio conditions, the number of bits to transmit, and the power and interference constraints. That means that the number of bits transmitted over the air depends on the Modulation and Coding Schemes (MCS) selected. A Transport Block (TB) transmissions happen in the physical layer at network synchronized intervals called Transmission Time Interval (TTI). Each Transport Block has a different MCS and number of bits available to transmit. The MAC layer [TGPP36321] defines the Transport Blocks characteristics. The Radio link {{Fig-ProtocolArchi3}} stack comprises the Packet Data Convergence Protocol (PDCP) [TGPP36323], Radio Link Protocol (RLC) [TGPP36322], Medium Access Control protocol (MAC) [TGPP36321], and the Physical Layer [TGPP36201]. The Appendix gives more details of these protocols.
+## Use of SCHC over the Radio link 															  
+Deploying SCHC only over the radio link would require placing it as part of the protocol stack for data transfer between the Dev-UE and the RGW-eNB. This stack is the functional layer responsible for transporting data over the wireless connection and managing radio resources. There is support for features such as reliability, segmentation, and concatenation. The transmissions use link adaptation, meaning that the system will optimize the transport format used according to the radio conditions, the number of bits to transmit, and the power and interference constraints. That means that the number of bits transmitted over the air depends on the Modulation and Coding Schemes (MCS) selected. The transmissions of Transport Block (TB) happen in the physical layer at network synchronized intervals called Transmission Time Interval (TTI). Each Transport Block has a different MCS and number of bits available to transmit. The MAC layer [TGPP36321] defines the Transport Blocks characteristics. The Radio link stack shown in {{Fig-ProtocolArchi3}} comprises the Packet Data Convergence Protocol (PDCP) [TGPP36323], Radio Link Protocol (RLC) [TGPP36322], Medium Access Control protocol (MAC) [TGPP36321], and the Physical Layer [TGPP36201]. The Appendix gives more details of these protocols.
 
 ### SCHC Entities Placing
-The current architecture provides support for header compression in PDCP with RoHC {{RFC5795}}. Therefore SCHC entities can be deployed similarly without the need for significant changes in the 3GPP specifications.
+The current architecture provides support for header compression in the PDCP layer using RoHC {{RFC5795}}. Therefore SCHC header compression entities can be deployed similarly without the need for significant changes in the 3GPP specifications.
 
-In this scenario, RLC takes care of fragmentation unless for the transparent mode. When packets exceed the transport block size at the time of transmission, SCHC fragmentation is unnecessary and should not be used to avoid the additional protocol overhead. It is not common to configure RLC in Transparent Mode for IP-based data. However, given the case in the future, SCHC fragmentation may be used. In that case, a SCHC tile would match the minimum transport block size minus the PDCP and MAC headers.
+In this scenario, the RLC layer takes care of fragmentation unless for the Transparent Mode. When packets exceed the Transport Block size at transmission, SCHC fragmentation is unnecessary and should not be used to avoid the additional protocol overhead. The RLC Transparent Mode is not commonly used while sending IP packets in the Radio link. However, given the case in the future, SCHC fragmentation may be used. In that case, a SCHC tile would match the minimum transport block size minus the PDCP and MAC headers.
 
 ~~~~~~
 
@@ -149,16 +144,16 @@ In this scenario, RLC takes care of fragmentation unless for the transparent mod
   | PHY     +-------+ PHY   | PHY   +------+ PHY     +->+
   +---------+       +---------------+      +---------+  |
              C-Uu/                    S1-U             SGi
-    Dev-UE                RGW-eNB             NGW-CSGN
-      
+    Dev-UE               RGW-eNB             NGW-CSGN
+            Radio Link
        
 ~~~~~~
 {: #Fig-ProtocolArchi3 title='SCHC over the Radio link'} 
 
-## SCHC over No-Access Stratum (NAS)
+## Use of SCHC over the No-Access Stratum (NAS)
 The NGW-MME conveys mainly control signaling between the Dev-UE and the cellular network [TGPP24301]. The network transports this traffic on top of the radio link.
 
-This kind of flow supports data transmissions to reduce the overhead when transmitting infrequent small quantities of data. This transmission is known as Data over No-Access Stratum (DoNAS) or Control Plane CIoT EPS optimization. In DoNAS, the Dev-UE uses the pre-established security and piggyback small uplink data into the initial uplink message and uses an additional message to receive downlink small data response.
+This kind of flow supports data transmissions to reduce the overhead when transmitting infrequent small quantities of data. This transmission is known as Data over No-Access Stratum (DoNAS) or Control Plane CIoT EPS optimization. In DoNAS, the Dev-UE uses the pre-established security and can piggyback small uplink data into the initial uplink message and uses an additional message to receive a downlink small data response.
 
 The NGW-MME performs the data encryption from the network side in a DoNAS PDU. Depending on the data type signaled indication (IP or non-IP data), the network allocates an IP address or establishes a direct forwarding path. 
 DoNAS is regulated under rate control upon previous agreement, meaning that a maximum number of bits per unit of time is agreed upon per device subscription beforehand and configured in the device. 
@@ -166,7 +161,7 @@ DoNAS is regulated under rate control upon previous agreement, meaning that a ma
 The system will use DoNAS when a terminal in a power-saving state requires a short transmission and receives an acknowledgment or short feedback from the network. Depending on the size of buffered data to transmit, the Dev-UE might deploy the connected mode transmissions instead, limiting and controlling the DoNAS transmissions to predefined thresholds and a good resource optimization balance for the terminal and the network. The support for mobility of DoNAS is present but produces additional overhead. The Appendix gives additional details of DoNAS.
 
 ### SCHC Entities Placing
-SCHC may reside in the Non-Access Stratum (NAS) protocol layer in this scenario. The same principles as for Radio link transmissions apply here as well. The main difference is the physical placing of the SCHC entities on the network side as the NGW-MME resides in the core network and is the terminating node for NAS instead of the eNB.  
+SCHC may reside in the Non-Access Stratum (NAS) protocol layer in this scenario. The same principles as for Radio link transmissions apply here as well. Because the NAS protocol already uses RoHC it can adapt SCHC for header compression. The main difference is the physical placing of the SCHC entities on the network side as the NGW-MME resides in the core network and is the terminating node for NAS instead of the RGW-eNB.  
 
 ~~~~~~		  										
 +--------+                       +--------+--------+  +  +--------+
@@ -196,6 +191,34 @@ SCHC may reside in the Non-Access Stratum (NAS) protocol layer in this scenario.
 ~~~~~~
 {: #Fig-ProtocolArchi4 title= 'SCHC entities placement in the 3GPP CIOT radio protocol architecture for DoNAS transmissions'}  
 		 
+## End-to-End Compression
+The Non-IP Data Delivery (NIDD) services of 3GPP enable the transmission of SCHC packets compressed by the application layer. The packets can be delivered using IP-tunnels to the 3GPP network or NGW-SCEF functions (i.e., API calls). In both cases, as compression occurs before transmission, the network will not understand the packet, and the network does not have context information of this compression. Therefore the network will treat the packet as Non-IP traffic and deliver it to the Dev-UE without any other protocol stack element, directly under the L2.
+
+### SCHC Entities Placing
+In the two scenarios using End-to-End compression, SCHC entities are located almost on top of the stack. In the Dev, an application using the NB-IoT connectivity services may implement SCHC and the Application Server. The IP tunneling scenario requires that the Application Server send the compressed packet over an IP connection terminated by the 3GPP core network. If the transmission uses the NGW-SCEF services, it is possible to utilize an API call to transfer the SCHC packets between the core network and the Application Server. Also, an IP tunnel could be established by the Application Server if negotiated with the NGW-SCEF.
+
+~~~~~~						   
+
++---------+       XXXXXXXXXXXXXXXXXXXXXXXX             +--------+
+| SCHC    |      XXX                    XXX            | SCHC   |
+|(Non-IP) +-----XX........................XX....+--*---+(Non-IP)|
++---------+    XX                  +----+  XX   |  |   +--------+
+|         |    XX                  |SCEF+-------+  |   |        |
+|         |   XXX     3GPP RAN &   +----+  XXX     +---+  UDP   |
+|         |   XXX    CORE NETWORK          XXX     |   |        |
+|  L2     +---+XX                  +------------+  |   +--------+
+|         |     XX                 |IP TUNNELING+--+   |        |
+|         |      XXX               +------------+  +---+  IP    |
++---------+       XXXX                 XXXX        |   +--------+
+| PHY     +------+ XXXXXXXXXXXXXXXXXXXXXXX         +---+  PHY   |
++---------+                                            +--------+
+   UE                                                       AS
+    
+~~~~~~
+{: #Fig--NIDD title='SCHC entities placed when using Non-IP Delivery (NIDD) 3GPP Sevices'} 
+
+
+
 
 ## Parameters for Static Context Header Compression (SCHC)
 
@@ -204,7 +227,7 @@ RRC (Radio Resource Control) protocol is the main tool used to configure the par
  
 
 ### SCHC Rules
-The network operator in these scenarios defines the number of rules in a context. The operator must be aware of the type of IP traffic that the device will carry out. Implying that the operator might use provision sets of rules compatible with the use case of the device. For devices acting as gateways of other devices, several rules may match the diversity of devices and protocols used by the devices associated with the gateway. Meanwhile, simpler devices (for example, an electricity meter) may have a predetermined set of fixed protocols and parameters. Additionally, the deployment of IPv4 addresses and IPv6 may force different rules to deal with each case.
+The network operator in these scenarios defines the number of rules in a context. The operator must be aware of the type of IP traffic that the device will carry out. Implying that the operator might use provision sets of rules compatible with the use case of the device. For devices acting as gateways of other devices, several rules may match the diversity of devices and protocols used by the devices associated with the gateway. Meanwhile, simpler devices (for example, an electricity meter) may have a predetermined set of fixed protocols and parameters. Additionally, the deployment of IPv6 addresses may force different rules to deal with each case.
 
 ### Rule ID {#RuleID}
 There is a reasonable assumption of 9 bytes of radio protocol overhead for these transmission scenarios in NB-IoT, where PDCP uses 5 bytes due to header and integrity protection, and  RLC and MAC use 4 bytes. The minimum physical Transport Blocks (TB) that can withhold this overhead value according to 3GPP Release 15 specifications are 88, 104, 120, and 144 bits. 
@@ -302,6 +325,7 @@ This document does not add any security considerations and follows the 3GPP acce
 
 # 3GPP References
 
+* 3GPPR15     https://www.3gpp.org/release-15
 * TGPP23720   3GPP, "TR 23.720 v13.0.0 - Study on architecture enhancements for Cellular Internet of Things", 2016.              
 * TGPP33203   3GPP, "TS 33.203 v13.1.0 - 3G security; Access security for IP-based services", 2016.              
 * TGPP36321   3GPP, "TS 36.321 v13.2.0 - Evolved Universal Terrestrial Radio Access (E-UTRA); Medium Access Control (MAC) protocol specification", 2016
