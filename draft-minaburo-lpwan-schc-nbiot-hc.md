@@ -193,7 +193,7 @@ In this scenario, SCHC may reside in the Non-Access Stratum (NAS) protocol layer
 		 
 
 ### Parameters for Static Context Header Compression and Fragmentation (SCHC) for the {{Radio}} and {{DONAS}}. {Radio-Parameters}
-These scenarios MUST use SCHC header compresion capability to improve the transmission of IPv6 packets. The 3GPP Architecture currently provides Header Compression using the [RFC5795] but the use of SCHC for IoT application MUST be considered to improve the devices connectivity.
+These scenarios MUST use SCHC header compresion capability to improve the transmission of IPv6 packets. The 3GPP Architecture currently provides Header Compression using the {{RFC5795}} but the use of SCHC for IoT application MUST be considered to improve the devices connectivity.
 
 * SCHC Context initialization
 RRC (Radio Resource Control) protocol is the main tool used to configure the parameters of the Radio link. It will configure SCHC and the static context distribution as it has made for RoHC operation [TGPP36323]. 
@@ -270,23 +270,31 @@ Packets larger than 1358 bytes need the SCHC fragmentation function. Since the 3
 A global service assigns a QoS to the packets depending on the billing. Packets with very low QoS may get lost before they arrive in the 3GPP radio network transmission, for example, in between the links of a capillarity gateway or due to buffer overflow handling in a backhaul connection. 
 The use of SCHC fragmentation with the ACK-on-Error mode is recommended to secure additional reliability on the packets transmitted with a small trade-off on additional transmissions to signal the end-to-end arrival of the packets if no transport protocol takes care of retransmission.  
 Also, the ACK-on-Error mode is even desirable to keep track of all the SCHC packets delivered. In that case, the fragmentation function could be active for all packets transmitted by the applications.
-SCHC ACK-on-Error fragmentation may be active for the transmission of non-IP packets on the NGW-MME. 
+SCHC ACK-on-Error fragmentation may be active in transmitting non-IP packets on the NGW-MME. A non-IP packet will use SCHC reserved RuleID for non-compressing packets as {{RFC8724}} allows it. 
 
 * Fragmentation Parameters
-SCHC profile with the fragmentation mode will have specific Rules. The RuleID will identify the fragmentation mode used, and it is defined in section {{RuleID}}.
+SCHC profile will have specific Rules for the fragmentation modes. The rule will identify, which fragmentation mode is in use, and section {{RuleID}} defines the RuleID size.
 
-SCHC parametrization considers that NBIoT aligns the bit and uses padding and the size of the Transfer Block. SCHC will try to reduce padding to optimize the compression of the information. The Header size needs to be multiple of 4, and the Tiles may keep a fixed value of 4 or 8 bits to avoid padding except for transfer block equals 16 bits where Tiles may be of 2 bits.  For the other parameters, the transfer block size has a wide range that needs two configurations. 
+SCHC parametrization considers that NBIoT aligns the bit and uses padding and the size of the Transfer Block. SCHC will try to reduce padding to optimize the compression of the information. The Header size needs to be multiple of 4, and the Tiles may keep a fixed value of 4 or 8 bits to avoid padding except for transfer block equals 16 bits where Tiles may be of 2 bits. The transfer block size has a wide range of values. Two configurations may be used for the fragmentation parameters.
 
-* For Transfer Blocks smaller than 300bits: 8 bits-Header_size configuration, with the size of the header fields as follows: RuleID from 1 - 3 bits, DTag 1 bit, FCN 3 bits, W 1 bits. 
-* For Transfer Blocks bigger than 300 bits: 16 bits-Header_size configuration, with the size of the header fields as follows: RulesID from 1 to 8 or 10 bits, DTag 1 or 2 bits, FCN 3 bits, W 2 or 3 bits. 
+* For Transfer Blocks smaller or equal to 300bits using a 8 bits-Header_size configuration, with the size of the header fields as follows: 
+  * RuleID from 1 - 3 bits, 
+  * DTag 1 bit, 
+  * FCN 3 bits, 
+  * W 1 bits. 
+* For Transfer Blocks bigger than 300 bits using a 16 bits-Header_size configuration, with the size of the header fields as follows: 
+  * RulesID from 1 to 8 or 10 bits, 
+  * DTag 1 or 2 bits, 
+  * FCN 3 bits, 
+  * W 2 or 3 bits. 
 
-The IoT devices communicate with small data transfer and have a battery life of 10 years. These devices use the Power Save Mode and the Idle Mode DRX, which govern how often the device wakes up, stays up, and is reachable. Table 10.5.163a in {3GPP-TS_24.088} specifies a range for the radio timers as N to 3N in increments of one where the units of N can be 1 hour or 10 hours. To adapt SCHC to the NB-IoT activities, the Inactivity Timer and the Retransmission Timer may use these limits.
+The IoT devices communicate with small data transfer and have a battery life of 10 years. These devices use the Power Save Mode and the Idle Mode DRX, which govern how often the device wakes up, stays up, and is reachable. Table 10.5.163a in {3GPP-TS_24.088} specifies a range for the radio timers as N to 3N in increments of one where the units of N can be 1 hour or 10 hours. To adapt SCHC to the NB-IoT activities, the Inactivity Timer and the Retransmission Timer be set based on these limits.
 
 # Padding
 NB-IoT and 3GPP wireless access, in general, assumes byte-aligned payload. Therefore the L2 word for NB-IoT MUST be considered 8 bits, and the padding treatment should use this value accordingly.
 
 # Security considerations
-This document does not add any security considerations and follows the 3GPP access security document specified in [TGPP33203].
+This document does not add any security considerations and follows the {{RFC8724}} and the 3GPP access security document specified in [TGPP33203].
 
 # 3GPP References
 
