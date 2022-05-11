@@ -31,32 +31,53 @@ normative:
   RFC8376:
   RFC8724:
   RFC5795:
+  3GPPR15:
+    target: https://www.3gpp.org/release-15
+    title: Architectural Styles and the Design of Network-based Software Architectures
+    author:
+        ins: 3GPP
+        name: Roy Thomas Fielding
+        org: University of California, Irvine
+    date: 2019
+    seriesinfo:
+      "Ph.D.": "Dissertation, University of California, Irvine"
+    format:
+      PDF: http://www.ics.uci.edu/~fielding/pubs/dissertation/fielding_dissertation.pdf
 
-		  
+
+* 3GPPR15     https://www.3gpp.org/release-15
+* TGPP23720   3GPP, "TR 23.720 v13.0.0 - Study on architecture enhancements for Cellular Internet of Things", 2016.              
+* TGPP33203   3GPP, "TS 33.203 v13.1.0 - 3G security; Access security for IP-based services", 2016.              
+* TGPP36321   3GPP, "TS 36.321 v13.2.0 - Evolved Universal Terrestrial Radio Access (E-UTRA); Medium Access Control (MAC) protocol specification", 2016
+* TGPP36323   3GPP, "TS 36.323 v13.2.0 - Evolved Universal Terrestrial Radio Access (E-UTRA); Packet Data  Convergence Protocol (PDCP) specification", 2016.
+* TGPP36331   3GPP, "TS 36.331 v13.2.0 - Evolved Universal Terrestrial Radio Access (E-UTRA); Radio Resource Control (RRC); Protocol specification", 2016.
+* TGPP36300   3GPP, "TS 36.300 v15.1.0 - Evolved Universal Terrestrial Radio Access (E-UTRA) and Evolved Universal Terrestrial Radio Access Network (E-UTRAN); Overall description; Stage 2", 2018
+* TGPP24301   3GPP "TS 24.301 v15.2.0 - Non-Access-Stratum (NAS) protocol for Evolved Packet System (EPS); Stage 3", 2018 
+* TGPP24088   3GPP, "TS 24.088 v12.9.0 - Mobile radio interface Layer 3 specification;Core network protocols; Stage 3", 2015.		  
   
 --- abstract
 
 The Static Context Header Compression and Fragmentation (SCHC) specification describes header compression and fragmentation 
-functionalities for LPWAN (Low Power Wide Area Networks) technologies.  
+functionalities for LPWAN (Low Power Wide Area Networks) technologies.
 The Narrowband Internet of Things (NB-IoT) architecture may adapt SCHC to improve its capacities.
 
 This document describes the use of SCHC over the NB-IoT wireless access and provides usecases for efficient parameterization.
 
 --- middle
- 
+
 # Introduction {#Introduction}
 
 The Static Context Header Compression (SCHC) {{RFC8724}} defines a header compression scheme, 
 and fragmentation functionality, suitable for the Low Power Wide Area Networks (LPWAN) networks described in {{RFC8376}}.
 
-In a Narrowband Internet of Things (NB-IoT) network, header compression efficiently brings Internet connectivity to the Device - User Equipment (Dev-UE). 
-This document describes the SCHC parameters used to support the static context header compression and fragmentation over the NB-IoT wireless access. 
-This document assumes functionality for NB-IoT of 3GPP release 15 [3GPPR15]. 
+In a Narrowband Internet of Things (NB-IoT) network, header compression efficiently brings Internet connectivity to the Device - User Equipment (Dev-UE).
+This document describes the SCHC parameters used to support the static context header compression and fragmentation over the NB-IoT wireless access.
+This document assumes functionality for NB-IoT of 3GPP release 15 [3GPPR15].
 Otherwise, the text explicitly mentions other versions' functionality.
 
 # Terminology
 
-This document will follow the terms defined in {{RFC8724}}, in {{RFC8376}}, and the [TGPP23720]. 
+This document will follow the terms defined in {{RFC8724}}, in {{RFC8376}}, and the [TGPP23720].
 
 * CIoT. Cellular IoT.
 * NGW-C-SGN. Network Gateway - CIoT Serving Gateway Node.
@@ -295,18 +316,6 @@ NB-IoT and 3GPP wireless access, in general, assumes byte-aligned payload. There
 
 # Security considerations
 This document does not add any security considerations and follows the {{RFC8724}} and the 3GPP access security document specified in [TGPP33203].
-
-# 3GPP References
-
-* 3GPPR15     https://www.3gpp.org/release-15
-* TGPP23720   3GPP, "TR 23.720 v13.0.0 - Study on architecture enhancements for Cellular Internet of Things", 2016.              
-* TGPP33203   3GPP, "TS 33.203 v13.1.0 - 3G security; Access security for IP-based services", 2016.              
-* TGPP36321   3GPP, "TS 36.321 v13.2.0 - Evolved Universal Terrestrial Radio Access (E-UTRA); Medium Access Control (MAC) protocol specification", 2016
-* TGPP36323   3GPP, "TS 36.323 v13.2.0 - Evolved Universal Terrestrial Radio Access (E-UTRA); Packet Data  Convergence Protocol (PDCP) specification", 2016.
-* TGPP36331   3GPP, "TS 36.331 v13.2.0 - Evolved Universal Terrestrial Radio Access (E-UTRA); Radio Resource Control (RRC); Protocol specification", 2016.
-* TGPP36300   3GPP, "TS 36.300 v15.1.0 - Evolved Universal Terrestrial Radio Access (E-UTRA) and Evolved Universal Terrestrial Radio Access Network (E-UTRAN); Overall description; Stage 2", 2018
-* TGPP24301   3GPP "TS 24.301 v15.2.0 - Non-Access-Stratum (NAS) protocol for Evolved Packet System (EPS); Stage 3", 2018 
-* TGPP24088   3GPP, "TS 24.088 v12.9.0 - Mobile radio interface Layer 3 specification;Core network protocols; Stage 3", 2015.
 
 # Appendix
 
