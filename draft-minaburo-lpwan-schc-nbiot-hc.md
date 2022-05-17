@@ -31,6 +31,7 @@ normative:
   RFC8376:
   RFC8724:
   RFC5795:
+informative:
   3GPPR15:
     target: https://www.3gpp.org/release-15
     title: The Mobile Broadband Standard
