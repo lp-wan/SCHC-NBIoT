@@ -187,7 +187,7 @@ which securely exposes service and network capabilities to entities external to 
 
 
 ~~~~~~
-                    
+
   +---+                            +------+
   |Dev| \              +-----+ ----| HSS  |    
   |-UE|  \             | NGW |     +------+
@@ -203,8 +203,8 @@ which securely exposes service and network capabilities to entities external to 
   |Dev|                |      |  | PGW |   |   Server  |
   |-UE|                +------+  +-----+   +-----------+
   +---+
-  
- 
+
+
 ~~~~~~
 {: #Figure-Archi title='3GPP network architecture'}
 
@@ -222,7 +222,7 @@ SCHC could be deployed differently depending on where the header compression and
 Another possibility is to apply SCHC functionalities to the end-to-end connection or at least up to the operator network edge. SCHC functionalities are available in the application layer of the Dev-UE and the Application Servers or a broker function at the edge of the operator network. The radio network transmits the packets as non-IP traffic using IP tunneling or SCEF services. Since this option does not necessarily require 3GPP standardization, it is possible to also benefit legacy devices with SCHC by using the non-IP transmission features of the operator network.
 
 
-## Use of SCHC over the Radio link {Radio}
+## Use of SCHC over the Radio link {#Radio}
 
 Deploying SCHC only over the radio link would require placing it as part of the protocol stack for data transfer between the Dev-UE and the RGW-eNB. This stack is the functional layer responsible for transporting data over the wireless connection and managing radio resources. There is support for features such as reliability, segmentation, and concatenation. The transmissions use link adaptation, meaning that the system will optimize the transport format used according to the radio conditions, the number of bits to transmit, and the power and interference constraints. That means that the number of bits transmitted over the air depends on the Modulation and Coding Schemes (MCS) selected. The transmissions of Transport Block (TB) happen in the physical layer at network synchronized intervals called Transmission Time Interval (TTI). Each Transport Block has a different MCS and number of bits available to transmit. The MAC layer {{TGPP36321}} defines the Transport Blocks characteristics. The Radio link stack shown in {{Fig-ProtocolArchi3}} comprises the Packet Data Convergence Protocol (PDCP) {{TGPP36323}}, Radio Link Protocol (RLC) {{TGPP36322}}, Medium Access Control protocol (MAC) {{TGPP36321}}, and the Physical Layer {{TGPP36201}}. The Appendix gives more details of these protocols.
 
@@ -252,7 +252,7 @@ In this scenario, the RLC layer takes care of fragmentation unless for the Trans
 ~~~~~~
 {: #Fig-ProtocolArchi3 title='SCHC over the Radio link'} 
 
-## Use of SCHC over the No-Access Stratum (NAS) {DONAS}
+## Use of SCHC over the No-Access Stratum (NAS) {#DONAS}
 The NGW-MME conveys mainly control signaling between the Dev-UE and the cellular network {{TGPP24301}}. The network transports this traffic on top of the radio link.
 
 This kind of flow supports data transmissions to reduce the overhead when transmitting infrequent small quantities of data. This transmission is known as Data over No-Access Stratum (DoNAS) or Control Plane CIoT EPS optimization. In DoNAS, the Dev-UE uses the pre-established security and can piggyback small uplink data into the initial uplink message and uses an additional message to receive a downlink small data response.
@@ -287,15 +287,15 @@ In this scenario, SCHC may reside in the Non-Access Stratum (NAS) protocol layer
            C-Uu/           S1-lite                   SGi
  Dev-UE           RGW-eNB               NGW-MME             NGW-PGW
  
-   
+ 
 
     *PDCP is bypassed until AS security is activated TGPP36300. 
-    
+
 ~~~~~~
-{: #Fig-ProtocolArchi4 title= 'SCHC entities placement in the 3GPP CIOT radio protocol architecture for DoNAS transmissions'}  
+{: #Fig-ProtocolArchi4 title= 'SCHC entities placement in the 3GPP CIOT radio protocol architecture for DoNAS transmissions'}
 
 
-### Parameters for Static Context Header Compression and Fragmentation (SCHC) for the {{Radio}} and {{DONAS}}. {Radio-Parameters}
+### Parameters for Static Context Header Compression and Fragmentation (SCHC) for the {{Radio}} and {{DONAS}}. {#Radio-Parameters}
 These scenarios MUST use SCHC header compresion capability to improve the transmission of IPv6 packets. The 3GPP Architecture currently provides Header Compression using the {{RFC5795}} but the use of SCHC for IoT application MUST be considered to improve the devices connectivity.
 
 * SCHC Context initialization
@@ -351,7 +351,7 @@ In the two scenarios using End-to-End compression, SCHC entities are located alm
 {: #Fig--NIDD title='SCHC entities placed when using Non-IP Delivery (NIDD) 3GPP Sevices'} 
 
 
-### Parameters for Static Context Header Compression and Fragmentation (SCHC) {Config}
+### Parameters for Static Context Header Compression and Fragmentation (SCHC) {#Config}
 
 * SCHC Context initialization.
 The application layer handles the static context; consequently, the context distribution must be according to the application's capabilities, perhaps utilizing IP data transmissions up to context initialization. Also, 
