@@ -31,7 +31,6 @@ normative:
   RFC8376:
   RFC8724:
   RFC5795:
-informative:
   3GPPR15:
     target: https://www.3gpp.org/release-15
     title: The Mobile Broadband Standard
@@ -42,7 +41,7 @@ informative:
     target: https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=2894
     title: Study on architecture enhancements for Cellular Internet of Things
     author:
-        name: John M. Meredith
+        ins: John M. Meredith
 	org: 3GPP
     date: 2015
     seriesinfo:
@@ -50,8 +49,7 @@ informative:
     format:
       ZIP: https://www.3gpp.org/ftp/Specs/archive/23_series/23.720/23720-d00.zip
       
-<!--
-* 3GPPR15     https://www.3gpp.org/release-15
+<!-- * 3GPPR15     https://www.3gpp.org/release-15
 * TGPP23720   3GPP, "TR 23.720 v13.0.0 - Study on architecture enhancements for Cellular Internet of Things", 2016.              
 * TGPP33203   3GPP, "TS 33.203 v13.1.0 - 3G security; Access security for IP-based services", 2016.              
 * TGPP36321   3GPP, "TS 36.321 v13.2.0 - Evolved Universal Terrestrial Radio Access (E-UTRA); Medium Access Control (MAC) protocol specification", 2016
@@ -59,8 +57,7 @@ informative:
 * TGPP36331   3GPP, "TS 36.331 v13.2.0 - Evolved Universal Terrestrial Radio Access (E-UTRA); Radio Resource Control (RRC); Protocol specification", 2016.
 * TGPP36300   3GPP, "TS 36.300 v15.1.0 - Evolved Universal Terrestrial Radio Access (E-UTRA) and Evolved Universal Terrestrial Radio Access Network (E-UTRAN); Overall description; Stage 2", 2018
 * TGPP24301   3GPP "TS 24.301 v15.2.0 - Non-Access-Stratum (NAS) protocol for Evolved Packet System (EPS); Stage 3", 2018 
-* TGPP24088   3GPP, "TS 24.088 v12.9.0 - Mobile radio interface Layer 3 specification;Core network protocols; Stage 3", 2015.	
--->	  
+* TGPP24088   3GPP, "TS 24.088 v12.9.0 - Mobile radio interface Layer 3 specification;Core network protocols; Stage 3", 2015.	-->	  
   
 --- abstract
 
