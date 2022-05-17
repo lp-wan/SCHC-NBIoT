@@ -49,9 +49,29 @@ normative:
       "TR 23.720 v13.0.0" : "Study on architecture enhancements for Cellular Internet of Things (CIoT)"
     format:
       ZIP: https://www.3gpp.org/ftp/Specs/archive/23_series/23.720/23720-d00.zip
-      
- <!-- * 3GPPR15     https://www.3gpp.org/release-15
-* TGPP23720   3GPP, "TR 23.720 v13.0.0 - Study on architecture enhancements for Cellular Internet of Things", 2016.              
+TGPP33203:
+    target: https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=2277
+    title: 3G security; Access security fro IP-based services
+    author:
+        ins: Mirko Cano Soveri
+	org: 3GPP
+    date: 2020
+    seriesinfo:
+      "TR 33.203 v13.0.1" : "3G security; Access security fro IP-based services"
+    format:
+      ZIP: https://www.3gpp.org/ftp/Specs/archive/33_series/33.203/33203-d10.zip
+TGPP36321:
+    target: https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=2437
+    title: Evolved Universal Terrestrial Radio Access (E-UTRA); Medium Access Control (MAC) protocol specification
+    author:
+        ins: Mirko Cano Soveri
+	org: 3GPP
+    date: 2020
+    seriesinfo:
+      "TR 36.321 v13.2.0" : "Evolved Universal Terrestrial Radio Access (E-UTRA); Medium Access Control (MAC) protocol specification"
+    format:
+      ZIP: https://www.3gpp.org/ftp/Specs/archive/33_series/33.203/33203-d10.zip      
+ <!-- * 3GPPR15                  
 * TGPP33203   3GPP, "TS 33.203 v13.1.0 - 3G security; Access security for IP-based services", 2016.              
 * TGPP36321   3GPP, "TS 36.321 v13.2.0 - Evolved Universal Terrestrial Radio Access (E-UTRA); Medium Access Control (MAC) protocol specification", 2016
 * TGPP36323   3GPP, "TS 36.323 v13.2.0 - Evolved Universal Terrestrial Radio Access (E-UTRA); Packet Data  Convergence Protocol (PDCP) specification", 2016.
