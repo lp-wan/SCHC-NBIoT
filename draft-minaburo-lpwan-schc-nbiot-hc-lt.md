@@ -55,12 +55,12 @@ and fragmentation functionality, suitable for the Low Power Wide Area Networks (
 
 In a Narrowband Internet of Things (NB-IoT) network, header compression efficiently brings Internet connectivity to the Device - User Equipment (Dev-UE).
 This document describes the SCHC parameters used to support the static context header compression and fragmentation over the NB-IoT wireless access.
-This document assumes functionality for NB-IoT of 3GPP release 15 {{3GPPR15}}.
+This document assumes functionality for NB-IoT of 3GPP release 15 [3GPPR15].
 Otherwise, the text explicitly mentions other versions' functionality.
 
 # Terminology
 
-This document will follow the terms defined in {{RFC8724}}, in {{RFC8376}}, and the {{TGPP23720}}.
+This document will follow the terms defined in {{RFC8724}}, in {{RFC8376}}, and the [TGPP23720].
 
 * CIoT. Cellular IoT.
 * NGW-C-SGN. Network Gateway - CIoT Serving Gateway Node.
@@ -86,7 +86,7 @@ It relies on different NGWs from different providers and can send data via diffe
 {{Figure-Archi}} shows this architecture, where the Network Gateway Cellular Internet of Things Serving Gateway Node (NGW-CSGN) optimizes co-locating entities in different paths. For example, a Dev-UE using the path formed by the Network Gateway Mobility Management Entity (NGW-MME), the NGW-CSGW, and Network Gateway Packet Data Node Gateway (NGW-PGW) may get a limited bandwidth transmission from few bytes/s to one thousand bytes/s only.
 
 Another node introduced in the NB-IoT architecture is the Network Gateway Service Capability Exposure Function (NGW-SCEF), 
-which securely exposes service and network capabilities to entities external to the network operator. OMA and OneM2M define the northbound APIS {{TGPP33203}}. In this case, the path is small for data transmission. The main functions of the NGW-SCEF are: Connectivity path and Device Monitoring. 
+which securely exposes service and network capabilities to entities external to the network operator. OMA and OneM2M define the northbound APIS [TGPP33203]. In this case, the path is small for data transmission. The main functions of the NGW-SCEF are: Connectivity path and Device Monitoring. 
 
 
 ~~~~~~
@@ -127,7 +127,7 @@ Another possibility is to apply SCHC functionalities to the end-to-end connectio
 
 ## Use of SCHC over the Radio link {#Radio}
 
-Deploying SCHC only over the radio link would require placing it as part of the protocol stack for data transfer between the Dev-UE and the RGW-eNB. This stack is the functional layer responsible for transporting data over the wireless connection and managing radio resources. There is support for features such as reliability, segmentation, and concatenation. The transmissions use link adaptation, meaning that the system will optimize the transport format used according to the radio conditions, the number of bits to transmit, and the power and interference constraints. That means that the number of bits transmitted over the air depends on the Modulation and Coding Schemes (MCS) selected. The transmissions of Transport Block (TB) happen in the physical layer at network synchronized intervals called Transmission Time Interval (TTI). Each Transport Block has a different MCS and number of bits available to transmit. The MAC layer {{TGPP36321}} defines the Transport Blocks characteristics. The Radio link stack shown in {{Fig-ProtocolArchi3}} comprises the Packet Data Convergence Protocol (PDCP) {{TGPP36323}}, Radio Link Protocol (RLC) {{TGPP36322}}, Medium Access Control protocol (MAC) {{TGPP36321}}, and the Physical Layer {{TGPP36201}}. The Appendix gives more details of these protocols.
+Deploying SCHC only over the radio link would require placing it as part of the protocol stack for data transfer between the Dev-UE and the RGW-eNB. This stack is the functional layer responsible for transporting data over the wireless connection and managing radio resources. There is support for features such as reliability, segmentation, and concatenation. The transmissions use link adaptation, meaning that the system will optimize the transport format used according to the radio conditions, the number of bits to transmit, and the power and interference constraints. That means that the number of bits transmitted over the air depends on the Modulation and Coding Schemes (MCS) selected. The transmissions of Transport Block (TB) happen in the physical layer at network synchronized intervals called Transmission Time Interval (TTI). Each Transport Block has a different MCS and number of bits available to transmit. The MAC layer [TGPP36321] defines the Transport Blocks characteristics. The Radio link stack shown in {{Fig-ProtocolArchi3}} comprises the Packet Data Convergence Protocol (PDCP) [TGPP36323], Radio Link Protocol (RLC) [TGPP36322], Medium Access Control protocol (MAC) [TGPP36321], and the Physical Layer [TGPP36201]. The Appendix gives more details of these protocols.
 
 ### SCHC Entities Placing
 The current architecture provides support for header compression in the PDCP layer using RoHC {{RFC5795}}. Therefore SCHC header compression entities can be deployed similarly without the need for significant changes in the 3GPP specifications.
@@ -156,7 +156,7 @@ In this scenario, the RLC layer takes care of fragmentation unless for the Trans
 {: #Fig-ProtocolArchi3 title='SCHC over the Radio link'} 
 
 ## Use of SCHC over the No-Access Stratum (NAS) {#DONAS}
-The NGW-MME conveys mainly control signaling between the Dev-UE and the cellular network {{TGPP24301}}. The network transports this traffic on top of the radio link.
+The NGW-MME conveys mainly control signaling between the Dev-UE and the cellular network [TGPP24301]. The network transports this traffic on top of the radio link.
 
 This kind of flow supports data transmissions to reduce the overhead when transmitting infrequent small quantities of data. This transmission is known as Data over No-Access Stratum (DoNAS) or Control Plane CIoT EPS optimization. In DoNAS, the Dev-UE uses the pre-established security and can piggyback small uplink data into the initial uplink message and uses an additional message to receive a downlink small data response.
 
@@ -202,7 +202,7 @@ In this scenario, SCHC may reside in the Non-Access Stratum (NAS) protocol layer
 These scenarios MUST use SCHC header compresion capability to improve the transmission of IPv6 packets. The 3GPP Architecture currently provides Header Compression using the {{RFC5795}} but the use of SCHC for IoT application MUST be considered to improve the devices connectivity.
 
 * SCHC Context initialization
-RRC (Radio Resource Control) protocol is the main tool used to configure the parameters of the Radio link. It will configure SCHC and the static context distribution as it has made for RoHC operation {{TGPP36323}}. 
+RRC (Radio Resource Control) protocol is the main tool used to configure the parameters of the Radio link. It will configure SCHC and the static context distribution as it has made for RoHC operation [TGPP36323]. 
  
 * SCHC Rules
 The network operator in these scenarios defines the number of rules in a context. The operator must be aware of the type of IP traffic that the device will carry out. Implying that the operator might use provision sets of rules compatible with the use case of the device. For devices acting as gateways of other devices, several rules may match the diversity of devices and protocols used by the devices associated with the gateway. Meanwhile, simpler devices (for example, an electricity meter) may have a predetermined set of fixed protocols and parameters. Additionally, the deployment of IPv6 addresses may force different rules to deal with each case.
@@ -300,7 +300,7 @@ The IoT devices communicate with small data transfer and have a battery life of 
 NB-IoT and 3GPP wireless access, in general, assumes byte-aligned payload. Therefore the L2 word for NB-IoT MUST be considered 8 bits, and the padding treatment should use this value accordingly.
 
 # Security considerations
-This document does not add any security considerations and follows the {{RFC8724}} and the 3GPP access security document specified in {{TGPP33203}}.
+This document does not add any security considerations and follows the {{RFC8724}} and the 3GPP access security document specified in [TGPP33203].
 
 # Appendix
 
