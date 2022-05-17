@@ -35,7 +35,7 @@ normative:
   RFC8376:
   RFC8724:
   RFC5795:
-  3GPPR15:
+    3GPPR15:
     target: https://www.3gpp.org/release-15
     title: The Mobile Broadband Standard
     author:
@@ -52,6 +52,84 @@ normative:
       "TR 23.720 v13.0.0" : "Study on architecture enhancements for Cellular Internet of Things (CIoT)"
     format:
       ZIP: https://www.3gpp.org/ftp/Specs/archive/23_series/23.720/23720-d00.zip
+TGPP33203:
+    target: https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=2277
+    title: 3G security; Access security fro IP-based services
+    author:
+        ins: Mirko Cano Soveri
+	org: 3GPP
+    date: 2020
+    seriesinfo:
+      "TR 33.203 v13.0.1" : "3G security; Access security fro IP-based services"
+    format:
+      ZIP: https://www.3gpp.org/ftp/Specs/archive/33_series/33.203/33203-d10.zip
+TGPP36321:
+    target: https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=2437
+    title: Evolved Universal Terrestrial Radio Access (E-UTRA); Medium Access Control (MAC) protocol specification
+    author:
+        ins: Yong-jun Chung
+	org: 3GPP
+    date: 2016
+    seriesinfo:
+      "TR 36.321 v13.2.0" : "Evolved Universal Terrestrial Radio Access (E-UTRA); Medium Access Control (MAC) protocol specification"
+    format:
+      ZIP: https://www.3gpp.org/ftp/Specs/archive/36_series/36.321/36321-d20.zip     
+TGPP36323:
+    target: https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=2439
+    title: Evolved Universal Terrestrial Radio Access (E-UTRA); Packet Data  Convergence Protocol (PDCP) specification
+    author:
+        ins: Yong-jun Chung
+	org: 3GPP
+    date: 2016
+    seriesinfo:
+      "TS 36.323 v13.2.0" : "Evolved Universal Terrestrial Radio Access (E-UTRA); Packet Data  Convergence Protocol (PDCP) specification"
+    format:
+      ZIP: https://www.3gpp.org/ftp/Specs/archive/36_series/36.323/36323-d20.zip   
+TGPP36331:
+    target: https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=2440
+    title: Evolved Universal Terrestrial Radio Access (E-UTRA); Radio Resource Control (RRC); Protocol specification
+    author:
+        ins: Juha Korhonen
+	org: 3GPP
+    date: 2016
+    seriesinfo:
+      "TS 36.331 v13.2.0" : "Evolved Universal Terrestrial Radio Access (E-UTRA); Radio Resource Control (RRC); Protocol specification"
+    format:
+      ZIP: https://www.3gpp.org/ftp/Specs/archive/36_series/36.331/36331-d20.zip  
+TGPP36300:
+    target: https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=2437
+    title: Evolved Universal Terrestrial Radio Access (E-UTRA); Medium Access Control (MAC) protocol specification
+    author:
+	org: 3GPP
+    date: 2016
+    seriesinfo:
+      "TR 36.321 v13.2.0" : "Evolved Universal Terrestrial Radio Access (E-UTRA); Medium Access Control (MAC) protocol specification"
+    format:
+      ZIP: https://www.3gpp.org/ftp/Specs/archive/36_series/36.321/36321-d20.zip  
+TGPP24301:
+    target: https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=2437
+    title: Evolved Universal Terrestrial Radio Access (E-UTRA); Medium Access Control (MAC) protocol specification
+    author:
+        ins: Yong-jun Chung
+	org: 3GPP
+    date: 2016
+    seriesinfo:
+      "TR 36.321 v13.2.0" : "Evolved Universal Terrestrial Radio Access (E-UTRA); Medium Access Control (MAC) protocol specification"
+    format:
+      ZIP: https://www.3gpp.org/ftp/Specs/archive/36_series/36.321/36321-d20.zip  
+TGPP24088:
+    target: https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=2437
+    title: Evolved Universal Terrestrial Radio Access (E-UTRA); Medium Access Control (MAC) protocol specification
+    author:
+        ins: Yong-jun Chung
+	org: 3GPP
+    date: 2016
+    seriesinfo:
+      "TR 36.321 v13.2.0" : "Evolved Universal Terrestrial Radio Access (E-UTRA); Medium Access Control (MAC) protocol specification"
+    format:
+      ZIP: https://www.3gpp.org/ftp/Specs/archive/36_series/36.321/36321-d20.zip  
+	 
+  
 
     
 --- abstract
