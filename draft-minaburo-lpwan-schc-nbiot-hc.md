@@ -33,18 +33,23 @@ normative:
   RFC5795:
   3GPPR15:
     target: https://www.3gpp.org/release-15
-    title: Architectural Styles and the Design of Network-based Software Architectures
+    title: The Mobile Broadband Standard
     author:
         ins: 3GPP
-        name: Roy Thomas Fielding
-        org: University of California, Irvine
     date: 2019
+  TGPP23720:
+    target: https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=2894
+    title: Study on architecture enhancements for Cellular Internet of Things
+    author:
+        name: John M. Meredith
+	org: 3GPP
+    date: 2015
     seriesinfo:
-      "Ph.D.": "Dissertation, University of California, Irvine"
+      "TR 23.720 v13.0.0" : "Study on architecture enhancements for Cellular Internet of Things (CIoT)"
     format:
-      PDF: http://www.ics.uci.edu/~fielding/pubs/dissertation/fielding_dissertation.pdf
-
-
+      ZIP: https://www.3gpp.org/ftp/Specs/archive/23_series/23.720/23720-d00.zip
+      
+<!--
 * 3GPPR15     https://www.3gpp.org/release-15
 * TGPP23720   3GPP, "TR 23.720 v13.0.0 - Study on architecture enhancements for Cellular Internet of Things", 2016.              
 * TGPP33203   3GPP, "TS 33.203 v13.1.0 - 3G security; Access security for IP-based services", 2016.              
@@ -53,7 +58,8 @@ normative:
 * TGPP36331   3GPP, "TS 36.331 v13.2.0 - Evolved Universal Terrestrial Radio Access (E-UTRA); Radio Resource Control (RRC); Protocol specification", 2016.
 * TGPP36300   3GPP, "TS 36.300 v15.1.0 - Evolved Universal Terrestrial Radio Access (E-UTRA) and Evolved Universal Terrestrial Radio Access Network (E-UTRAN); Overall description; Stage 2", 2018
 * TGPP24301   3GPP "TS 24.301 v15.2.0 - Non-Access-Stratum (NAS) protocol for Evolved Packet System (EPS); Stage 3", 2018 
-* TGPP24088   3GPP, "TS 24.088 v12.9.0 - Mobile radio interface Layer 3 specification;Core network protocols; Stage 3", 2015.		  
+* TGPP24088   3GPP, "TS 24.088 v12.9.0 - Mobile radio interface Layer 3 specification;Core network protocols; Stage 3", 2015.	
+-->	  
   
 --- abstract
 
@@ -72,7 +78,7 @@ and fragmentation functionality, suitable for the Low Power Wide Area Networks (
 
 In a Narrowband Internet of Things (NB-IoT) network, header compression efficiently brings Internet connectivity to the Device - User Equipment (Dev-UE).
 This document describes the SCHC parameters used to support the static context header compression and fragmentation over the NB-IoT wireless access.
-This document assumes functionality for NB-IoT of 3GPP release 15 [3GPPR15].
+This document assumes functionality for NB-IoT of 3GPP release 15 {{3GPPR15}}.
 Otherwise, the text explicitly mentions other versions' functionality.
 
 # Terminology
