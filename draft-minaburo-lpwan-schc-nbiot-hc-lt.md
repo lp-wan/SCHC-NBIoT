@@ -1,4 +1,4 @@
- ---
+---
 stand_alone: true
 ipr: trust200902
 docname: draft-ietf-lpwan-schc-over-nbiot-08
