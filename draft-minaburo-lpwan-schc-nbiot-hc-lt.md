@@ -40,7 +40,7 @@ normative:
     title: Study on architecture enhancements for Cellular Internet of Things
     author:
         ins: John M. Meredith
-	org: 3GPP
+        org: 3GPP
     date: 2015
     seriesinfo:
       "TR 23.720 v13.0.0" : "Study on architecture enhancements for Cellular Internet of Things (CIoT)"
@@ -51,7 +51,7 @@ TGPP33203:
     title: 3G security; Access security fro IP-based services
     author:
         ins: Mirko Cano Soveri
-	org: 3GPP
+        org: 3GPP
     date: 2020
     seriesinfo:
       "TR 33.203 v13.0.1" : "3G security; Access security fro IP-based services"
@@ -62,7 +62,7 @@ TGPP36321:
     title: Evolved Universal Terrestrial Radio Access (E-UTRA); Medium Access Control (MAC) protocol specification
     author:
         ins: Yong-jun Chung
-	org: 3GPP
+        org: 3GPP
     date: 2016
     seriesinfo:
       "TR 36.321 v13.2.0" : "Evolved Universal Terrestrial Radio Access (E-UTRA); Medium Access Control (MAC) protocol specification"
@@ -73,7 +73,7 @@ TGPP36323:
     title: Evolved Universal Terrestrial Radio Access (E-UTRA); Packet Data  Convergence Protocol (PDCP) specification
     author:
         ins: Yong-jun Chung
-	org: 3GPP
+        org: 3GPP
     date: 2016
     seriesinfo:
       "TS 36.323 v13.2.0" : "Evolved Universal Terrestrial Radio Access (E-UTRA); Packet Data  Convergence Protocol (PDCP) specification"
@@ -84,7 +84,7 @@ TGPP36331:
     title: Evolved Universal Terrestrial Radio Access (E-UTRA); Radio Resource Control (RRC); Protocol specification
     author:
         ins: Juha Korhonen
-	org: 3GPP
+        org: 3GPP
     date: 2018
     seriesinfo:
       "TS 36.331 v13.2.0" : "Evolved Universal Terrestrial Radio Access (E-UTRA); Radio Resource Control (RRC); Protocol specification"
@@ -95,7 +95,7 @@ TGPP36300:
     title: Evolved Universal Terrestrial Radio Access (E-UTRA) and Evolved Universal Terrestrial Radio Access Network (E-UTRAN); Overall description; Stage 2
     author:
         ins: Juha Korhonen
-	org: 3GPP
+        org: 3GPP
     date: 2016
     seriesinfo:
       "TS 36.300 v15.1.0" : "Evolved Universal Terrestrial Radio Access (E-UTRA) and Evolved Universal Terrestrial Radio Access Network (E-UTRAN); Overall description; Stage 2"
@@ -106,7 +106,7 @@ TGPP24301:
     title: Non-Access-Stratum (NAS) protocol for Evolved Packet System (EPS); Stage 3
     author:
         ins: Frederic Firmin
-	org: 3GPP
+        org: 3GPP
     date: 2018
     seriesinfo:
       "TS 24.301 v15.2.0" : "Non-Access-Stratum (NAS) protocol for Evolved Packet System (EPS); Stage 3"
@@ -117,7 +117,7 @@ TGPP24088:
     title: Mobile radio interface Layer 3 specification; Core network protocols; Stage 3
     author:
         ins: Frederic Firmin
-	org: 3GPP
+        org: 3GPP
     date: 2015
     seriesinfo:
       "TS 24.088 v12.9.0" : "Mobile radio interface Layer 3 specification; Core network protocols; Stage 3"
@@ -222,7 +222,8 @@ SCHC could be deployed differently depending on where the header compression and
 Another possibility is to apply SCHC functionalities to the end-to-end connection or at least up to the operator network edge. SCHC functionalities are available in the application layer of the Dev-UE and the Application Servers or a broker function at the edge of the operator network. The radio network transmits the packets as non-IP traffic using IP tunneling or SCEF services. Since this option does not necessarily require 3GPP standardization, it is possible to also benefit legacy devices with SCHC by using the non-IP transmission features of the operator network.
 
 
-## Use of SCHC over the Radio link {Radio}															  
+## Use of SCHC over the Radio link {Radio}
+
 Deploying SCHC only over the radio link would require placing it as part of the protocol stack for data transfer between the Dev-UE and the RGW-eNB. This stack is the functional layer responsible for transporting data over the wireless connection and managing radio resources. There is support for features such as reliability, segmentation, and concatenation. The transmissions use link adaptation, meaning that the system will optimize the transport format used according to the radio conditions, the number of bits to transmit, and the power and interference constraints. That means that the number of bits transmitted over the air depends on the Modulation and Coding Schemes (MCS) selected. The transmissions of Transport Block (TB) happen in the physical layer at network synchronized intervals called Transmission Time Interval (TTI). Each Transport Block has a different MCS and number of bits available to transmit. The MAC layer {{TGPP36321}} defines the Transport Blocks characteristics. The Radio link stack shown in {{Fig-ProtocolArchi3}} comprises the Packet Data Convergence Protocol (PDCP) {{TGPP36323}}, Radio Link Protocol (RLC) {{TGPP36322}}, Medium Access Control protocol (MAC) {{TGPP36321}}, and the Physical Layer {{TGPP36201}}. The Appendix gives more details of these protocols.
 
 ### SCHC Entities Placing
@@ -264,7 +265,8 @@ The system will use DoNAS when a terminal in a power-saving state requires a sho
 ### SCHC Entities Placing
 In this scenario, SCHC may reside in the Non-Access Stratum (NAS) protocol layer. The same principles as for Radio link transmissions apply here as well. Because the NAS protocol already uses RoHC it can adapt SCHC for header compression too. The main difference compared to the radio link is the physical placing of the SCHC entities. On the network side, the NGW-MME resides in the core network and is the terminating node for NAS instead of the RGW-eNB. 
 
-~~~~~~		  										
+~~~~~~
+
 +--------+                       +--------+--------+  +  +--------+
 | IP/    +--+-----------------+--+  IP/   |   IP/  +-----+   IP/  |
 | Non-IP |  |                 |  | Non-IP | Non-IP |  |  | Non-IP |
@@ -291,7 +293,7 @@ In this scenario, SCHC may reside in the Non-Access Stratum (NAS) protocol layer
     
 ~~~~~~
 {: #Fig-ProtocolArchi4 title= 'SCHC entities placement in the 3GPP CIOT radio protocol architecture for DoNAS transmissions'}  
-		 
+
 
 ### Parameters for Static Context Header Compression and Fragmentation (SCHC) for the {{Radio}} and {{DONAS}}. {Radio-Parameters}
 These scenarios MUST use SCHC header compresion capability to improve the transmission of IPv6 packets. The 3GPP Architecture currently provides Header Compression using the {{RFC5795}} but the use of SCHC for IoT application MUST be considered to improve the devices connectivity.
@@ -328,7 +330,7 @@ The Non-IP Data Delivery (NIDD) services of 3GPP enable the transmission of SCHC
 ### SCHC Entities Placing
 In the two scenarios using End-to-End compression, SCHC entities are located almost on top of the stack. The NB-IoT connectivity services implement SCHC in the Dev, an in the Application Server. The IP tunneling scenario requires that the Application Server send the compressed packet over an IP connection terminated by the 3GPP core network. If the transmission uses the NGW-SCEF services, it is possible to utilize an API call to transfer the SCHC packets between the core network and the Application Server. Also, an IP tunnel could be established by the Application Server if negotiated with the NGW-SCEF.
 
-~~~~~~						   
+~~~~~~
 
 +---------+       XXXXXXXXXXXXXXXXXXXXXXXX             +--------+
 | SCHC    |      XXX                    XXX            | SCHC   |
@@ -360,7 +362,7 @@ Even when the transmission content is not visible for the 3GPP network, the same
 
 * Rule ID 
 Similar to the case of {{Radio}} and {{DONAS}}, the RuleID size can be dynamically set before the context delivery. For example, negotiated between the applications when choosing a profile according to the type of traffic and application deployed. The same considerations related to the transport block size and performance mentioned for the {{Radio}} and {{DONAS}} must be followed when choosing a size value for the RuleID field.
-											
+
 * SCHC MAX_PACKET_SIZE
 In these scenarios, the maximum recommended MTU size that applies is 1358 Bytes since the SCHC packets (and fragments) are traversing the whole 3GPP network infrastructure (core and radio), not only the radio as the IP transmissions case.
 
