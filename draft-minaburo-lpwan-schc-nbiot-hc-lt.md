@@ -36,16 +36,13 @@ normative:
   RFC8724:
   RFC5795:
   TGPP23720:
-    target: https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=2894
-    title: Study on architecture enhancements for Cellular Internet of Things
-    author:
-        ins: John M. Meredith
-        org: 3GPP
+    author: John M. Meredith
+      org: 3GPP
+    title: Study on architecture enhancements for Cellular Internet of Things (CIoT)
     date: 2015
+    target: https://www.3gpp.org/ftp/Specs/archive/23_series/23.720/23720-d00.zip
     seriesinfo:
-      "TR 23.720 v13.0.0" : "Study on architecture enhancements for Cellular Internet of Things (CIoT)"
-    format:
-      ZIP: https://www.3gpp.org/ftp/Specs/archive/23_series/23.720/23720-d00.zip
+      3GPP: TR 23.720 v13.0.0
 TGPP33203:
     target: https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=2277
     title: 3G security; Access security fro IP-based services
