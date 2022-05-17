@@ -64,16 +64,69 @@ TGPP36321:
     target: https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=2437
     title: Evolved Universal Terrestrial Radio Access (E-UTRA); Medium Access Control (MAC) protocol specification
     author:
-        ins: Mirko Cano Soveri
+        ins: Yong-jun Chung
 	org: 3GPP
-    date: 2020
+    date: 2016
     seriesinfo:
       "TR 36.321 v13.2.0" : "Evolved Universal Terrestrial Radio Access (E-UTRA); Medium Access Control (MAC) protocol specification"
     format:
-      ZIP: https://www.3gpp.org/ftp/Specs/archive/33_series/33.203/33203-d10.zip      
- <!-- * 3GPPR15                  
-* TGPP33203   3GPP, "TS 33.203 v13.1.0 - 3G security; Access security for IP-based services", 2016.              
-* TGPP36321   3GPP, "TS 36.321 v13.2.0 - Evolved Universal Terrestrial Radio Access (E-UTRA); Medium Access Control (MAC) protocol specification", 2016
+      ZIP: https://www.3gpp.org/ftp/Specs/archive/36_series/36.321/36321-d20.zip     
+TGPP36323:
+    target: https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=2439
+    title: Evolved Universal Terrestrial Radio Access (E-UTRA); Packet Data  Convergence Protocol (PDCP) specification
+    author:
+        ins: Yong-jun Chung
+	org: 3GPP
+    date: 2016
+    seriesinfo:
+      "TS 36.323 v13.2.0" : "Evolved Universal Terrestrial Radio Access (E-UTRA); Packet Data  Convergence Protocol (PDCP) specification"
+    format:
+      ZIP: https://www.3gpp.org/ftp/Specs/archive/36_series/36.323/36323-d20.zip   
+TGPP36331:
+    target: https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=2440
+    title: Evolved Universal Terrestrial Radio Access (E-UTRA); Radio Resource Control (RRC); Protocol specification
+    author:
+        ins: Juha Korhonen
+	org: 3GPP
+    date: 2016
+    seriesinfo:
+      "TS 36.331 v13.2.0" : "Evolved Universal Terrestrial Radio Access (E-UTRA); Radio Resource Control (RRC); Protocol specification"
+    format:
+      ZIP: https://www.3gpp.org/ftp/Specs/archive/36_series/36.331/36331-d20.zip  
+TGPP36300:
+    target: https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=2437
+    title: Evolved Universal Terrestrial Radio Access (E-UTRA); Medium Access Control (MAC) protocol specification
+    author:
+	org: 3GPP
+    date: 2016
+    seriesinfo:
+      "TR 36.321 v13.2.0" : "Evolved Universal Terrestrial Radio Access (E-UTRA); Medium Access Control (MAC) protocol specification"
+    format:
+      ZIP: https://www.3gpp.org/ftp/Specs/archive/36_series/36.321/36321-d20.zip  
+TGPP24301:
+    target: https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=2437
+    title: Evolved Universal Terrestrial Radio Access (E-UTRA); Medium Access Control (MAC) protocol specification
+    author:
+        ins: Yong-jun Chung
+	org: 3GPP
+    date: 2016
+    seriesinfo:
+      "TR 36.321 v13.2.0" : "Evolved Universal Terrestrial Radio Access (E-UTRA); Medium Access Control (MAC) protocol specification"
+    format:
+      ZIP: https://www.3gpp.org/ftp/Specs/archive/36_series/36.321/36321-d20.zip  
+TGPP24088:
+    target: https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=2437
+    title: Evolved Universal Terrestrial Radio Access (E-UTRA); Medium Access Control (MAC) protocol specification
+    author:
+        ins: Yong-jun Chung
+	org: 3GPP
+    date: 2016
+    seriesinfo:
+      "TR 36.321 v13.2.0" : "Evolved Universal Terrestrial Radio Access (E-UTRA); Medium Access Control (MAC) protocol specification"
+    format:
+      ZIP: https://www.3gpp.org/ftp/Specs/archive/36_series/36.321/36321-d20.zip  
+<!-- * 3GPPR15                  
+
 * TGPP36323   3GPP, "TS 36.323 v13.2.0 - Evolved Universal Terrestrial Radio Access (E-UTRA); Packet Data  Convergence Protocol (PDCP) specification", 2016.
 * TGPP36331   3GPP, "TS 36.331 v13.2.0 - Evolved Universal Terrestrial Radio Access (E-UTRA); Radio Resource Control (RRC); Protocol specification", 2016.
 * TGPP36300   3GPP, "TS 36.300 v15.1.0 - Evolved Universal Terrestrial Radio Access (E-UTRA) and Evolved Universal Terrestrial Radio Access Network (E-UTRAN); Overall description; Stage 2", 2018
