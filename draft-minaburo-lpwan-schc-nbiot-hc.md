@@ -1,24 +1,18 @@
 ---
-title: SCHC over NBIoT
-docname: draft-ietf-lpwan-schc-over-nbiot-08
-date: 2022-05-17
-
 stand_alone: true
-
 ipr: trust200902
-area: Internet
-wg: LPWAN Working Group
-kw: Internet-Draft
+docname: draft-ietf-lpwan-schc-nbiot-08
 cat: std
-
-coding: UTF-8
-pi: 
+pi:
   symrefs: 'yes'
   sortrefs: 'yes'
   strict: 'yes'
   compact: 'yes'
   toc: 'yes'
-  
+
+title: SCHC over NBIoT
+abbrev: LPWAN SCHC YANG module
+wg: lpwan Working Group
 author:
 - ins: E. Ramos
   name: Edgar Ramos
