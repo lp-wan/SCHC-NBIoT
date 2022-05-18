@@ -197,7 +197,7 @@ In this scenario, SCHC may reside in the Non-Access Stratum (NAS) protocol layer
 
 
 ~~~~~~
-{: #Fig-ProtocolArchi4 title= 'SCHC entities placement in the 3GPP CIOT radio protocol architecture for DoNAS transmissions'}
+{: #Fig-ProtocolArchi4 title='SCHC entities placement in the 3GPP CIOT radio protocol architecture for DoNAS transmissions'}
 
 
 
