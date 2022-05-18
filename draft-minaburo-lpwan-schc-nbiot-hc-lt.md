@@ -168,6 +168,7 @@ The system will use DoNAS when a terminal in a power-saving state requires a sho
 ### SCHC Entities Placing
 In this scenario, SCHC may reside in the Non-Access Stratum (NAS) protocol layer. The same principles as for Radio link transmissions apply here as well. Because the NAS protocol already uses RoHC it can adapt SCHC for header compression too. The main difference compared to the radio link is the physical placing of the SCHC entities. On the network side, the NGW-MME resides in the core network and is the terminating node for NAS instead of the RGW-eNB. 
 
+
 ~~~~~~
 
 +--------+                       +--------+--------+  +  +--------+
@@ -194,8 +195,10 @@ In this scenario, SCHC may reside in the Non-Access Stratum (NAS) protocol layer
 
     *PDCP is bypassed until AS security is activated TGPP36300. 
 
+
 ~~~~~~
 {: #Fig-ProtocolArchi4 title= 'SCHC entities placement in the 3GPP CIOT radio protocol architecture for DoNAS transmissions'}
+
 
 
 ### Parameters for Static Context Header Compression and Fragmentation (SCHC) for the {{Radio}} and {{DONAS}}. {#Radio-Parameters}
@@ -215,7 +218,6 @@ These 12 bits must include the Compression Residue in addition to the RuleID. On
 The configuration may be part of the operation profile agreed together with the content distribution. The RuleID field size may range from 2 bits, resulting in 4 rules to an 8-bit value that would yield up to 256 rules that can be used together with the operators and seems quite a reasonable maximum limit even for a device acting as a NAT. 
 More bits could be configured, but it should consider the byte-alignment of the expected Compression Residue. In the minimum TB size case, 2 bits of RuleID leave only 6 bits available for Compression Residue.
 
-
 * SCHC MAX_PACKET_SIZE
 The Radio Link can handle the fragmentation of SCHC packets if needed, including reliability. Hence the packet size is limited by the MTU handled by the radio protocols which corresponds to 1600 bytes for 3GPP Release 15.
 
@@ -233,7 +235,10 @@ The Non-IP Data Delivery (NIDD) services of 3GPP enable the transmission of SCHC
 ### SCHC Entities Placing
 In the two scenarios using End-to-End compression, SCHC entities are located almost on top of the stack. The NB-IoT connectivity services implement SCHC in the Dev, an in the Application Server. The IP tunneling scenario requires that the Application Server send the compressed packet over an IP connection terminated by the 3GPP core network. If the transmission uses the NGW-SCEF services, it is possible to utilize an API call to transfer the SCHC packets between the core network and the Application Server. Also, an IP tunnel could be established by the Application Server if negotiated with the NGW-SCEF.
 
+
+
 ~~~~~~
+
 
 +---------+       XXXXXXXXXXXXXXXXXXXXXXXX             +--------+
 | SCHC    |      XXX                    XXX            | SCHC   |
@@ -249,7 +254,9 @@ In the two scenarios using End-to-End compression, SCHC entities are located alm
 | PHY     +------+ XXXXXXXXXXXXXXXXXXXXXXX         +---+  PHY   |
 +---------+                                            +--------+
    UE                                                       AS
-    
+
+
+
 ~~~~~~
 {: #Fig--NIDD title='SCHC entities placed when using Non-IP Delivery (NIDD) 3GPP Sevices'} 
 
