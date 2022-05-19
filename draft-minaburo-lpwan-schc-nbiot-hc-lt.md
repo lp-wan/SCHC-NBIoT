@@ -202,6 +202,7 @@ In this scenario, SCHC may reside in the Non-Access Stratum (NAS) protocol layer
 
 
 ### Parameters for Static Context Header Compression and Fragmentation (SCHC) for the {{Radio}} and {{DONAS}}. {#Radio-Parameters}
+
 These scenarios MUST use SCHC header compresion capability to improve the transmission of IPv6 packets. The 3GPP Architecture currently provides Header Compression using the {{RFC5795}} but the use of SCHC for IoT application MUST be considered to improve the devices connectivity.
 
 * SCHC Context initialization
@@ -262,6 +263,8 @@ In the two scenarios using End-to-End compression, SCHC entities are located alm
 
 
 ### Parameters for Static Context Header Compression and Fragmentation (SCHC) {#Config}
+
+These scenarios may use SCHC header compresion capability to improve the transmission of IPv6 packets. The use of SCHC for IoT application MUST be considered to improve the devices connectivity.
 
 * SCHC Context initialization.
 The application layer handles the static context; consequently, the context distribution must be according to the application's capabilities, perhaps utilizing IP data transmissions up to context initialization. Also, 
