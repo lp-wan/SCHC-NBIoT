@@ -291,13 +291,13 @@ and section {{Radio-Parameters}} defines the RuleID size.
 
 SCHC parametrization considers that NBIoT aligns the bit and uses padding and the size of the Transfer Block. SCHC will try to reduce padding to optimize the compression of the information. The Header size needs to be multiple of 4, and the Tiles may keep a fixed value of 4 or 8 bits to avoid padding except for transfer block equals 16 bits where Tiles may be 2 bits. The transfer block size has a wide range of values. Two configurations are recommended for the fragmentation parameters.
 
-* For Transfer Blocks smaller or equal to 300bits using an 8 bits-Header_size configuration, with the size of the header fields as follows: 
+* For Transfer Blocks smaller or equal to 304bits using an 8 bits-Header_size configuration, with the size of the header fields as follows: 
   * RuleID from 1 - 3 bits, 
   * DTag 1 bit, 
   * FCN 3 bits, 
   * W 1 bits. 
-* For Transfer Blocks bigger than 300 bits using a 16 bits-Header_size configuration, with the size of the header fields as follows: 
-  * RulesID from 1 to 8 or 10 bits, 
+* For Transfer Blocks bigger than 304 bits using a 16 bits-Header_size configuration, with the size of the header fields as follows: 
+  * RulesID from 8 - 10 bits, 
   * DTag 1 or 2 bits, 
   * FCN 3 bits, 
   * W 2 or 3 bits. 
