@@ -1,7 +1,7 @@
 ---
 stand_alone: true
 ipr: trust200902
-docname: draft-ietf-lpwan-schc-over-nbiot-08
+docname: draft-ietf-lpwan-schc-over-nbiot-09
 area: Internet
 wg: LPWAN Working Group
 kw: Internet-Draft
@@ -54,7 +54,7 @@ and fragmentation functionality, suitable for the Low Power Wide Area Networks (
 
 In a Narrowband Internet of Things (NB-IoT) network, header compression efficiently brings Internet connectivity to the Device - User Equipment (Dev-UE).
 This document describes the SCHC parameters used to support the static context header compression and fragmentation over the NB-IoT wireless access.
-This document assumes functionality for NB-IoT of 3GPP release 15 (3GPPR15).
+This document assumes functionality for NB-IoT of 3GPP release 15 REF-3GPPR15.
 Otherwise, the text explicitly mentions other versions' functionality.
 
 # Terminology
@@ -304,6 +304,14 @@ SCHC parametrization considers that NBIoT aligns the bit and uses padding and th
   * DTag 1 or 2 bits, 
   * FCN 3 bits, 
   * W 2 or 3 bits. 
+  
+  * W 2 or 3 bits. 
+  
+* WINDOW_SIZE is recommended to be 2^N-1.
+
+* RCS will follow the default size defined on the section 8.2.3 of the {{RFC8724}}, with a size equal to the L2 Word.
+
+* MAX_ACK_REQ is recommended to be 2 but applications may change this value based on transmission conditions.
 
 The IoT devices communicate with small data transfer and have a battery life of 10 years. These devices use the Power Save Mode and the Idle Mode DRX, which govern how often the device wakes up, stays up, and is reachable. Table 10.5.163a in {3GPP-TS_24.088} specifies a range for the radio timers as N to 3N in increments of one where the units of N can be 1 hour or 10 hours. To adapt SCHC to the NB-IoT activities, the Inactivity Timer and the Retransmission Timer be set based on these limits.
 
