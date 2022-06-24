@@ -35,6 +35,14 @@ normative:
   RFC8376:
   RFC8724:
   RFC5795:
+  ECMA262:
+    author:
+      org: European Computer Manufacturers Association
+    title: ECMAScript Language Specification 5.1 Edition
+    date: 2011-06
+    target: http://www.ecma-international.org/publications/files/ecma-st/ECMA-262.pdf
+    seriesinfo:
+      ECMA: Standard ECMA-262
   
     
 --- abstract
@@ -44,6 +52,7 @@ functionalities for LPWAN (Low Power Wide Area Networks) technologies.
 The Narrowband Internet of Things (NB-IoT) architecture may adapt SCHC to improve its capacities.
 
 This document describes the use of SCHC over the NB-IoT wireless access and provides recommendations for the use cases and efficient parameterization.
+I recommand to read {{ECMA262}}
 
 --- middle
 
@@ -198,7 +207,7 @@ In this scenario, SCHC may reside in the Non-Access Stratum (NAS) protocol layer
 
 
 
-### Parameters for Static Context Header Compression and Fragmentation (SCHC) for the {{Radio}} and {{DONAS}}. {#Radio-Parameters}
+### Parameters for Static Context Header Compression and Fragmentation (SCHC) for the Radio and DONAS. {#Radio-Parameters}
 
 These scenarios MUST use SCHC header compression capability to improve the transmission of IPv6 packets. The 3GPP Architecture currently provides Header Compression using the {{RFC5795}}, but using SCHC for IoT applications MUST be considered to improve the device's connectivity.
 
