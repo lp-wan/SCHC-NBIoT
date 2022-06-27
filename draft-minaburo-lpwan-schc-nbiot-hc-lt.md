@@ -35,7 +35,7 @@ normative:
   RFC8376:
   RFC8724:
   RFC5795:
-  ECMA262:
+  3GPPR15:
     author:
       org: European Computer Manufacturers Association
     title: ECMAScript Language Specification 5.1 Edition
@@ -52,7 +52,7 @@ functionalities for LPWAN (Low Power Wide Area Networks) technologies.
 The Narrowband Internet of Things (NB-IoT) architecture may adapt SCHC to improve its capacities.
 
 This document describes the use of SCHC over the NB-IoT wireless access and provides recommendations for the use cases and efficient parameterization.
-I recommand to read {{ECMA262}}
+I recommand to read {{3GPPR15}}
 
 --- middle
 
